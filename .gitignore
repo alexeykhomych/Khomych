@@ -114,6 +114,3 @@ Carthage/Build
 
 fastlane/report.xml
 fastlane/screenshots
-
-### Objective-C Patch ###
-*.xcscmblueprint
