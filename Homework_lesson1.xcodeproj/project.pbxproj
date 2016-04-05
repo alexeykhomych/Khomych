@@ -41,6 +41,7 @@
 		841CCD4B1CB3F01800029071 = {
 			isa = PBXGroup;
 			children = (
+				841CCD611CB3F2F800029071 /* Sources */,
 				841CCD561CB3F01800029071 /* Homework_lesson1 */,
 				841CCD551CB3F01800029071 /* Products */,
 			);
@@ -60,6 +61,13 @@
 				841CCD571CB3F01800029071 /* main.c */,
 			);
 			path = Homework_lesson1;
+			sourceTree = "<group>";
+		};
+		841CCD611CB3F2F800029071 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,6 +246,7 @@
 				841CCD5D1CB3F01800029071 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
