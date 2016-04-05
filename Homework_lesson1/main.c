@@ -1,15 +1,20 @@
-//
-//  main.c
-//  Homework_lesson1
-//
-//  Created by Admin on 05.04.16.
-//
-//
-
+//#include "ICPrint.h"
 #include <stdio.h>
+void ICPrint1();
+void ICPrintParents();
 
 int main(int argc, const char * argv[]) {
     // insert code here...
-    printf("Hello, World!\n");
+//    ICPrint();
+    ICPrintParents();
     return 0;
+}
+
+//print text in cmd
+void ICPrint1(){
+    printf("Hello, mama\n");
+}
+void ICPrintParents(){
+    ICPrint1();
+    printf("Hello, papa!\n");
 }
