@@ -7,6 +7,7 @@ int main(int argc, const char * argv[]) {
     // insert code here...
 //    ICPrint();
     ICPrintParents();
+    
     return 0;
 }
 
@@ -14,6 +15,7 @@ int main(int argc, const char * argv[]) {
 void ICPrint1(){
     printf("Hello, mama\n");
 }
+
 void ICPrintParents(){
     ICPrint1();
     printf("Hello, papa!\n");
