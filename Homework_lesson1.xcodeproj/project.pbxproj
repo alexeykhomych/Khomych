@@ -8,8 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		841CCD581CB3F01800029071 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 841CCD571CB3F01800029071 /* main.c */; };
-		841CCD641CB3F6A300029071 /* ICPrint.c in Sources */ = {isa = PBXBuildFile; fileRef = 841CCD621CB3F6A300029071 /* ICPrint.c */; };
-		841CCD671CB3F96700029071 /* ICPrintParents.c in Sources */ = {isa = PBXBuildFile; fileRef = 841CCD651CB3F96700029071 /* ICPrintParents.c */; };
+		841CCD6A1CB539D100029071 /* ICPrinting.c in Sources */ = {isa = PBXBuildFile; fileRef = 841CCD681CB539D100029071 /* ICPrinting.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,10 +26,8 @@
 /* Begin PBXFileReference section */
 		841CCD541CB3F01800029071 /* Homework_lesson1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Homework_lesson1; sourceTree = BUILT_PRODUCTS_DIR; };
 		841CCD571CB3F01800029071 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
-		841CCD621CB3F6A300029071 /* ICPrint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ICPrint.c; sourceTree = "<group>"; };
-		841CCD631CB3F6A300029071 /* ICPrint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICPrint.h; sourceTree = "<group>"; };
-		841CCD651CB3F96700029071 /* ICPrintParents.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ICPrintParents.c; sourceTree = "<group>"; };
-		841CCD661CB3F96700029071 /* ICPrintParents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICPrintParents.h; sourceTree = "<group>"; };
+		841CCD681CB539D100029071 /* ICPrinting.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ICPrinting.c; sourceTree = "<group>"; };
+		841CCD691CB539D100029071 /* ICPrinting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICPrinting.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,10 +69,8 @@
 		841CCD611CB3F2F800029071 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				841CCD621CB3F6A300029071 /* ICPrint.c */,
-				841CCD631CB3F6A300029071 /* ICPrint.h */,
-				841CCD651CB3F96700029071 /* ICPrintParents.c */,
-				841CCD661CB3F96700029071 /* ICPrintParents.h */,
+				841CCD681CB539D100029071 /* ICPrinting.c */,
+				841CCD691CB539D100029071 /* ICPrinting.h */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -135,9 +130,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				841CCD6A1CB539D100029071 /* ICPrinting.c in Sources */,
 				841CCD581CB3F01800029071 /* main.c in Sources */,
-				841CCD641CB3F6A300029071 /* ICPrint.c in Sources */,
-				841CCD671CB3F96700029071 /* ICPrintParents.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
