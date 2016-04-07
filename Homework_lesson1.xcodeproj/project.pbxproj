@@ -47,6 +47,7 @@
 		841CCD4B1CB3F01800029071 = {
 			isa = PBXGroup;
 			children = (
+				841CCD711CB6873F00029071 /* MathematicFunctions */,
 				841CCD611CB3F2F800029071 /* Sources */,
 				841CCD561CB3F01800029071 /* Homework_lesson1 */,
 				841CCD551CB3F01800029071 /* Products */,
@@ -78,6 +79,13 @@
 				841CCD6C1CB57F8E00029071 /* PrintNumbers.h */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		841CCD711CB6873F00029071 /* MathematicFunctions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = MathematicFunctions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
