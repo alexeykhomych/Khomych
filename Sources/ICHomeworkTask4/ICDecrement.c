@@ -6,7 +6,7 @@
 //
 //
 
-#include "ICDecrement.h"
+#include "ICRunApplicationFunction.h"
 
 int ICDecrement(int param) {
     return param--;

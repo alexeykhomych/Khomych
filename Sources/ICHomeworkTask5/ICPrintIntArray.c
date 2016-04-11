@@ -6,7 +6,7 @@
 //
 //
 
-#include "ICPrintIntArray.h"
+#include "ICRunApplicationFunction.h"
 
 void ICPrintIntArray() {
     int array1[4] = {0, 5, 3};

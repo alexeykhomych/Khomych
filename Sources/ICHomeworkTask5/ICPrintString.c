@@ -6,10 +6,17 @@
 //
 //
 
-#include "ICPrintString.h"
+#include <stdio.h>
+#include <string.h>
+
+#include "ICRunApplicationFunction.h"
 
 void ICPrintString(char text[]) {
     for (int iterator = 0; text[iterator] != '\0'; iterator++) {
            printf("%c\n", text[iterator]);
     }
+}
+
+void ICPrintStringWithNullTerm(char* chars) {
+    printf("%lu", strlen(chars));
 }

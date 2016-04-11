@@ -5,8 +5,9 @@
 //  Created by Admin on 08.04.16.
 //
 //
+#include <stdio.h>
 
-#include "ICBoolPrintMamaPapa.h"
+#include "ICRunApplicationFunction.h"
 
 void ICBoolPrintMamaPapa(int value1, int value2) {
     value1 > value2 ? puts("Mama") : puts("Papa");

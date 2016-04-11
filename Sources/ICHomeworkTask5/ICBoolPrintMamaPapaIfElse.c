@@ -5,14 +5,14 @@
 //  Created by Admin on 08.04.16.
 //
 //
+#include <stdio.h>
 
-#include "ICBoolPrintMamaPapaIfElse.h"
+#include "ICRunApplicationFunction.h"
 
 void ICBoolPrintMamaPapaIfElse(int value1, int value2) {
     if(value1 > value2) {
         puts("Mama");
-    }
-    else {
+    } else {
         puts("Papa");
     }
 }

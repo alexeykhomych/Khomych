@@ -6,15 +6,15 @@
 //
 //
 
-#include "ICCheckBoolReturnString.h"
+#include "ICRunApplicationFunction.h"
 
 char *ICCheckBoolReturnString(bool value) {
     char *returnValue = "";
     if(1 == value) {
         returnValue = "true";
-    }
-    else {
+    } else {
         returnValue = "false";
     }
+    
     return returnValue;
 }

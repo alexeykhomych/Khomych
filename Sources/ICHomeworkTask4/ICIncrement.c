@@ -6,7 +6,7 @@
 //
 //
 
-#include "ICIncrement.h"
+#include "ICRunApplicationFunction.h"
 
 int ICIncrement(int param) {
     return param++;
