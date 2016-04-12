@@ -18,9 +18,9 @@ void ICBoolOperations(int value1, int value2) {
     result = value1 == value2;
     ICOutputParamsBool(result);
     
-    result = value1 -5 <= value2;
+    result = (value1 - 5) <= value2;
     ICOutputParamsBool(result);
     
-    result = value1 -8 >= value2;
+    result = (value1 - 8) >= value2;
     ICOutputParamsBool(result);
 }

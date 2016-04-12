@@ -22,16 +22,14 @@ void ICDeputyStatus(ICDeputyEntity entity) {
     long allMoney = 250000120;
     int salary = 50000;
     
-    if(allMoney > salary * 120 && allMoney >= salary * 1000 * 1000) {
-        entity = ICDeputyStatusThief;
-    } else if(allMoney >= salary * 120 && allMoney < salary * 1000 * 1000) {
-        entity = ICDeputyStatusHonest;
-    } else if(allMoney >= salary * 12 && allMoney < salary * 120) {
+    if(allMoney < salary * 12 || !salary) {
+        entity = ICDeputyStatusDead;
+    } else if(allMoney < salary * 120) {
         entity = ICDeputyStatusAngel;
-    } else if(salary == 0 && allMoney < salary * 12) {
-        entity = ICDeputyStatusDead;
-    } else {
-        entity = ICDeputyStatusDead;
+    } else if(allMoney < salary * 1000 * 1000) {
+        entity = ICDeputyStatusHonest;
+    } else if(allMoney >= salary * 1000 * 1000) {
+        entity = ICDeputyStatusThief;
     }
     
     switch(entity) {
