@@ -9,24 +9,20 @@
 #ifndef ICMacrosTest_h
 #define ICMacrosTest_h
 
-#define CallPrintMacroTest(type) \
-do { \
-printf("The sizeof : " #type " = %d\n", sizeof(type));  \
-} \
-while(0)
+#define CallPrintMacroTest(type, specifier) \
+ICMacroGenerateFunction(type, specifier)
 
-#define ICMacrosGenerateFunction(type, specifier)\
-void output_##type(type value) {\
-printf(#type " - " #specifier, value);\
+#define ICMacroGenerateFunction(type, specifier) \
+    void output_##type(type specifier) { \
+        printf("hi123"); \
 }
 
-#define ICFunctionShowSizeOfTypes(type, qualifier) \
-do { \
-printf("The sizeof : " #type " = %d\n", sizeof(type));  \
-} \
-while(0)
+#define ICFunctionShowSizeOfTypes(type) \
+    do { \
+        printf("The sizeof: " #type " = %d\n", sizeof(type));  \
+    } while(0)
 
-
-void testfunc();
+void ICMacroOutputGeneratedFunction();
+void ICMacroPrintSizeOfTypes();
 
 #endif /* ICMacrosTest_h */

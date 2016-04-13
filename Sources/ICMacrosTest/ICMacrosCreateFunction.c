@@ -11,13 +11,14 @@
 
 #include "ICMacrosCreateFunction.h"
 
-//ICMacrosCreatFunction(t, t);
-//ICMacrosCreatFunction(double, %lf);
-//ICMacrosCreatFunction(long, %ld);
-//ICMacrosCreatFunction(char, %c);
+CallPrintMacroTest(int, d);
 
 
-void testfunc() {
+void ICMacroOutputGeneratedFunction() {
+   
+}
+
+void ICMacroPrintSizeOfTypes() {
 //    char *charArray[7][2];
 //    
 //    charArray[0][0] = "int";
@@ -41,11 +42,13 @@ void testfunc() {
 //        }
 //    }
     
-    ICFunctionShowSizeOfTypes(int, %d);
-    ICFunctionShowSizeOfTypes(char, %c);
-    ICFunctionShowSizeOfTypes(long, %l);
-    ICFunctionShowSizeOfTypes(long double, %L);
-    ICFunctionShowSizeOfTypes(float, %f);
-    ICFunctionShowSizeOfTypes(long long int, %ll);
-    ICFunctionShowSizeOfTypes(short int, %h);
+    ICFunctionShowSizeOfTypes(int);
+    ICFunctionShowSizeOfTypes(char);
+    ICFunctionShowSizeOfTypes(long);
+    ICFunctionShowSizeOfTypes(long double);
+    ICFunctionShowSizeOfTypes(float);
+    ICFunctionShowSizeOfTypes(long long int);
+    ICFunctionShowSizeOfTypes(short int);
+    ICFunctionShowSizeOfTypes(double);
+    ICFunctionShowSizeOfTypes(short);
 }
