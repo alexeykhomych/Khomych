@@ -27,7 +27,7 @@
 		84F249EB1CBAE46500CB210A /* ICPrintIntArray.c in Sources */ = {isa = PBXBuildFile; fileRef = 84F249EA1CBAE46500CB210A /* ICPrintIntArray.c */; };
 		84F249ED1CBAEE8B00CB210A /* ICMathematicOperations.c in Sources */ = {isa = PBXBuildFile; fileRef = 84F249EC1CBAEE8B00CB210A /* ICMathematicOperations.c */; };
 		84F249F21CBBBE3800CB210A /* ICPrint.c in Sources */ = {isa = PBXBuildFile; fileRef = 84F249EE1CBBBE3800CB210A /* ICPrint.c */; };
-		84F249FA1CBBDDDA00CB210A /* ICMacrosCreateFunction.c in Sources */ = {isa = PBXBuildFile; fileRef = 84F249F81CBBDDDA00CB210A /* ICMacrosCreateFunction.c */; };
+		84F249FA1CBBDDDA00CB210A /* ICMacrosGenerateAndPrintFunction.c in Sources */ = {isa = PBXBuildFile; fileRef = 84F249F81CBBDDDA00CB210A /* ICMacrosGenerateAndPrintFunction.c */; };
 		84F249FE1CBD388600CB210A /* ICRunApplicationTask4.c in Sources */ = {isa = PBXBuildFile; fileRef = 84F249FD1CBD388600CB210A /* ICRunApplicationTask4.c */; };
 		84F24A001CBD394D00CB210A /* ICRunApplicationTask5.c in Sources */ = {isa = PBXBuildFile; fileRef = 84F249FF1CBD394D00CB210A /* ICRunApplicationTask5.c */; };
 		84F24A021CBD39C500CB210A /* ICRunApplicationTask3.c in Sources */ = {isa = PBXBuildFile; fileRef = 84F24A011CBD39C500CB210A /* ICRunApplicationTask3.c */; };
@@ -68,8 +68,8 @@
 		84F249EA1CBAE46500CB210A /* ICPrintIntArray.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ICPrintIntArray.c; sourceTree = "<group>"; };
 		84F249EC1CBAEE8B00CB210A /* ICMathematicOperations.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ICMathematicOperations.c; sourceTree = "<group>"; };
 		84F249EE1CBBBE3800CB210A /* ICPrint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ICPrint.c; sourceTree = "<group>"; };
-		84F249F81CBBDDDA00CB210A /* ICMacrosCreateFunction.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ICMacrosCreateFunction.c; sourceTree = "<group>"; };
-		84F249F91CBBDDDA00CB210A /* ICMacrosCreateFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICMacrosCreateFunction.h; sourceTree = "<group>"; };
+		84F249F81CBBDDDA00CB210A /* ICMacrosGenerateAndPrintFunction.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ICMacrosGenerateAndPrintFunction.c; sourceTree = "<group>"; };
+		84F249F91CBBDDDA00CB210A /* ICMacrosGenerateAndPrintFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICMacrosGenerateAndPrintFunction.h; sourceTree = "<group>"; };
 		84F249FB1CBD1B6500CB210A /* task.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = task.rtf; sourceTree = "<group>"; };
 		84F249FC1CBD340F00CB210A /* iOS Study Plan.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "iOS Study Plan.txt"; path = "ICMacrosTest/iOS Study Plan.txt"; sourceTree = "<group>"; };
 		84F249FD1CBD388600CB210A /* ICRunApplicationTask4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ICRunApplicationTask4.c; sourceTree = "<group>"; };
@@ -173,8 +173,8 @@
 		84F249F71CBBDD7A00CB210A /* ICMacrosPrinting */ = {
 			isa = PBXGroup;
 			children = (
-				84F249F81CBBDDDA00CB210A /* ICMacrosCreateFunction.c */,
-				84F249F91CBBDDDA00CB210A /* ICMacrosCreateFunction.h */,
+				84F249F81CBBDDDA00CB210A /* ICMacrosGenerateAndPrintFunction.c */,
+				84F249F91CBBDDDA00CB210A /* ICMacrosGenerateAndPrintFunction.h */,
 			);
 			name = ICMacrosPrinting;
 			path = ICMacrosTest;
@@ -240,7 +240,7 @@
 				84F249EB1CBAE46500CB210A /* ICPrintIntArray.c in Sources */,
 				84F249D21CBACF8D00CB210A /* ICDecrement.c in Sources */,
 				84F249CF1CBAC88E00CB210A /* ICPrefixIncrement.c in Sources */,
-				84F249FA1CBBDDDA00CB210A /* ICMacrosCreateFunction.c in Sources */,
+				84F249FA1CBBDDDA00CB210A /* ICMacrosGenerateAndPrintFunction.c in Sources */,
 				84F249FE1CBD388600CB210A /* ICRunApplicationTask4.c in Sources */,
 				84F249E31CBAD02000CB210A /* ICPrintDoubleNullTerm.c in Sources */,
 				84F249D81CBACFA300CB210A /* ICBoolPrintMamaPapa.c in Sources */,

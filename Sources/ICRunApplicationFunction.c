@@ -7,12 +7,14 @@
 //
 
 #include "ICRunApplicationFunction.h"
-#include "ICMacrosCreateFunction.h"
+#include "ICMacrosGenerateAndPrintFunction.h"
+
 
 void ICRunApplicationFunction() {
 //    ICRunApplicationTask3();
 //    ICRunApplicationTask4();
 //    ICRunApplicationTask5();
-    ICMacroOutputGeneratedFunction();
-//    ICMacroPrintSizeOfTypes();
+    
+    ICMacroCallGeneratedFunction();
+    ICMacroPrintSizeOfTypes();
 }
