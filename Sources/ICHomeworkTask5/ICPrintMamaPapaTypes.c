@@ -8,41 +8,34 @@
 
 #include "ICRunApplicationFunction.h"
 #include <stdio.h>
+#include <string.h>
 
-typedef enum {
-    //ICPrintTypeMama = "mama"
-//    ICPrintTypeMama = 'mama',
-    ICPrintTypeMama,
-    ICPrintTypePapa,
-    ICPrintTypeMamaPapa,
-    ICPrintTypeNothing
-}ICPrintType;
-
-int ICPrintIntFold(int value) {
-    ICPrintType type;
+int ICPrintTypeWithInt(int value) {
+    ICPrintType type = ICPrintTypeNothing;
+    
     if(value % 3 == 0) {
         type = ICPrintTypeMama;
-    } else if(value % 5 == 0) {
-        type = ICPrintTypePapa;
-    } else if(value % 15 == 0) {
-        type = ICPrintTypeMamaPapa;
-    } else {
-        type = ICPrintTypeNothing;
     }
-//    
-//    printf("%s", ICPrintTypeMama);
+    
+    if(value % 5 == 0) {
+        type = ICPrintTypePapa;
+    }
+    
+    if(value % 15 == 0) {
+        type = (int)(ICPrintTypeMama + ICPrintTypePapa);
+    }
+    
     return type;
 }
 
 void ICPrintMapaPapaTypes() {
-    int value = ICPrintIntFold(3);
-    if(0 == value) {
-        printf("mama");
-    } else if(1 == value) {
-        printf("papa");
-    } else if(2 == value) {
-        printf("mamapapa\n");
-    } else {
-        //do nothing
-    }
+    ICPrintType type = ICPrintTypeWithInt(1);
+    
+    char* arr[4];
+    arr[ICPrintTypeNothing] = ICPrintTypeNothing;
+    arr[ICPrintTypeMama] = "mama";
+    arr[ICPrintTypePapa] = "papa";
+    arr[ICPrintTypeMamaPapa] = "mamapapa";
+    
+    arr[type] != NULL ? printf("%s\n", arr[type]) : printf("");
 }

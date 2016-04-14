@@ -11,14 +11,28 @@
 
 #include <stdbool.h>
 
-void ICRunApplicationFunction();
+typedef enum {
+    ICDeputyStatusAngel,
+    ICDeputyStatusDead,
+    ICDeputyStatusThief,
+    ICDeputyStatusHonest,
+} ICDeputyEntity;
 
-int ICPrintIntFold(int value);
+typedef enum {
+    ICPrintTypeNothing,
+    ICPrintTypeMama,
+    ICPrintTypePapa,
+    ICPrintTypeMamaPapa
+}ICPrintType;
+
+int ICPrintTypeWithInt(int value);
 void ICPrintCycleFor(int count, int min, int max);
 void ICPrintString(char text[]);
 void ICPrintIntArray();
+void ICListIntArrays(int iterator);
 void ICBoolPrintMamaPapaIfElse(int value1, int value2);
 void ICPrintDoubleNullTerm(char text[]);
+void ICPrintNonNullTermString(char text[], int length);
 void ICBoolPrintMamaPapa(int value1, int value2);
 void ICPrintStringWithNullTerm(char* chars);
 void ICPrintMapaPapaTypes();
@@ -35,11 +49,13 @@ char *ICCheckBoolReturnString(bool value);
 void ICBoolOperations(int value1, int value2);
 bool ICMathematicOperations(int value1, int value2);
 
-void ICDeputyStatus();
+void ICCheckDeputyStatus();
+void ICPrintDeputyStatus(ICDeputyEntity entity);
 void ICEquationPartition();
 int ICPostfixIncrement(int postfixIncrementValue);
 int ICPrefixIncrement(int prefixIncrementValue);
 
+void ICRunApplicationFunction();
 void ICRunApplicationTask3();
 void ICRunApplicationTask4();
 void ICRunApplicationTask5();

@@ -10,15 +10,8 @@
 
 #include "ICRunApplicationFunction.h"
 
-typedef enum {
-    ICDeputyStatusAngel,
-    ICDeputyStatusDead,
-    ICDeputyStatusThief,
-    ICDeputyStatusHonest,
-} ICDeputyEntity;
 
-void ICDeputyStatus(ICDeputyEntity entity) {
-//    enum ICDeputyStatus status;
+void ICCheckDeputyStatus(ICDeputyEntity entity) {
     long allMoney = 250000120;
     int salary = 50000;
     
@@ -32,6 +25,10 @@ void ICDeputyStatus(ICDeputyEntity entity) {
         entity = ICDeputyStatusThief;
     }
     
+    ICPrintDeputyStatus(entity);
+}
+
+void ICPrintDeputyStatus(ICDeputyEntity entity) {
     switch(entity) {
         case ICDeputyStatusDead:
             puts("Deputy is dead");
@@ -48,5 +45,5 @@ void ICDeputyStatus(ICDeputyEntity entity) {
         default:
             puts("Deputy is dead");
             break;
-    }    
+    }
 }

@@ -17,6 +17,6 @@ void ICPrintString(char text[]) {
     }
 }
 
-void ICPrintStringWithNullTerm(char* chars) {
-    printf("%lu", strlen(chars));
+void ICPrintNonNullTermString(char text[], int length) {
+    printf("%.*s\n", length, text);
 }

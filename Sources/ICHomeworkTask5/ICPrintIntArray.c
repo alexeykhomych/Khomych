@@ -8,35 +8,39 @@
 
 #include "ICRunApplicationFunction.h"
 
-void ICPrintIntArray() {
-    int array1[4] = {0, 5, 3};
-    int array2[] = {5, 12, 6, 12};
-    int array3[4];
-    
-    /* for */
+static
+int array1[4] = {0, 5, 3};
+static
+int array2[] = {5, 12, 6, 12};
+static
+int array3[4];
 
-    for (int iterator = 0; iterator < 4; iterator++) {
-        printf("%d\n", array1[iterator]);
-        printf("%d\n", array2[iterator]);
-        printf("%d\n", array3[iterator]);
+void ICPrintIntArray() {
+    /* for */
+    int iterator = 0;
+    
+    for (iterator = 0; iterator < 4; iterator++) {
+        ICListIntArrays(iterator);
     }
     
     /* do..while */
-    int iteratorDo = 0;
+    iterator = 0;
     do {
-        printf("%d\n", array1[iteratorDo]);
-        printf("%d\n", array2[iteratorDo]);
-        printf("%d\n", array3[iteratorDo]);
-        iteratorDo++;
+        ICListIntArrays(iterator);
+        iterator++;
     }
-    while(iteratorDo < 4);
+    while(iterator < 4);
     
 //    /* while */
-    iteratorDo = 0;
-    while(iteratorDo < 4) {
-        printf("%d\n", array1[iteratorDo]);
-        printf("%d\n", array2[iteratorDo]);
-        printf("%d\n", array3[iteratorDo]);
-        iteratorDo++;
+    iterator = 0;
+    while(iterator < 4) {
+        ICListIntArrays(iterator);
+        iterator++;
     }
+}
+
+void ICListIntArrays(int iterator) {
+    printf("%d\n", array1[iterator]);
+    printf("%d\n", array2[iterator]);
+    printf("%d\n", array3[iterator]);
 }
