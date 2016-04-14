@@ -18,12 +18,7 @@ printf(#type " value = " #specifier "\n", value); \
 #define CallPrintMacroTest(type, value) \
 output_##type(value)
 
-
-
 void ICMacroPrintSizeOfTypes();
 void ICMacroCallGeneratedFunction();
-
-
-
 
 #endif /* ICMacrosTest_h */

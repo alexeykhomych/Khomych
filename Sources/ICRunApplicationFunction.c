@@ -13,7 +13,7 @@
 void ICRunApplicationFunction() {
 //    ICRunApplicationTask3();
 //    ICRunApplicationTask4();
-//    ICRunApplicationTask5();
+    ICRunApplicationTask5();
     
     ICMacroCallGeneratedFunction();
     ICMacroPrintSizeOfTypes();
