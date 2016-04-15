@@ -14,28 +14,20 @@ int ICPrintTypeWithInt(int value) {
     ICPrintType type = ICPrintTypeNothing;
     
     if(value % 3 == 0) {
-        type = ICPrintTypeMama;
+        type += ICPrintTypeMama;
     }
     
     if(value % 5 == 0) {
-        type = ICPrintTypePapa;
+        type += ICPrintTypePapa;
     }
     
-    if(value % 15 == 0) {
-        type = (int)(ICPrintTypeMama + ICPrintTypePapa);
+    if(type) {
+        printf("\n");
     }
     
     return type;
 }
 
 void ICPrintMapaPapaTypes() {
-    ICPrintType type = ICPrintTypeWithInt(1);
-    
-    char* arr[4];
-    arr[ICPrintTypeNothing] = ICPrintTypeNothing;
-    arr[ICPrintTypeMama] = "mama";
-    arr[ICPrintTypePapa] = "papa";
-    arr[ICPrintTypeMamaPapa] = "mamapapa";
-    
-    arr[type] != NULL ? printf("%s\n", arr[type]) : printf("");
+    ICPrintType type = ICPrintTypeWithInt(15);
 }

@@ -32,7 +32,7 @@ void ICPrintIntArray();
 void ICListIntArrays(int iterator);
 void ICBoolPrintMamaPapaIfElse(int value1, int value2);
 void ICPrintDoubleNullTerm(char text[]);
-void ICPrintNonNullTermString(char text[], int length);
+void ICPrintNonNullTermString(const char* text, unsigned long strLength);
 void ICBoolPrintMamaPapa(int value1, int value2);
 void ICPrintStringWithNullTerm(char* chars);
 void ICPrintMapaPapaTypes();

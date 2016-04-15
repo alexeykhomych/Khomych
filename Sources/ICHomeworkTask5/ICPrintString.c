@@ -13,10 +13,10 @@
 
 void ICPrintString(char text[]) {
     for (int iterator = 0; text[iterator] != '\0'; iterator++) {
-           printf("%c\n", text[iterator]);
+        printf("%c\n", text[iterator]);
     }
 }
 
-void ICPrintNonNullTermString(char text[], int length) {
-    printf("%.*s\n", length, text);
+void ICPrintNonNullTermString(const char* text, unsigned long strLength) {
+    printf("%.*s\n", 50, text);
 }
