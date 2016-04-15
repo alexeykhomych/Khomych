@@ -6,7 +6,7 @@
 //
 //
 
-#include "ICRunApplicationFunction.h"
+#include "ICRunApplication.h"
 
 static
 int array1[4] = {0, 5, 3};

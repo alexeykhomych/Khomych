@@ -5,10 +5,10 @@
 //  Created by Admin on 08.04.16.
 //
 //
-
-#include "ICRunApplicationFunction.h"
 #include <stdio.h>
 #include <string.h>
+
+#include "ICRunApplication.h"
 
 int ICPrintTypeWithInt(int value) {
     ICPrintType type = ICPrintTypeNothing;

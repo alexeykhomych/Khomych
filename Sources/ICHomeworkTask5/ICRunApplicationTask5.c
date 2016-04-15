@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "ICRunApplicationFunction.h"
+#include "ICRunApplication.h"
 
 void ICRunApplicationTask5() {
 //    /* ex. 1 */

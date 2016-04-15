@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "ICRunApplicationFunction.h"
+#include "ICRunApplication.h"
 
 void ICPrintDoubleNullTerm(char text[]) {
     int count = 0;

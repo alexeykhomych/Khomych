@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "ICRunApplicationFunction.h"
+#include "ICRunApplication.h"
 
 void ICPrintString(char text[]) {
     for (int iterator = 0; text[iterator] != '\0'; iterator++) {

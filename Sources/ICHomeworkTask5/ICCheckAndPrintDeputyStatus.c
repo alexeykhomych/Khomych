@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 
-#include "ICRunApplicationFunction.h"
+#include "ICRunApplication.h"
 
 
 void ICCheckDeputyStatus(ICDeputyEntity entity) {
@@ -33,15 +33,19 @@ void ICPrintDeputyStatus(ICDeputyEntity entity) {
         case ICDeputyStatusDead:
             puts("Deputy is dead");
             break;
+            
         case ICDeputyStatusAngel:
             puts("Deputy is angel");
             break;
+            
         case ICDeputyStatusThief:
             puts("Deputy is thief");
             break;
+            
         case ICDeputyStatusHonest:
             puts("Deputy is honest");
             break;
+            
         default:
             puts("Deputy is dead");
             break;

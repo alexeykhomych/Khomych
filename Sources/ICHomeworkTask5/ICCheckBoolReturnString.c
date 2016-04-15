@@ -7,7 +7,7 @@
 //
 #include <stdio.h>
 
-#include "ICRunApplicationFunction.h"
+#include "ICRunApplication.h"
 
 char *ICCheckBoolReturnString(bool value) {
     char *result = NULL;

@@ -7,7 +7,7 @@
 //
 #include <stdio.h>
 
-#include "ICRunApplicationFunction.h"
+#include "ICRunApplication.h"
 
 void ICBoolPrintMamaPapa(int value1, int value2) {
     value1 > value2 ? puts("Mama") : puts("Papa");

@@ -1,9 +1,9 @@
 #include <stdio.h>
 
-#include "ICRunApplicationFunction.h"
+#include "ICRunApplication.h"
 
 int main(int argc, const char * argv[]) {
-    ICRunApplicationFunction();
+    ICRunApplication();
     
     return 0;
 }
