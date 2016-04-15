@@ -1,13 +1,13 @@
 //
-//  ICRunApplicationFunction.h
+//  ICRunApplication.h
 //  Homework_lesson1
 //
 //  Created by Admin on 08.04.16.
 //
 //
 
-#ifndef ICRunApplicationFunction_h
-#define ICRunApplicationFunction_h
+#ifndef ICRunApplication_h
+#define ICRunApplication_h
 
 #include <stdbool.h>
 
@@ -32,7 +32,7 @@ void ICPrintIntArray();
 void ICListIntArrays(int iterator);
 void ICBoolPrintMamaPapaIfElse(int value1, int value2);
 void ICPrintDoubleNullTerm(char text[]);
-void ICPrintNonNullTermString(char text[], int length);
+void ICPrintNonNullTermString(const char* text, unsigned long strLength);
 void ICBoolPrintMamaPapa(int value1, int value2);
 void ICPrintStringWithNullTerm(char* chars);
 void ICPrintMapaPapaTypes();
@@ -55,9 +55,9 @@ void ICEquationPartition();
 int ICPostfixIncrement(int postfixIncrementValue);
 int ICPrefixIncrement(int prefixIncrementValue);
 
-void ICRunApplicationFunction();
+void ICRunApplication();
 void ICRunApplicationTask3();
 void ICRunApplicationTask4();
 void ICRunApplicationTask5();
 
-#endif /* ICRunApplicationFunction_h */
+#endif /* ICRunApplication_h */

@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 
-#include "ICRunApplicationFunction.h"
+#include "ICRunApplication.h"
 
 void ICRunApplicationTask3() {
 //    ICPrint();

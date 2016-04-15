@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 
-#include "ICRunApplicationFunction.h"
+#include "ICRunApplication.h"
 
 //void ICPrint() {
 //    printf("Hello, world\n");

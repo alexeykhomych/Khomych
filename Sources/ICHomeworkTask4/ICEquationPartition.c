@@ -6,7 +6,7 @@
 //
 //
 
-#include "ICRunApplicationFunction.h"
+#include "ICRunApplication.h"
 
 void ICEquationPartition() {
     double doubleResult = 3.0;

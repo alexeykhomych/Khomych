@@ -6,7 +6,7 @@
 //
 //
 
-#include "ICRunApplicationFunction.h"
+#include "ICRunApplication.h"
 
 int ICPostfixIncrement(int postfixIncrementValue) {
     postfixIncrementValue = 2 * postfixIncrementValue++;

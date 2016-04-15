@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 
-#include "ICRunApplicationFunction.h"
+#include "ICRunApplication.h"
 
 void ICOutputParamsInt(int value) {
     printf("Integer: %d\n", value);

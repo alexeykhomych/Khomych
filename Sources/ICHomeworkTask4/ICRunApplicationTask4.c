@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <limits.h>
 
-#include "ICRunApplicationFunction.h"
+#include "ICRunApplication.h"
 
 void ICRunApplicationTask4() {
     /* TASK 4 */

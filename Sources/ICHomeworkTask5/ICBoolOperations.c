@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-#include "ICRunApplicationFunction.h"
+#include "ICRunApplication.h"
 
 void ICBoolOperations(int value1, int value2) {
     bool result = value1 > value2;

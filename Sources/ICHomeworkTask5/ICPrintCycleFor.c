@@ -7,7 +7,7 @@
 //
 #include <stdio.h>
 
-#include "ICRunApplicationFunction.h"
+#include "ICRunApplication.h"
 
 void ICPrintCycleFor(int countPrint, int min, int max) {
     countPrint = countPrint > 20 ? 20 : countPrint;

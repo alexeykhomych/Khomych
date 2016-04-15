@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-#include "ICRunApplicationFunction.h"
+#include "ICRunApplication.h"
 
 bool ICMathematicOperations(int value1, int value2) {
     printf("%s", ICCheckBoolReturnString(value1 / value2));
