@@ -8,13 +8,16 @@
 
 #include "ICRunApplication.h"
 #include "ICGenerateAndPrintFunction.h"
+#include "ICDataStructureWithValues.h"
 
 
 void ICRunApplication() {
 //    ICRunApplicationTask3();
 //    ICRunApplicationTask4();
-    ICRunApplicationTask5();
+//    ICRunApplicationTask5();
+//    
+//    ICCallOutputFunction();
+//    ICPrintSizeOfTypes();
     
-    ICCallOutputFunction();
-    ICPrintSizeOfTypes();
+    ICPrintSizeof();
 }
