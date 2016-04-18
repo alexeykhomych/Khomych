@@ -31,6 +31,7 @@
 		84F249FE1CBD388600CB210A /* ICRunApplicationTask4.c in Sources */ = {isa = PBXBuildFile; fileRef = 84F249FD1CBD388600CB210A /* ICRunApplicationTask4.c */; };
 		84F24A001CBD394D00CB210A /* ICRunApplicationTask5.c in Sources */ = {isa = PBXBuildFile; fileRef = 84F249FF1CBD394D00CB210A /* ICRunApplicationTask5.c */; };
 		84F24A021CBD39C500CB210A /* ICRunApplicationTask3.c in Sources */ = {isa = PBXBuildFile; fileRef = 84F24A011CBD39C500CB210A /* ICRunApplicationTask3.c */; };
+		84F24A091CC37DFE00CB210A /* ICDataStructureWithValues.c in Sources */ = {isa = PBXBuildFile; fileRef = 84F24A071CC37DFE00CB210A /* ICDataStructureWithValues.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -71,10 +72,12 @@
 		84F249F81CBBDDDA00CB210A /* ICGenerateAndPrintFunction.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ICGenerateAndPrintFunction.c; sourceTree = "<group>"; };
 		84F249F91CBBDDDA00CB210A /* ICGenerateAndPrintFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICGenerateAndPrintFunction.h; sourceTree = "<group>"; };
 		84F249FB1CBD1B6500CB210A /* task.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = task.rtf; sourceTree = "<group>"; };
-		84F249FC1CBD340F00CB210A /* iOS Study Plan.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "iOS Study Plan.txt"; path = "ICMacrosTest/iOS Study Plan.txt"; sourceTree = "<group>"; };
+		84F249FC1CBD340F00CB210A /* iOS Study Plan.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "iOS Study Plan.txt"; path = "Sources/ICMacrosTest/iOS Study Plan.txt"; sourceTree = "<group>"; };
 		84F249FD1CBD388600CB210A /* ICRunApplicationTask4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ICRunApplicationTask4.c; sourceTree = "<group>"; };
 		84F249FF1CBD394D00CB210A /* ICRunApplicationTask5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ICRunApplicationTask5.c; sourceTree = "<group>"; };
 		84F24A011CBD39C500CB210A /* ICRunApplicationTask3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ICRunApplicationTask3.c; sourceTree = "<group>"; };
+		84F24A071CC37DFE00CB210A /* ICDataStructureWithValues.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ICDataStructureWithValues.c; sourceTree = "<group>"; };
+		84F24A081CC37DFE00CB210A /* ICDataStructureWithValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICDataStructureWithValues.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +97,7 @@
 				841CCD611CB3F2F800029071 /* Sources */,
 				841CCD561CB3F01800029071 /* Homework_lesson1 */,
 				841CCD551CB3F01800029071 /* Products */,
+				84F249FC1CBD340F00CB210A /* iOS Study Plan.txt */,
 			);
 			sourceTree = "<group>";
 		};
@@ -116,9 +120,9 @@
 		841CCD611CB3F2F800029071 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				84F249FC1CBD340F00CB210A /* iOS Study Plan.txt */,
 				84F2498B1CB7C20900CB210A /* ICRunApplication.c */,
 				84F2498C1CB7C20900CB210A /* ICRunApplication.h */,
+				84F24A061CC37BDB00CB210A /* ICStructType */,
 				84F249F71CBBDD7A00CB210A /* ICMacrosPrinting */,
 				84F249C91CBABF2500CB210A /* ICHomeworkTask3 */,
 				84F249C81CBABF1300CB210A /* ICHomeworkTask4 */,
@@ -130,8 +134,8 @@
 		84F249C71CBABDE900CB210A /* ICHomeworkTask5 */ = {
 			isa = PBXGroup;
 			children = (
-				84F249FF1CBD394D00CB210A /* ICRunApplicationTask5.c */,
 				84F249FB1CBD1B6500CB210A /* task.rtf */,
+				84F249FF1CBD394D00CB210A /* ICRunApplicationTask5.c */,
 				84F249D71CBACFA300CB210A /* ICCheckAndPrintDeputyStatus.c */,
 				84F249DF1CBAD02000CB210A /* ICPrintMamaPapaTypes.c */,
 				84F249EA1CBAE46500CB210A /* ICPrintIntArray.c */,
@@ -178,6 +182,15 @@
 			);
 			name = ICMacrosPrinting;
 			path = ICMacrosTest;
+			sourceTree = "<group>";
+		};
+		84F24A061CC37BDB00CB210A /* ICStructType */ = {
+			isa = PBXGroup;
+			children = (
+				84F24A071CC37DFE00CB210A /* ICDataStructureWithValues.c */,
+				84F24A081CC37DFE00CB210A /* ICDataStructureWithValues.h */,
+			);
+			path = ICStructType;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,6 +262,7 @@
 				84F24A001CBD394D00CB210A /* ICRunApplicationTask5.c in Sources */,
 				84F2498D1CB7C20900CB210A /* ICRunApplication.c in Sources */,
 				84F249E21CBAD02000CB210A /* ICPrintCycleFor.c in Sources */,
+				84F24A091CC37DFE00CB210A /* ICDataStructureWithValues.c in Sources */,
 				84F249E91CBAE17700CB210A /* ICBoolOperations.c in Sources */,
 				84F249D31CBACF8D00CB210A /* ICIncrement.c in Sources */,
 				84F249E41CBAD02000CB210A /* ICPrintMamaPapaTypes.c in Sources */,

@@ -9,13 +9,10 @@
 
 #include "ICRunApplication.h"
 
-char *ICCheckBoolReturnString(bool value) {
-    char *result = NULL;
+char *ICStringWithBool(bool value) {
     if(value) {
-        result = "true";
+        return "true";
     } else {
-        result = "false";
+        return "false";
     }
-    
-    return result;
 }

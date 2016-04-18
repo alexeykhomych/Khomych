@@ -12,10 +12,10 @@
 #include "ICRunApplication.h"
 
 bool ICMathematicOperations(int value1, int value2) {
-    printf("%s", ICCheckBoolReturnString(value1 / value2));
-    printf("%s", ICCheckBoolReturnString(value1 * value2));
-    printf("%s", ICCheckBoolReturnString(value1 + value2));
-    printf("%s", ICCheckBoolReturnString(value1 - value2));
+    printf("%s", ICStringWithBool(value1 / value2));
+    printf("%s", ICStringWithBool(value1 * value2));
+    printf("%s", ICStringWithBool(value1 + value2));
+    printf("%s", ICStringWithBool(value1 - value2));
     
     return 0;
 }

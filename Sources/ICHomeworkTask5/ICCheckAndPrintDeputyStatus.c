@@ -11,25 +11,25 @@
 #include "ICRunApplication.h"
 
 
-void ICCheckDeputyStatus(ICDeputyEntity entity) {
+void ICCheckDeputyStatus(ICDeputyStatus status) {
     long allMoney = 250000120;
     int salary = 50000;
     
     if(allMoney < salary * 12 || !salary) {
-        entity = ICDeputyStatusDead;
+        status = ICDeputyStatusDead;
     } else if(allMoney < salary * 120) {
-        entity = ICDeputyStatusAngel;
+        status = ICDeputyStatusAngel;
     } else if(allMoney < salary * 1000 * 1000) {
-        entity = ICDeputyStatusHonest;
+        status = ICDeputyStatusHonest;
     } else if(allMoney >= salary * 1000 * 1000) {
-        entity = ICDeputyStatusThief;
+        status = ICDeputyStatusThief;
     }
     
-    ICPrintDeputyStatus(entity);
+    ICPrintDeputyStatus(status);
 }
 
-void ICPrintDeputyStatus(ICDeputyEntity entity) {
-    switch(entity) {
+void ICPrintDeputyStatus(ICDeputyStatus status) {
+    switch(status) {
         case ICDeputyStatusDead:
             puts("Deputy is dead");
             break;
