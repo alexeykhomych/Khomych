@@ -9,7 +9,6 @@
 #ifndef ICDataStructureWithValues_h
 #define ICDataStructureWithValues_h
 
-#include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
 
@@ -27,7 +26,7 @@ typedef struct {
     
     short shortValue3;
     double doubleValue1;
-    char charValue1[12];
+    char *charValue1;
     
     short shortValue2;
     long long longlongValue1;
@@ -39,3 +38,6 @@ typedef struct {
 size_t ICGetStructSizeof();
 void ICPrintSizeof();
 void ICArrangementOfElementsInStructure();
+void ICBitFieldOutput(void *address, size_t size);
+void ICByteValueOutput(char *address);
+void ICByteValueOutputTest();

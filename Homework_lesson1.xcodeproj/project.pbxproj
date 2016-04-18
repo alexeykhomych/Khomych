@@ -134,8 +134,8 @@
 		84F249C71CBABDE900CB210A /* ICHomeworkTask5 */ = {
 			isa = PBXGroup;
 			children = (
-				84F249FF1CBD394D00CB210A /* ICRunApplicationTask5.c */,
 				84F249FB1CBD1B6500CB210A /* task.rtf */,
+				84F249FF1CBD394D00CB210A /* ICRunApplicationTask5.c */,
 				84F249D71CBACFA300CB210A /* ICCheckAndPrintDeputyStatus.c */,
 				84F249DF1CBAD02000CB210A /* ICPrintMamaPapaTypes.c */,
 				84F249EA1CBAE46500CB210A /* ICPrintIntArray.c */,

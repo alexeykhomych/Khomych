@@ -20,4 +20,6 @@ void ICRunApplication() {
 //    ICPrintSizeOfTypes();
     
     ICPrintSizeof();
+    ICArrangementOfElementsInStructure();
+    ICByteValueOutputTest();
 }

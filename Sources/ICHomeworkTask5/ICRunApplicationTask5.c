@@ -16,7 +16,7 @@ void ICRunApplicationTask5() {
     ICBoolOperations(50, 70);
     
     /* ex. 2 */
-    char *text = ICCheckBoolReturnString(true);
+    char *text = ICStringWithBool(true);
     puts(text);
     
     /* ex. 3 */
@@ -41,7 +41,7 @@ void ICRunApplicationTask5() {
     char* chars = "it's a null \0term string ";
     unsigned long strLength = strlen(chars) + 1;
 //    ICPrintStringWithNullTerm(chars);
-    ICPrintNonNullTermString(chars, strLength);
+    ICPrintStringWithLength(chars, strLength);
     
     /* ex. 16 */
     ICPrintDoubleNullTerm("wsad \0sadxcz \0");

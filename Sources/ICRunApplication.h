@@ -16,7 +16,7 @@ typedef enum {
     ICDeputyStatusDead,
     ICDeputyStatusThief,
     ICDeputyStatusHonest,
-} ICDeputyEntity;
+} ICDeputyStatus;
 
 typedef enum {
     ICPrintTypeNothing,
@@ -32,7 +32,7 @@ void ICPrintIntArray();
 void ICListIntArrays(int iterator);
 void ICBoolPrintMamaPapaIfElse(int value1, int value2);
 void ICPrintDoubleNullTerm(char text[]);
-void ICPrintNonNullTermString(const char* text, unsigned long strLength);
+void ICPrintStringWithLength(const char* text, unsigned long strLength);
 void ICBoolPrintMamaPapa(int value1, int value2);
 void ICPrintStringWithNullTerm(char* chars);
 void ICPrintMapaPapaTypes();
@@ -45,12 +45,12 @@ void ICOutputParamsBool(bool boolValue);
 
 int ICDecrement(int param);
 int ICIncrement(int param);
-char *ICCheckBoolReturnString(bool value);
+char *ICStringWithBool(bool value);
 void ICBoolOperations(int value1, int value2);
 bool ICMathematicOperations(int value1, int value2);
 
 void ICCheckDeputyStatus();
-void ICPrintDeputyStatus(ICDeputyEntity entity);
+void ICPrintDeputyStatus(ICDeputyStatus status);
 void ICEquationPartition();
 int ICPostfixIncrement(int postfixIncrementValue);
 int ICPrefixIncrement(int prefixIncrementValue);
