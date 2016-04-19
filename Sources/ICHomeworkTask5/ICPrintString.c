@@ -15,8 +15,8 @@ void ICPrintString(char text[]) {
     ICPrintStringWithLength(text, strlen(text));
 }
 
-void ICPrintStringWithLength(const char* text, unsigned long strLength) {
-    for (int iterator = 0; text[iterator] != '\0'; iterator++) {
+void ICPrintStringWithLength(const char* text, size_t length) {
+    for (size_t iterator = 0; iterator < length; iterator++) {
         printf("%c\n", text[iterator]);
     }
 }

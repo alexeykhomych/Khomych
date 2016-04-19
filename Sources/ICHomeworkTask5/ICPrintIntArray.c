@@ -8,12 +8,9 @@
 
 #include "ICRunApplication.h"
 
-static
-int array1[4] = {0, 5, 3};
-static
-int array2[] = {5, 12, 6, 12};
-static
-int array3[4];
+static int array1[4] = {0, 5, 3};
+static int array2[] = {5, 12, 6, 12};
+static int array3[4];
 
 void ICPrintIntArray() {
     /* for */
