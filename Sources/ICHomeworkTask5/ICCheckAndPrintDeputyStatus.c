@@ -10,12 +10,10 @@
 
 #include "ICRunApplication.h"
 
-
-void ICCheckDeputyStatus(ICDeputyStatus status) {
-    long allMoney = 250000120;
-    int salary = 50000;
+void ICCheckDeputyStatus(int salary, int allMoney) {
+    ICDeputyStatus status;
     
-    if(allMoney < salary * 12 || !salary) {
+    if (allMoney < salary * 12 || !salary) {
         status = ICDeputyStatusDead;
     } else if(allMoney < salary * 120) {
         status = ICDeputyStatusAngel;

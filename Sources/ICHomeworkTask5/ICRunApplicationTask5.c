@@ -29,7 +29,7 @@ void ICRunApplicationTask5() {
     ICBoolPrintMamaPapaIfElse(10, 50); //print Papa
     
     /* ex. 8 */
-    ICCheckDeputyStatus();
+    ICCheckDeputyStatus(1500, 12524125);
     
     /* ex. 9-10 */
     ICPrintIntArray();

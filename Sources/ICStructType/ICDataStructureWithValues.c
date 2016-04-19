@@ -68,6 +68,7 @@ void ICBitFieldOutput(void *address, size_t size) {
             uint8_t shiftedValue = value >> (kICBitCount - j - 1);
             printf("%d ", (shiftedValue & 1));
         }
+        
         puts("");
     }
 }

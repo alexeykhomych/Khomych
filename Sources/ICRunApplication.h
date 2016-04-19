@@ -10,6 +10,7 @@
 #define ICRunApplication_h
 
 #include <stdbool.h>
+#include <stdio.h>
 
 typedef enum {
     ICDeputyStatusAngel,
@@ -32,7 +33,7 @@ void ICPrintIntArray();
 void ICListIntArrays(int iterator);
 void ICBoolPrintMamaPapaIfElse(int value1, int value2);
 void ICPrintDoubleNullTerm(char text[]);
-void ICPrintStringWithLength(const char* text, unsigned long strLength);
+void ICPrintStringWithLength(const char* text, size_t length);
 void ICBoolPrintMamaPapa(int value1, int value2);
 void ICPrintStringWithNullTerm(char* chars);
 void ICPrintMapaPapaTypes();
@@ -49,7 +50,7 @@ char *ICStringWithBool(bool value);
 void ICBoolOperations(int value1, int value2);
 bool ICMathematicOperations(int value1, int value2);
 
-void ICCheckDeputyStatus();
+void ICCheckDeputyStatus(int salary, int allMoney);
 void ICPrintDeputyStatus(ICDeputyStatus status);
 void ICEquationPartition();
 int ICPostfixIncrement(int postfixIncrementValue);
