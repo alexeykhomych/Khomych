@@ -10,6 +10,7 @@
 #include "ICDataStructureWithValues.h"
 
 static const uint8_t kICBitCount = 8;
+ICEndianness endianness;
 
 size_t ICGetStructSizeof() {
     return sizeof(ICStructValue);
@@ -50,23 +51,47 @@ void ICArrangementOfElementsInStructure() {
 //           offsetof(ICStructValue, shortValue1));
 }
 
-void ICByteValueOutputTest() {
-    int value = 1;
+void ICTestPrintByteValue() {
+    int value = 5;
     printf("int value = %d\n", value);
-    ICBitFieldOutput(&value, sizeof(value));
+    ICPrintBitField(&value, sizeof(value)); //передаю ссылку на адрес в памяти + кол-во байт (инт = 4)
     puts("");
 }
 
-void ICBitFieldOutput(void *address, size_t size) {
-    for (uint16_t i = 0; i < size; i++) {
-        char byte = ((char *) address)[size - i - 1];
-        uint8_t value = byte;
-        
-        for (uint8_t j = 0; j < kICBitCount; j++) {
-            uint8_t shiftedValue = value >> (kICBitCount - j - 1);
-            printf("%d ", (shiftedValue & 1));
-        }
-        
-        puts("");
+void ICPrintBitField(void *address, size_t size) {
+    endianness = ICIdentifyEndianness();
+    
+    switch (endianness) {
+        case ICBigEndian:
+            for (uint16_t i = 0; i < size; i++) {
+                char byte = ((char *) address)[i]; //получаю последний элемент, биг-эндиан
+                ICPrintByteValue(&byte);
+                printf(" ");
+            }
+            
+            break;
+            
+        case ICLittleEndian:
+            for (uint16_t i = 0; i < size; i++) {
+                char byte = ((char *) address)[size - i - 1]; //получаю последний элемент, биг-эндиан
+                ICPrintByteValue(&byte);
+                printf(" ");
+            }
+            
+        default:
+            break;
     }
+}
+
+void ICPrintByteValue(char *address) {
+    uint8_t value = *address; //получаю значение с адреса памяти
+    for (uint8_t j = 0; j < kICBitCount; j++) {
+        uint8_t shiftedValue = value >> (kICBitCount - j - 1); //сдвиг вправо на кол-во элементов - дж
+        printf("%d", (shiftedValue & 1)); //побитовый вывод
+    }
+}
+
+ICEndianness ICIdentifyEndianness() {
+    unsigned short value = 1;
+    return *((unsigned char *)&value) == 0 ? 0 : 1;
 }
