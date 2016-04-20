@@ -63,3 +63,6 @@ void ICTestPrintByteValue();
 
 extern
 ICEndianness ICIdentifyEndianness();
+
+extern
+void ICTurnBytes(bool flag, char *address, size_t size);
