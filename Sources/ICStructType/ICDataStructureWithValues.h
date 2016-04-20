@@ -12,39 +12,21 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-//typedef struct {
-//    long long longlongValue1; //8 bytes
-//    float floatValue1;        //4 bytes
-//    short shortValue3;        //2 byte
-//    bool boolValue1;          //1 byte
-//    
-//    double doubleValue1;      //4 bytes
-//    short shortValue2;
-//    bool boolValue4;
-//    
-//    char *charValue1;         //4 bytes
-//    bool boolValue2;
-//    bool boolValue3;
-//    bool boolValue5;
-//
-//    int intValue1;            //4 bytes
-//    short shortValue1;
-//    bool boolValue6;
-//} ICStructValue;
+typedef enum {
+    ICBigEndian,
+    ICLittleEndian
+} ICEndianness;
 
 
 typedef struct {
     long long longlongValue1;   //8 bytes
-    float floatValue1;          //4 bytes
-    short shortValue3;          //2 byte
-    
-    double doubleValue1;        //4 bytes
-    short shortValue1;
-    
     char *charValue1;           //4 or 8 bytes
-    short shortValue2;
-    
+    float floatValue1;          //4 bytes
+    double doubleValue1;        //4 bytes
     int intValue1;              //4 bytes
+    short shortValue3;          //2 byte
+    short shortValue1;
+    short shortValue2;
     
     union {
         struct {
@@ -55,16 +37,32 @@ typedef struct {
             bool boolValue5 :1;
             bool boolValue6 :1;
         };
-    }ICFlugs;
-    char bitFields;
-    
+        char bitFields;
+    }flags;
 } ICStructValue;
 
 #endif /* ICDataStructureWithValues_h */
 
+extern
 size_t ICGetStructSizeof();
+
+extern
 void ICPrintSizeof();
+
+extern
 void ICArrangementOfElementsInStructure();
-void ICBitFieldOutput(void *address, size_t size);
-void ICByteValueOutput(char *address);
-void ICByteValueOutputTest();
+
+extern
+void ICPrintBitField(void *address, size_t size);
+
+extern
+void ICPrintByteValue(char *address);
+
+extern
+void ICTestPrintByteValue();
+
+extern
+ICEndianness ICIdentifyEndianness();
+
+extern
+void ICTurnBytes(bool flag, char *address, size_t size);

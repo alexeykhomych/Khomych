@@ -21,5 +21,5 @@ void ICRunApplication() {
     
     ICPrintSizeof();
     ICArrangementOfElementsInStructure();
-    ICByteValueOutputTest();
+    ICTestPrintByteValue();
 }
