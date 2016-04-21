@@ -10,18 +10,6 @@
 #include "ICDataStructureWithValues.h"
 
 static const uint8_t kICBitCount = 8;
-ICEndianness endianness;
-
-void ICTurnBytes(bool flag, char *address, size_t size) {
-    if(flag) {
-        char bytes[size];
-        uint8_t value = *address;
-//        for (uint8_t j = 0; j < kICBitCount; j++) {
-//            uint8_t shiftedValue = value >> (kICBitCount - j - 1);
-//            printf("%d", (shiftedValue & 1));
-//        }
-    }
-}
 
 size_t ICGetStructSizeof() {
     return sizeof(ICStructValue);
@@ -34,31 +22,16 @@ void ICPrintSizeof() {
 void ICTestPrintByteValue() {
     int value = 5;
     printf("int value = %d\n", value);
-    ICPrintBitField(&value, sizeof(value));
+    ICPrintBitField(&value, sizeof(value), ICIdentifyEndianness());
     puts("");
 }
 
-void ICPrintBitField(void *address, size_t size) {
-    endianness = ICIdentifyEndianness();
-    
-    switch (endianness) {
-        case ICBigEndian:
-            for (size_t i = 0; i < size; i++) {
-                char byte = ((char *) address)[i];
-                ICPrintByteValue(&byte);
-                printf(" ");
-            }
-            
-            break;
-            
-        case ICLittleEndian:
-            for (size_t i = 0; i < size; i++) {
-                char byte = ((char *) address)[size - i - 1];
-                ICPrintByteValue(&byte);
-                printf(" ");
-            }
-        default:
-            break;
+void ICPrintBitField(void *address, size_t size, ICEndianness endianness) {
+    for (size_t i = 0; i < size; i++) {
+        uint8_t index = (endianness == ICBigEndian) ? i : size - i - 1;
+        uint8_t *byte = address;
+        ICPrintByteValue(&byte[index]);
+        printf(" ");
     }
 }
 
@@ -72,7 +45,7 @@ void ICPrintByteValue(char *address) {
 
 ICEndianness ICIdentifyEndianness() {
     unsigned short value = 1;
-    return *((unsigned char *)&value) == 0 ? 0 : 1;
+    return *((unsigned char *)&value) == 0 ? ICBigEndian : ICLittleEndian;
 }
 
 void ICArrangementOfElementsInStructure() {
