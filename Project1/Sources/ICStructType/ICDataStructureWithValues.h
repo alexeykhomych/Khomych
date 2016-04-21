@@ -17,7 +17,6 @@ typedef enum {
     ICLittleEndian
 } ICEndianness;
 
-
 typedef struct {
     long long longlongValue1;   //8 bytes
     char *charValue1;           //4 or 8 bytes
@@ -38,10 +37,8 @@ typedef struct {
             bool boolValue6 :1;
         };
         char bitFields;
-    }flags;
+    } flags;
 } ICStructValue;
-
-#endif /* ICDataStructureWithValues_h */
 
 extern
 size_t ICGetStructSizeof();
@@ -53,7 +50,7 @@ extern
 void ICArrangementOfElementsInStructure();
 
 extern
-void ICPrintBitField(void *address, size_t size);
+void ICPrintBitField(void *address, size_t size, ICEndianness endianness);
 
 extern
 void ICPrintByteValue(char *address);
@@ -66,3 +63,5 @@ ICEndianness ICIdentifyEndianness();
 
 extern
 void ICTurnBytes(bool flag, char *address, size_t size);
+
+#endif /* ICDataStructureWithValues_h */
