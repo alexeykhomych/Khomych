@@ -11,7 +11,7 @@
 
 #include "ICRunApplication.h"
 
-void ICPrintString(char text[]) {
+void ICPrintString(const char *text) {
     ICPrintStringWithLength(text, strlen(text));
 }
 

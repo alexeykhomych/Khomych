@@ -17,6 +17,7 @@ typedef enum {
     ICDeputyStatusDead,
     ICDeputyStatusThief,
     ICDeputyStatusHonest,
+    ICDeputyStatusNull
 } ICDeputyStatus;
 
 typedef enum {
@@ -28,7 +29,7 @@ typedef enum {
 
 int ICPrintTypeWithInt(int value);
 void ICPrintCycleFor(int count, int min, int max);
-void ICPrintString(char text[]);
+void ICPrintString(const char *text);
 void ICPrintIntArray();
 void ICListIntArrays(int iterator);
 void ICBoolPrintMamaPapaIfElse(int value1, int value2);

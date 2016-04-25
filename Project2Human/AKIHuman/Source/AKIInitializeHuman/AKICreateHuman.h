@@ -30,7 +30,7 @@ struct AKIHuman {
 };
 
 extern
-void AKIInitializeHuman(char *name, uint8_t age, bool isMarried, AKIGender gender, uint8_t childrenCount, AKIHuman *partner, AKIHuman *parents);
+void AKICreateHuman(char *name, uint8_t age, bool isMarried, AKIGender gender, uint8_t childrenCount, AKIHuman *partner, AKIHuman *parents);
 
 extern
 void AKIDeinitializeHuman();

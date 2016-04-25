@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		84F3FBBE1CC909D0002DCC40 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 84F3FBBD1CC909D0002DCC40 /* main.c */; };
 		84F3FBC71CC90A13002DCC40 /* AKIRunApplication.c in Sources */ = {isa = PBXBuildFile; fileRef = 84F3FBC51CC90A13002DCC40 /* AKIRunApplication.c */; };
-		84F3FBCB1CC90D50002DCC40 /* AKIInitializeHuman.c in Sources */ = {isa = PBXBuildFile; fileRef = 84F3FBC91CC90D50002DCC40 /* AKIInitializeHuman.c */; };
+		84F3FBCB1CC90D50002DCC40 /* AKICreateHuman.c in Sources */ = {isa = PBXBuildFile; fileRef = 84F3FBC91CC90D50002DCC40 /* AKICreateHuman.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,8 +29,8 @@
 		84F3FBBD1CC909D0002DCC40 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		84F3FBC51CC90A13002DCC40 /* AKIRunApplication.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AKIRunApplication.c; sourceTree = "<group>"; };
 		84F3FBC61CC90A13002DCC40 /* AKIRunApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKIRunApplication.h; sourceTree = "<group>"; };
-		84F3FBC91CC90D50002DCC40 /* AKIInitializeHuman.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AKIInitializeHuman.c; sourceTree = "<group>"; };
-		84F3FBCA1CC90D50002DCC40 /* AKIInitializeHuman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKIInitializeHuman.h; sourceTree = "<group>"; };
+		84F3FBC91CC90D50002DCC40 /* AKICreateHuman.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AKICreateHuman.c; sourceTree = "<group>"; };
+		84F3FBCA1CC90D50002DCC40 /* AKICreateHuman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKICreateHuman.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,8 +82,8 @@
 		84F3FBC81CC90D16002DCC40 /* AKIInitializeHuman */ = {
 			isa = PBXGroup;
 			children = (
-				84F3FBC91CC90D50002DCC40 /* AKIInitializeHuman.c */,
-				84F3FBCA1CC90D50002DCC40 /* AKIInitializeHuman.h */,
+				84F3FBC91CC90D50002DCC40 /* AKICreateHuman.c */,
+				84F3FBCA1CC90D50002DCC40 /* AKICreateHuman.h */,
 			);
 			path = AKIInitializeHuman;
 			sourceTree = "<group>";
@@ -144,7 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84F3FBCB1CC90D50002DCC40 /* AKIInitializeHuman.c in Sources */,
+				84F3FBCB1CC90D50002DCC40 /* AKICreateHuman.c in Sources */,
 				84F3FBC71CC90A13002DCC40 /* AKIRunApplication.c in Sources */,
 				84F3FBBE1CC909D0002DCC40 /* main.c in Sources */,
 			);
@@ -267,6 +267,7 @@
 				84F3FBC31CC909D0002DCC40 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

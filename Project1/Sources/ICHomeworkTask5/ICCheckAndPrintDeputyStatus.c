@@ -7,11 +7,12 @@
 //
 
 #include <stdio.h>
+#include <string.h>
 
 #include "ICRunApplication.h"
 
 void ICCheckDeputyStatus(int salary, int allMoney) {
-    ICDeputyStatus status;
+    ICDeputyStatus status = ICDeputyStatusNull;
     
     if (allMoney < salary * 12 || !salary) {
         status = ICDeputyStatusDead;
