@@ -24,34 +24,49 @@ struct AKIHuman {
     bool _isMarried; //?
     AKIGender _gender;
     uint8_t _childrenCount;
-    void *children[20];
+    AKIHuman *children[20];
     AKIHuman *partner;
     AKIHuman *parents;
+    uint16_t _referenceCount;
 };
 
 extern
-void AKICreateHuman(char *name, uint8_t age, bool isMarried, AKIGender gender, uint8_t childrenCount, AKIHuman *partner, AKIHuman *parents);
+AKIHuman AKICreateHuman(AKIHuman *object);
 
 extern
-void AKIDeinitializeHuman();
+void AKIHumanSetName(AKIHuman *object, const char *name);
 
 extern
-char *AKISetHumanName(AKIHuman human);
+char *AKIHumanGetName(AKIHuman *object);
 
 extern
-uint8_t AKISetHumanAge(AKIHuman human);
+void AKIHumanSetAge(AKIHuman *object, uint8_t age);
 
-//extern
-//AKIHuman AKISetHumanPatner(AKIHuman human); //?
+extern
+uint8_t AKIHumanGetAge(AKIHuman *object);
 
-//extern
-//AKIGender AKISetHumanGender(AKIHuman human);
+extern
+void AKIHumanSetPartner(AKIHuman *object, AKIHuman *partner);
 
-//extern
-//void AKISetHumanPartner(AKIHuman humanName1, AKIHuman humanName2);
+extern
+AKIHuman AKIHumanGetPartner(AKIHuman *object);
 
-//extern
-//void AKIGetHumanPartner(AKIHuman name);
+extern
+void AKIHumanSetParents(AKIHuman *object, AKIHuman *parents);
 
+extern
+void AKIHumanSetGender(AKIHuman *object, AKIGender gender);
+
+extern
+AKIGender AKIHumanGetGender(AKIHuman *object);
+
+extern
+void AKIHumanSetChild(AKIHuman *partner1, AKIHuman *partner2, AKIHuman *child);
+
+extern
+AKIHuman *AKIHumanGetChild(AKIHuman *object);
+
+extern
+void AKIHumanDivorcePartners(AKIHuman *partner1, AKIHuman *partner2);
 
 #endif /* AKIInitializeHuman_h */

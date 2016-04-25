@@ -8,7 +8,8 @@
 
 #include "AKIRunApplication.h"
 #include "AKICreateHuman.h"
+#include "AKIHumanTests.h"
 
 void AKIRunApplication() {
-    
+    AKIHumanTestRun();
 }
