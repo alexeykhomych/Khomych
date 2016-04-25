@@ -7,7 +7,7 @@
 //
 
 #include "AKIRunApplication.h"
-#include "AKIInitializeHuman.h"
+#include "AKICreateHuman.h"
 
 void AKIRunApplication() {
     

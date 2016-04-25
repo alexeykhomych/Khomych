@@ -6,11 +6,11 @@
 //  Copyright © 2016 Alexey Khomych. All rights reserved.
 //
 
-#include "AKIInitializeHuman.h"
+#include "AKICreateHuman.h"
 
 #include <string.h>
 
-void AKIInitializeHuman(char *name, uint8_t age, bool isMarried, AKIGender gender, uint8_t childrenCount, AKIHuman *partner, AKIHuman *parents) {
+void AKICreateHuman(char *name, uint8_t age, bool isMarried, AKIGender gender, uint8_t childrenCount, AKIHuman *partner, AKIHuman *parents) {
     AKIHuman human;
     human._name = AKISetHumanName(human);
     human._age = AKISetHumanAge(human);
