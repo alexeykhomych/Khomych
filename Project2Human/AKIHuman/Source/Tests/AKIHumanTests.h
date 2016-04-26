@@ -9,7 +9,7 @@
 #ifndef AKIHumanTests_h
 #define AKIHumanTests_h
 
-#include "AKICreateHuman.h"
+#include "AKIHuman.h"
 
 extern
 void AKIHumanTestRun();

@@ -10,16 +10,8 @@
 #include <string.h>
 
 #include "AKIHumanTests.h"
-#include "AKICreateHuman.h"
-
-
+#include "AKIHuman.h"
 
 void AKIHumanTestRun() {
-    AKIHuman object = AKICreateHuman(&object);
-    AKIHuman *object1 = &object;
-    AKIHumanSetName(object1, "Alex");
-    object1->_name = AKIHumanGetName(object1);
-    
-    AKIHumanSetAge(object1, 24);
-    object1->_age = AKIHumanGetAge(object1);
+
 }
