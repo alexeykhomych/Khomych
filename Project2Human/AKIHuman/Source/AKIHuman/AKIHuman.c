@@ -25,11 +25,35 @@ extern
 void __AKIHumanDeallocate(AKIHuman *object);
 
 extern
-void AKIHuman
+void AKIHumanRemoveAllChildren(AKIHuman *object);
+
+extern
+void AKIHumanRemoveFromParent(AKIHuman *object);
+
+extern
+void AKIHumanRemoveChild(AKIHuman *object);
 
 void AKICreateHuman() {
     AKIHuman *object = calloc(1, sizeof(AKIHuman));
     assert(NULL != object);
+}
+
+void AKIHumanRemoveChild(AKIHuman *object) {
+    if(NULL == object) {
+        return;
+    }
+    
+//    __AKIHumanDeallocate(object); //xz
+}
+
+void AKIHumanRemoveAllChildren(AKIHuman *object) {
+    if(NULL == object) {
+        return;
+    }
+    
+    for (uint8_t i = 0; i < object->_childrenCount; i++) {
+        AKIHumanRemoveChild(object->_children[kchildrenCount - i - 1]);
+    }
 }
 
 void AKIHumanDivorcePartners(AKIHuman *object) {
@@ -58,9 +82,9 @@ void AKIHumanRetain(AKIHuman *object) {
 }
 
 void __AKIHumanDeallocate(AKIHuman *object) {
-//    AKIHumanRemoveAllChildren(object);
-//    AKIHumanRemoveFromParent();
-//    AKIHumanDivorcePartners(object);
-//    AKIHumanSetName(object, NULL);
-//    free(object);
+    AKIHumanRemoveAllChildren(object);
+//    AKIHumanRemoveFromParent(object);
+    AKIHumanDivorcePartners(object);
+    AKIHumanSetName(object, NULL);
+    free(object);
 }
