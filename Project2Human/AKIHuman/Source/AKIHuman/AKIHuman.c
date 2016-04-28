@@ -12,64 +12,75 @@
 #include <stdlib.h>
 
 #include "AKIHuman.h"
-#include "AKIHumanSet.h"
-#include "AKIHumanGet.h"
+#include "AKIHuman+AKIMarriage.h"
+#include "AKIHuman+AKIParentHood.h"
 
-extern
-void AKIHumanRelease(AKIHuman *object);
-
-extern
-void AKIHumanRetain(AKIHuman *object);
-
-extern
-void __AKIHumanDeallocate(AKIHuman *object);
-
-extern
-void AKIHumanRemoveAllChildren(AKIHuman *object);
-
-extern
-void AKIHumanRemoveFromParent(AKIHuman *object);
-
-extern
-void AKIHumanRemoveChild(AKIHuman *object);
-
-void AKICreateHuman() {
+AKIHuman AKICreateHuman() {
     AKIHuman *object = calloc(1, sizeof(AKIHuman));
     assert(NULL != object);
+    
+    return *object;
 }
 
-void AKIHumanRemoveChild(AKIHuman *object) {
+void AKIHumanSetName(AKIHuman *object, const char *name) {
+    if (object) {
+        if(!name) {
+            object->_name = NULL;
+        }
+        if (name != object->_name) {
+            free(object->_name);
+            object->_name = strdup(name);
+        }
+    }
+}
+
+char *AKIHumanGetName(AKIHuman *object) {
+    return NULL == object ? NULL : object->_name;
+}
+
+void AKIHumanSetAge(AKIHuman *object, uint8_t age) {
+    if (NULL == object) {
+        return;
+    }
+    
+    object->_age = age;
+}
+
+uint8_t AKIHumanGetAge(AKIHuman *object) {
+    return NULL == object ? NULL : object->_age;
+}
+
+void AKIHumanSetGender(AKIHuman *object, AKIGender gender) {
     if(NULL == object) {
         return;
     }
     
-//    __AKIHumanDeallocate(object); //xz
-}
-
-void AKIHumanRemoveAllChildren(AKIHuman *object) {
-    if(NULL == object) {
-        return;
-    }
-    
-    for (uint8_t i = 0; i < object->_childrenCount; i++) {
-        AKIHumanRemoveChild(object->_children[kchildrenCount - i - 1]);
+    if(gender != object->_gender) {
+        object->_gender = gender;
     }
 }
 
-void AKIHumanDivorcePartners(AKIHuman *object) {
-    if(NULL == object || AKIGenderMale != AKIHumanGetGender(object)) {
-        return;
-    }
+AKIGender AKIHumanGetGender(AKIHuman *object) {
+    return NULL == object ? NULL : object->_gender;
+}
+
+void __AKIHumanDeallocate(AKIHuman *object) {
+//    AKIHumanRemoveAllChildren(object);
+    //    AKIHumanRemoveFromParent(object);
+//        AKIHumanDivorcePartners(object);
+//        AKIHumanSetName(object, NULL);
+//        AKIHumanSetAge(object, NULL);
+        
+//        free(object); //don't work
     
-    AKIHumanRelease(object->_partner);
-    object->_partner = NULL;
+//        printf("Object is deallocate\n");
 }
 
 void AKIHumanRelease(AKIHuman *object) {
     if (object) {
-        object->_hardReferenceCount -= 1;
+        object->_referenceCount -= 1;
         
-        if (0 == object->_hardReferenceCount) {
+        if (0 == object->_referenceCount) {
             __AKIHumanDeallocate(object);
         }
     }
@@ -77,14 +88,6 @@ void AKIHumanRelease(AKIHuman *object) {
 
 void AKIHumanRetain(AKIHuman *object) {
     if (object) {
-        object->_hardReferenceCount += 1;
+        object->_referenceCount += 1;
     }
-}
-
-void __AKIHumanDeallocate(AKIHuman *object) {
-    AKIHumanRemoveAllChildren(object);
-//    AKIHumanRemoveFromParent(object);
-    AKIHumanDivorcePartners(object);
-    AKIHumanSetName(object, NULL);
-    free(object);
 }

@@ -10,9 +10,8 @@
 #define AKIHuman_h
 
 #include <stdio.h>
-#include <stdbool.h>
 
-static const uint8_t kchildrenCount = 20;
+static const uint32_t kchildrenCount = 20;
 
 typedef enum {
     AKIGenderMale,
@@ -21,23 +20,48 @@ typedef enum {
 
 typedef struct AKIHuman AKIHuman;
 struct AKIHuman {
+    uint32_t _referenceCount;
+    
     AKIGender _gender;
+    char *_name;
+    
     AKIHuman *_children[kchildrenCount];
     AKIHuman *_partner;
     AKIHuman *_father;
     AKIHuman *_mother;
-    
-    uint32_t _hardReferenceCount;
-    char *_name;
     
     uint8_t _age;
     uint8_t _childrenCount;
 };
 
 extern
-void AKICreateHuman();
+AKIHuman AKICreateHuman();
 
 extern
-void AKIHumanDivorcePartners(AKIHuman *object);
+void AKIHumanSetName(AKIHuman *object, const char *name);
+
+extern
+char *AKIHumanGetName(AKIHuman *object);
+
+extern
+void AKIHumanSetAge(AKIHuman *object, uint8_t age);
+
+extern
+uint8_t AKIHumanGetAge(AKIHuman *object);
+
+extern
+void AKIHumanSetGender(AKIHuman *object, AKIGender gender);
+
+extern
+AKIGender AKIHumanGetGender(AKIHuman *object);
+
+extern
+void __AKIHumanDeallocate(AKIHuman *object);
+
+extern
+void AKIHumanRetain(AKIHuman *object);
+
+extern
+void AKIHumanRelease(AKIHuman *object);
 
 #endif /* AKIInitializeHuman_h */
