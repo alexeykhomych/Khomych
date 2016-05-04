@@ -11,6 +11,8 @@
 
 #include <stdio.h>
 
+#include "AKIObject.h"
+
 static const uint32_t kchildrenCount = 20;
 
 typedef enum {
@@ -20,7 +22,7 @@ typedef enum {
 
 typedef struct AKIHuman AKIHuman;
 struct AKIHuman {
-    uint32_t _referenceCount;
+    AKIObject _super;
     
     AKIGender _gender;
     char *_name;
@@ -35,7 +37,7 @@ struct AKIHuman {
 };
 
 extern
-AKIHuman AKICreateHuman();
+AKIHuman *AKICreateHuman();
 
 extern
 void AKIHumanSetName(AKIHuman *object, const char *name);
@@ -56,7 +58,7 @@ extern
 AKIGender AKIHumanGetGender(AKIHuman *object);
 
 extern
-void __AKIHumanDeallocate(AKIHuman *object);
+void __AKIHumanDeallocate(void *object);
 
 extern
 void AKIHumanRetain(AKIHuman *object);

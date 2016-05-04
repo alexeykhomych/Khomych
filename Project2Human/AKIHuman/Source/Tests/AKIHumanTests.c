@@ -8,31 +8,29 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <assert.h>
 
 #include "AKIHumanTests.h"
 #include "AKIHuman.h"
 #include "AKIHuman+AKIMarriage.h"
 #include "AKIHuman+AKIParentHood.h"
+#include "AKIObject.h"
+
+#pragma mark -
+#pragma Private Declarations
 
 static
-void AKIHumanTestPrintObject(AKIHuman *object);
+void AKIHumanTest();
 
 static
-AKIHuman AKIHumanTestCreateMale();
+void AKIObjectTest();
 
-static
-AKIHuman AKIHumanTestCreateFemale();
+#pragma mark -
+#pragma Public Implementations
 
 void AKIHumanTestRun() {
-    AKIHuman obj1 = AKIHumanTestCreateMale();
-    AKIHuman obj2 = AKIHumanTestCreateFemale();
-    
-    
-    AKIHumanSetPartner(&obj1, &obj2);
-    AKIHumanDivorcePartners(&obj2); //false
-    AKIHumanDivorcePartners(&obj1); //true
-    
-//    AKIHuman objTest = AKIHumanGetPartner(&obj1);
+    AKIObjectTest();
+    AKIHumanTest();
 }
 
 void AKIHumanTestPrintObject(AKIHuman *object) {
@@ -43,30 +41,20 @@ void AKIHumanTestPrintObject(AKIHuman *object) {
            AKIHumanGetGender(object));
 }
 
-AKIHuman AKIHumanTestCreateMale() {
-    AKIHuman object = AKICreateHuman();
-    AKIHumanSetName(&object, "Vasya");
-    AKIHumanSetAge(&object, 24);
-    AKIHumanSetGender(&object, AKIGenderMale);
+#pragma mark -
+#pragma Private Declarations
+
+void AKIObjectTest() {
+    AKIObject *object = AKIObjectCreateOfType(AKIObject);
+    AKIObjectRelease(object);
     
-    AKIHumanTestPrintObject(&object);
-    
-    
-//    __AKIHumanDeallocate(&object);
-    
-    return object;
+    AKIObjectRelease(object);
 }
 
-AKIHuman AKIHumanTestCreateFemale() {
-    AKIHuman object = AKICreateHuman();
-    AKIHumanSetName(&object, "Katya");
-    AKIHumanSetAge(&object, 22);
-    AKIHumanSetGender(&object, AKIGenderFemale);
+void AKIHumanTest() {
+    AKIHuman *object = AKICreateHuman();
+    assert(NULL != object);
+    assert(1 == AKIObjectRetainCount(object));
     
-    AKIHumanTestPrintObject(&object);
-    
-    
-//    __AKIHumanDeallocate(&object);
-    
-        return object;
+    AKIObjectRelease(object);
 }

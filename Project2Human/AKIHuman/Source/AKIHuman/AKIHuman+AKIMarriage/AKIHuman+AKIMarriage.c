@@ -12,15 +12,15 @@
 #include "AKIHuman+AKIMarriage.h"
 
 void AKIHumanSetPartner(AKIHuman *object, AKIHuman *partner){
-    if(NULL == object || NULL == partner) {
+    if (NULL == object || NULL == partner) {
         return;
     }
     
-    if(NULL != object->_partner) {
+    if (NULL != object->_partner) {
         AKIHumanDivorcePartners(object);
     }
     
-    if(AKIHumanCanMarry(object, partner)) {
+    if (AKIHumanCanMarry(object, partner)) {
         object->_partner = partner;
         partner->_partner = object;
         
@@ -32,7 +32,7 @@ void AKIHumanSetPartner(AKIHuman *object, AKIHuman *partner){
 }
 
 AKIHuman AKIHumanGetPartner(AKIHuman *object) {
-    if(NULL == object->_partner) {
+    if (NULL == object->_partner) {
         return *object; // BAD
     }
     
@@ -44,15 +44,14 @@ bool AKIHumanCanMarry(AKIHuman *object, AKIHuman *partner) {
 }
 
 void AKIHumanDivorcePartners(AKIHuman *object) {
-    if(NULL == object || AKIGenderMale != AKIHumanGetGender(object)) {
+    if (NULL == object || AKIGenderMale != AKIHumanGetGender(object)) {
         return;
     }
     
-    AKIHumanRelease(object->_partner->_partner);
-    AKIHumanRelease(object);
+    AKIHumanSetPartner(object, NULL);
+//    AKIHumanSetPartner(object->_partner, NULL); // ???
     
-    object->_partner->_partner = NULL;
-    object->_partner = NULL;
+    AKIHumanRelease(object);
     
     printf("Congratulations %s, you are divorced!\n", object->_name);
 }

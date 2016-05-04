@@ -15,16 +15,15 @@
 #include "AKIHuman+AKIMarriage.h"
 #include "AKIHuman+AKIParentHood.h"
 
-AKIHuman AKICreateHuman() {
-    AKIHuman *object = calloc(1, sizeof(AKIHuman));
-    assert(NULL != object);
+AKIHuman *AKICreateHuman() {
+    AKIHuman *object = AKIObjectCreateOfType(AKIHuman);
     
-    return *object;
+    return object;
 }
 
 void AKIHumanSetName(AKIHuman *object, const char *name) {
     if (object) {
-        if(!name) {
+        if (!name) {
             object->_name = NULL;
         }
         if (name != object->_name) {
@@ -47,47 +46,40 @@ void AKIHumanSetAge(AKIHuman *object, uint8_t age) {
 }
 
 uint8_t AKIHumanGetAge(AKIHuman *object) {
-    return NULL == object ? NULL : object->_age;
+    return object ? object->_age : 0;
 }
 
 void AKIHumanSetGender(AKIHuman *object, AKIGender gender) {
-    if(NULL == object) {
+    if (NULL == object) {
         return;
     }
     
-    if(gender != object->_gender) {
+    if (gender != object->_gender) {
         object->_gender = gender;
     }
 }
 
 AKIGender AKIHumanGetGender(AKIHuman *object) {
-    return NULL == object ? NULL : object->_gender;
+    return object ? object->_gender : 1;
 }
 
-void __AKIHumanDeallocate(AKIHuman *object) {
-//    AKIHumanRemoveAllChildren(object);
-    //    AKIHumanRemoveFromParent(object);
-//        AKIHumanDivorcePartners(object);
-//        AKIHumanSetName(object, NULL);
-//        AKIHumanSetAge(object, NULL);
+void __AKIHumanDeallocate(void *object) {
+    if (NULL != object) {
+        AKIHumanSetPartner(object, NULL);
+        AKIHumanSetName(object, NULL);
         
-//        free(object); //don't work
-    
-//        printf("Object is deallocate\n");
+        __AKIObjectDeallocate(object);
+    }
 }
 
 void AKIHumanRelease(AKIHuman *object) {
     if (object) {
-        object->_referenceCount -= 1;
-        
-        if (0 == object->_referenceCount) {
-            __AKIHumanDeallocate(object);
-        }
+        AKIObjectRelease(object);
     }
 }
 
 void AKIHumanRetain(AKIHuman *object) {
     if (object) {
-        object->_referenceCount += 1;
+        AKIObjectRetain(object);
     }
 }

@@ -10,7 +10,7 @@
 #include "AKIHuman+AKIParentHood.h"
 
 void AKIHumanSetParentFather(AKIHuman *object, AKIHuman *father) {
-    if(!object || !father) {
+    if (!object || !father) {
         object->_father = father;
         father->_children[father->_childrenCount] = object;
 //        AKIHumanRetain(object); //week url to father
@@ -19,7 +19,7 @@ void AKIHumanSetParentFather(AKIHuman *object, AKIHuman *father) {
 }
 
 void AKIHumanSetParentMother(AKIHuman *object, AKIHuman *mother) {
-    if(!object && !mother) {
+    if (!object && !mother) {
         object->_mother = mother;
         mother->_children[mother->_childrenCount] = object;
 //        AKIHumanRetain(object);
@@ -28,7 +28,7 @@ void AKIHumanSetParentMother(AKIHuman *object, AKIHuman *mother) {
 }
 
 AKIHuman AKIHumanGetParentFather(AKIHuman *object) {
-    if(object) {
+    if (object) {
         return *object->_father;
     }
     
@@ -36,7 +36,7 @@ AKIHuman AKIHumanGetParentFather(AKIHuman *object) {
 }
 
 AKIHuman AKIHumanGetParentMother(AKIHuman *object) {
-    if(object) {
+    if (object) {
         return *object->_mother;
     }
     
