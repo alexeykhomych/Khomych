@@ -14,10 +14,4 @@
 extern
 void AKIHumanTestRun();
 
-extern
-void AKIHumanTestSetName();
-
-extern
-char *AKIHumanTestGetName(AKIHuman *object);
-
 #endif /* AKIHumanTests_h */
