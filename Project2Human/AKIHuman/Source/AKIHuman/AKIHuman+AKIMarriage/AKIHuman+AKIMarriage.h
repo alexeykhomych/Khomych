@@ -15,12 +15,15 @@ extern
 void AKIHumanSetPartner(AKIHuman *object, AKIHuman *partner);
 
 extern
-AKIHuman AKIHumanGetPartner(AKIHuman *object);
+AKIHuman *AKIHumanGetPartner(AKIHuman *object);
 
 extern
 void AKIHumanDivorcePartners(AKIHuman *object);
 
 extern
 bool AKIHumanCanMarry(AKIHuman *object, AKIHuman *partner);
+
+extern
+void AKIHumanSetMarriedWithPartner(AKIHuman *object, AKIHuman *partner);
 
 #endif /* AKIHuman_AKIMarriage_h */

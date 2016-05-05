@@ -13,7 +13,7 @@
 
 #include "AKIObject.h"
 
-static const uint32_t kchildrenCount = 20;
+static const uint32_t kAKIChildrenCount = 20;
 
 typedef enum {
     AKIGenderMale,
@@ -26,13 +26,13 @@ struct AKIHuman {
     
     AKIGender _gender;
     char *_name;
+    uint8_t _age;
     
-    AKIHuman *_children[kchildrenCount];
     AKIHuman *_partner;
     AKIHuman *_father;
     AKIHuman *_mother;
     
-    uint8_t _age;
+    AKIHuman *_children[kAKIChildrenCount];
     uint8_t _childrenCount;
 };
 

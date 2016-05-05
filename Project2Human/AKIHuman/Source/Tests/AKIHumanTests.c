@@ -25,6 +25,12 @@ void AKIHumanTest();
 static
 void AKIObjectTest();
 
+static
+void AKIHumanPartnerTest();
+
+static
+void AKIHumanChildrenTest();
+
 #pragma mark -
 #pragma Public Implementations
 
@@ -45,10 +51,8 @@ void AKIHumanTestPrintObject(AKIHuman *object) {
 #pragma Private Declarations
 
 void AKIObjectTest() {
-    AKIObject *object = AKIObjectCreateOfType(AKIObject);
-    AKIObjectRelease(object);
-    
-    AKIObjectRelease(object);
+    AKIHumanPartnerTest();
+    AKIHumanChildrenTest();
 }
 
 void AKIHumanTest() {
@@ -57,4 +61,36 @@ void AKIHumanTest() {
     assert(1 == AKIObjectRetainCount(object));
     
     AKIObjectRelease(object);
+}
+
+void AKIHumanPartnerTest() {
+    AKIHuman *object = AKICreateHuman();
+    AKIHuman *partner = AKICreateHuman();
+    
+    AKIHumanSetGender(partner, AKIGenderFemale);
+    
+    AKIHumanSetPartner(object, partner);
+    AKIHumanSetMarriedWithPartner(object, partner);
+    
+    AKIHumanDivorcePartners(partner);
+    AKIHumanDivorcePartners(object);
+    
+    AKIHumanRelease(partner);
+    AKIHumanRelease(object);
+}
+
+void AKIHumanChildrenTest() {
+    AKIHuman *object = AKICreateHuman();
+    AKIHuman *partner = AKICreateHuman();
+    AKIHuman *child = AKICreateHuman();
+    
+    AKIHumanSetGender(partner, AKIGenderFemale);
+    
+    AKIHumanSetParentFather(child, object);
+    AKIHumanSetParentMother(child, partner);
+    
+    AKIHumanDeallocateChild(object, child);
+    
+    AKIHumanRelease(partner);
+    AKIHumanRelease(object);
 }

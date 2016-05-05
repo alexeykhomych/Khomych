@@ -18,9 +18,18 @@ extern
 void AKIHumanSetParentMother(AKIHuman *object, AKIHuman *mother);
 
 extern
-AKIHuman AKIHumanGetParentFather(AKIHuman *object);
+AKIHuman *AKIHumanGetParentFather(AKIHuman *object);
 
 extern
-AKIHuman AKIHumanGetParentMother(AKIHuman *object);
+AKIHuman *AKIHumanGetParentMother(AKIHuman *object);
+
+extern
+uint8_t AKIHumanGetChildrenCount(AKIHuman *object);
+
+extern
+void AKIHumanAddChild(AKIHuman *object, AKIHuman *child);
+
+extern
+void AKIHumanDeallocateChild(AKIHuman *object, AKIHuman *child);
 
 #endif /* AKIHuman_AKIParentHood_h */
