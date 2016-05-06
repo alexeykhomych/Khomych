@@ -11,22 +11,40 @@
 #include "AKIHuman.h"
 #include "AKIHuman+AKIMarriage.h"
 
+static
+void AKIHumanSetStrongPartner(AKIHuman *object, AKIHuman *spouse);
+
+static
+void AKIHumanSetWeakPartner(AKIHuman *object, AKIHuman *spouse);
+
+void AKIHumanSetStrongPartner(AKIHuman *object, AKIHuman *spouse) {
+    AKIObjectRelease(object->_partner);
+    object->_partner = spouse;
+    AKIObjectRetain(spouse);
+}
+
+void AKIHumanSetWeakPartner(AKIHuman *object, AKIHuman *spouse) {
+    object->_partner = spouse;
+}
+
 void AKIHumanSetPartner(AKIHuman *object, AKIHuman *partner){
     if (object) {
-        object->_partner = partner;
-    }
-    
-    if(partner) {
-        partner->_partner = object;
+        if (AKIHumanGetGender(object) == AKIGenderMale) {
+            if (object->_partner != partner) {
+                AKIObjectRelease(object->_partner);
+                
+                object->_partner = partner;
+                
+                AKIObjectRetain(object->_partner);
+            }
+        } else {
+            object->_partner = partner;
+        }
     }
 }
 
 AKIHuman *AKIHumanGetPartner(AKIHuman *object) {
-    if (NULL == object->_partner) {
-        return NULL;
-    }
-    
-    return object->_partner;
+    return object ? object->_partner : NULL;
 }
 
 bool AKIHumanCanMarry(AKIHuman *object, AKIHuman *partner) {
@@ -34,31 +52,24 @@ bool AKIHumanCanMarry(AKIHuman *object, AKIHuman *partner) {
 }
 
 void AKIHumanSetMarriedWithPartner(AKIHuman *object, AKIHuman *partner) {
-    if (object || partner) {
-        if (AKIHumanGetPartner(object) != partner) {
-            AKIHumanDivorcePartners(object);
-        }
-        
-        if (AKIHumanCanMarry(object, partner)) {
-            object->_partner = partner;
-            partner->_partner = object;
-            
-            AKIHumanRetain(object);
-            
-            printf("Congratulations %s and %s, you are married!\n", object->_name, object->_partner->_name);
+    if (object && partner && AKIHumanCanMarry(object, partner)) {
+        if (AKIHumanGetGender(object) == AKIGenderMale) {
+            AKIHumanSetStrongPartner(object, partner);
+        } else {
+            AKIHumanSetWeakPartner(object, partner);
         }
     }
 }
 
-void AKIHumanDivorcePartners(AKIHuman *object) {
+void AKIHumanDivorce(AKIHuman *object) {
     if (NULL == object || AKIGenderMale != AKIHumanGetGender(object)) {
         return;
     }
-    
-    AKIHumanSetPartner(object, NULL);
+
     AKIHumanSetPartner(object->_partner, NULL);
+    AKIHumanSetPartner(object, NULL);
     
-    AKIHumanRelease(object);
+    AKIObjectRelease(object);
     
     printf("Congratulations %s, you are divorced!\n", object->_name);
 }

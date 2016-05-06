@@ -9,13 +9,40 @@
 #include "AKIHuman.h"
 #include "AKIHuman+AKIParentHood.h"
 
-void AKIHumanSetParentFather(AKIHuman *object, AKIHuman *father) {
-    if (object && father) {
-        if(AKIGenderMale == father->_gender) {
+static
+void AKIHumanSetFather(AKIHuman *object, AKIHuman *father);
+
+static
+void AKIHumanSetMother(AKIHuman *object, AKIHuman *mother);
+
+static
+AKIHuman *AKIHumanGetFather(AKIHuman *object);
+
+static
+AKIHuman *AKIHumanGetMother(AKIHuman *object);
+
+AKIHuman *AKIHumanGetParent(AKIHuman *child, AKIHuman *parent) {
+    if (AKIHumanGetGender(parent) == AKIGenderMale) {
+        //find child at children array current parent
+        //GetChildrenAtIndex(child);
+        return AKIHumanGetFather(child);
+    } else {
+        return AKIHumanGetMother(child);
+    }
+}
+
+void AKIHumanSetParents(AKIHuman *child, AKIHuman *father, AKIHuman *mother) {
+    if (child) {
+        AKIHumanSetFather(child, father);
+        AKIHumanSetMother(child, mother);
+    }
+}
+
+void AKIHumanSetFather(AKIHuman *object, AKIHuman *father) {
+    if (object) {
+        if (AKIGenderMale == father->_gender) {
             if (kAKIChildrenCount > AKIHumanGetChildrenCount(father)) {
                 object->_father = father;
-                
-                father->_childrenCount += 1;
                 
                 AKIHumanAddChild(father, object);
             }
@@ -23,13 +50,11 @@ void AKIHumanSetParentFather(AKIHuman *object, AKIHuman *father) {
     }
 }
 
-void AKIHumanSetParentMother(AKIHuman *object, AKIHuman *mother) {
-    if (object && mother) {
-        if(AKIGenderFemale == mother->_gender) {
+void AKIHumanSetMother(AKIHuman *object, AKIHuman *mother) {
+    if (object) {
+        if (AKIGenderFemale == mother->_gender) {
             if (kAKIChildrenCount > AKIHumanGetChildrenCount(mother)) {
                 object->_mother = mother;
-                
-                mother->_childrenCount += 1;
                 
                 AKIHumanAddChild(mother, object);
             }
@@ -37,16 +62,16 @@ void AKIHumanSetParentMother(AKIHuman *object, AKIHuman *mother) {
     }
 }
 
-AKIHuman *AKIHumanGetParentFather(AKIHuman *object) {
+AKIHuman *AKIHumanGetFather(AKIHuman *object) {
     return object ? object->_father : NULL;
 }
 
-AKIHuman *AKIHumanGetParentMother(AKIHuman *object) {
+AKIHuman *AKIHumanGetMother(AKIHuman *object) {
     return object ? object->_mother : NULL;
 }
 
 uint8_t AKIHumanGetChildrenCount(AKIHuman *object) {
-    return object ? object->_childrenCount : NULL;
+    return object ? object->_childrenCount : 0;
 }
 
 void AKIHumanAddChild(AKIHuman *object, AKIHuman *child) {
@@ -54,20 +79,23 @@ void AKIHumanAddChild(AKIHuman *object, AKIHuman *child) {
         if (!object->_children[i]) {
             object->_children[i] = child;
             
-            AKIHumanRetain(object);
+            object->_childrenCount += 1;
+            
+            AKIObjectRetain(object);
             
             break;
         }
     }
 }
 
-void AKIHumanDeallocateChild(AKIHuman *object, AKIHuman *child) {
+void AKIHumanRemoveChild(AKIHuman *object, AKIHuman *child) {
     if(object && child) {
         for (uint8_t i = 0; i < object->_childrenCount; i++) {
             if(object->_children[i] == child) {
-                AKIHumanSetParentFather(NULL, child->_father);
-                AKIHumanSetParentMother(NULL, child->_mother);
-                __AKIHumanDeallocate(child);
+                AKIHumanSetParents(child, NULL, NULL);
+                
+                AKIObjectRelease(child);
+                
                 object->_children[i] = NULL;
                 
                 break;

@@ -27,7 +27,7 @@ extern
 void *AKIObjectRetain(void *object);
 
 extern
-void AKIObjectRelease(void *object);
+void AKIObjectRelease(void *address);
 
 extern
 void __AKIObjectDeallocate(void *object);

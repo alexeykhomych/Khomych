@@ -18,7 +18,7 @@ extern
 AKIHuman *AKIHumanGetPartner(AKIHuman *object);
 
 extern
-void AKIHumanDivorcePartners(AKIHuman *object);
+void AKIHumanDivorce(AKIHuman *object);
 
 extern
 bool AKIHumanCanMarry(AKIHuman *object, AKIHuman *partner);

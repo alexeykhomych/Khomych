@@ -12,16 +12,7 @@
 #include "AKIHuman.h"
 
 extern
-void AKIHumanSetParentFather(AKIHuman *object, AKIHuman *father);
-
-extern
-void AKIHumanSetParentMother(AKIHuman *object, AKIHuman *mother);
-
-extern
-AKIHuman *AKIHumanGetParentFather(AKIHuman *object);
-
-extern
-AKIHuman *AKIHumanGetParentMother(AKIHuman *object);
+AKIHuman *AKIHumanGetParent(AKIHuman *child, AKIHuman *parent);
 
 extern
 uint8_t AKIHumanGetChildrenCount(AKIHuman *object);
@@ -30,6 +21,9 @@ extern
 void AKIHumanAddChild(AKIHuman *object, AKIHuman *child);
 
 extern
-void AKIHumanDeallocateChild(AKIHuman *object, AKIHuman *child);
+void AKIHumanRemoveChild(AKIHuman *object, AKIHuman *child);
+
+extern
+void AKIHumanSetParents(AKIHuman *child, AKIHuman *father, AKIHuman *mother);
 
 #endif /* AKIHuman_AKIParentHood_h */

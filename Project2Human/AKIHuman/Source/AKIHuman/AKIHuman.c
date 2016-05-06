@@ -70,15 +70,3 @@ void AKIHumanSetGender(AKIHuman *object, AKIGender gender) {
 AKIGender AKIHumanGetGender(AKIHuman *object) {
     return object ? object->_gender : AKIGenderMale;
 }
-
-void AKIHumanRelease(AKIHuman *object) {
-    if (object) {
-        AKIObjectRelease(object);
-    }
-}
-
-void AKIHumanRetain(AKIHuman *object) {
-    if (object) {
-        AKIObjectRetain(object);
-    }
-}

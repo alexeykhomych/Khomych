@@ -60,10 +60,4 @@ AKIGender AKIHumanGetGender(AKIHuman *object);
 extern
 void __AKIHumanDeallocate(void *object);
 
-extern
-void AKIHumanRetain(AKIHuman *object);
-
-extern
-void AKIHumanRelease(AKIHuman *object);
-
 #endif /* AKIInitializeHuman_h */

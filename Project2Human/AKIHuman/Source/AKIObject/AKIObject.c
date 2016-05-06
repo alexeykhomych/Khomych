@@ -12,11 +12,10 @@
 #include "AKIObject.h"
 
 void *__AKIObjectCreate(size_t size, AKIObjectDeallocator deallocator) {
-    assert(0 != deallocator);
-    assert(NULL != deallocator);
+    assert(deallocator);
     
     AKIObject *object = calloc(1, size);
-    assert(NULL != object);
+    assert(object);
     
     object->_referenceCount = 1;
     object->_deallocatorFunctionPointer = deallocator;
@@ -32,14 +31,14 @@ void *AKIObjectRetain(void *object) {
     return object;
 }
 
-void AKIObjectRelease(void *object) {
-    if (object) {
-        AKIObject *releasedObject = (AKIObject *)object;
-        releasedObject->_referenceCount -= 1;
+void AKIObjectRelease(void *address) {
+    if (address) {
+        AKIObject *object = address;
+        object->_referenceCount -= 1;
         
-        if (0 == releasedObject->_referenceCount) {
-            AKIObjectDeallocator deallocator = releasedObject->_deallocatorFunctionPointer;
-            deallocator(object);
+        if (0 == object->_referenceCount) {
+            AKIObjectDeallocator deallocator = object->_deallocatorFunctionPointer;
+            deallocator(address);
         }
     }
 }

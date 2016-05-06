@@ -72,11 +72,11 @@ void AKIHumanPartnerTest() {
     AKIHumanSetPartner(object, partner);
     AKIHumanSetMarriedWithPartner(object, partner);
     
-    AKIHumanDivorcePartners(partner);
-    AKIHumanDivorcePartners(object);
+    AKIHumanDivorce(partner);
+    AKIHumanDivorce(object);
     
-    AKIHumanRelease(partner);
-    AKIHumanRelease(object);
+    AKIObjectRelease(partner);
+    AKIObjectRelease(object);
 }
 
 void AKIHumanChildrenTest() {
@@ -84,13 +84,13 @@ void AKIHumanChildrenTest() {
     AKIHuman *partner = AKICreateHuman();
     AKIHuman *child = AKICreateHuman();
     
+    AKIHumanSetGender(object, AKIGenderMale);
     AKIHumanSetGender(partner, AKIGenderFemale);
     
-    AKIHumanSetParentFather(child, object);
-    AKIHumanSetParentMother(child, partner);
+    AKIHumanSetParents(child, object, partner);
     
-    AKIHumanDeallocateChild(object, child);
+    AKIHumanRemoveChild(object, child);
     
-    AKIHumanRelease(partner);
-    AKIHumanRelease(object);
+    AKIObjectRelease(partner);
+    AKIObjectRelease(object);
 }
