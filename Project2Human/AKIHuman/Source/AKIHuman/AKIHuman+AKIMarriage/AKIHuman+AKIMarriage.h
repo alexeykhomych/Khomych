@@ -12,18 +12,12 @@
 #include <stdbool.h>
 
 extern
-void AKIHumanSetPartner(AKIHuman *object, AKIHuman *partner);
-
-extern
 AKIHuman *AKIHumanGetPartner(AKIHuman *object);
 
 extern
 void AKIHumanDivorce(AKIHuman *object);
 
 extern
-bool AKIHumanCanMarry(AKIHuman *object, AKIHuman *partner);
-
-extern
-void AKIHumanSetMarriedWithPartner(AKIHuman *object, AKIHuman *partner);
+void AKIHumanGetMarriedWithPartner(AKIHuman *object, AKIHuman *partner);
 
 #endif /* AKIHuman_AKIMarriage_h */

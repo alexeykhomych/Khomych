@@ -16,6 +16,7 @@
 static const uint32_t kAKIChildrenCount = 20;
 
 typedef enum {
+    AKIGenderUndefined,
     AKIGenderMale,
     AKIGenderFemale
 } AKIGender;

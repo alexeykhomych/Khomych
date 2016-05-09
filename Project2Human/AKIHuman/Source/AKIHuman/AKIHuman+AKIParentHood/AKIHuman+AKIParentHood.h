@@ -12,10 +12,7 @@
 #include "AKIHuman.h"
 
 extern
-AKIHuman *AKIHumanGetParent(AKIHuman *child, AKIHuman *parent);
-
-extern
-uint8_t AKIHumanGetChildrenCount(AKIHuman *object);
+AKIHuman *AKIHumanGetParent(AKIHuman *child, AKIGender parentGender);
 
 extern
 void AKIHumanAddChild(AKIHuman *object, AKIHuman *child);

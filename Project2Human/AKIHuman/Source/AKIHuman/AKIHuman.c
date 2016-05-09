@@ -17,7 +17,7 @@
 
 void __AKIHumanDeallocate(void *object) {
     if (NULL != object) {
-        AKIHumanSetPartner(object, NULL);
+        AKIHumanDivorce(object);
         AKIHumanSetName(object, NULL);
         
         __AKIObjectDeallocate(object);

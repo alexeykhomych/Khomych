@@ -48,7 +48,7 @@ void AKIHumanTestPrintObject(AKIHuman *object) {
 }
 
 #pragma mark -
-#pragma Private Declarations
+#pragma Private Implementations
 
 void AKIObjectTest() {
     AKIHumanPartnerTest();
@@ -68,9 +68,7 @@ void AKIHumanPartnerTest() {
     AKIHuman *partner = AKICreateHuman();
     
     AKIHumanSetGender(partner, AKIGenderFemale);
-    
-    AKIHumanSetPartner(object, partner);
-    AKIHumanSetMarriedWithPartner(object, partner);
+    AKIHumanGetMarriedWithPartner(object, partner);
     
     AKIHumanDivorce(partner);
     AKIHumanDivorce(object);
@@ -83,9 +81,13 @@ void AKIHumanChildrenTest() {
     AKIHuman *object = AKICreateHuman();
     AKIHuman *partner = AKICreateHuman();
     AKIHuman *child = AKICreateHuman();
+
     
     AKIHumanSetGender(object, AKIGenderMale);
     AKIHumanSetGender(partner, AKIGenderFemale);
+    
+    
+    AKIHumanGetMarriedWithPartner(object, partner);
     
     AKIHumanSetParents(child, object, partner);
     
@@ -93,4 +95,5 @@ void AKIHumanChildrenTest() {
     
     AKIObjectRelease(partner);
     AKIObjectRelease(object);
+    AKIObjectRelease(child);
 }
