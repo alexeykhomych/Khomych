@@ -31,14 +31,14 @@ void *AKIObjectRetain(void *object) {
     return object;
 }
 
-void AKIObjectRelease(void *address) {
-    if (address) {
-        AKIObject *object = address;
-        object->_referenceCount -= 1;
+void AKIObjectRelease(void *object) {
+    if (object) {
+        AKIObject *releasedObject = object;
+        releasedObject->_referenceCount -= 1;
         
-        if (0 == object->_referenceCount) {
-            AKIObjectDeallocator deallocator = object->_deallocatorFunctionPointer;
-            deallocator(address);
+        if (0 == releasedObject->_referenceCount) {
+            AKIObjectDeallocator deallocator = releasedObject->_deallocatorFunctionPointer;
+            deallocator(object);
         }
     }
 }

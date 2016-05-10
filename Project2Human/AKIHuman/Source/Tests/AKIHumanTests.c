@@ -51,43 +51,59 @@ void AKIHumanTestPrintObject(AKIHuman *object) {
 #pragma Private Implementations
 
 void AKIObjectTest() {
+    AKIHumanTest();
     AKIHumanPartnerTest();
-    AKIHumanChildrenTest();
+//    AKIHumanChildrenTest();
 }
 
 void AKIHumanTest() {
+    printf("Test 1: create human start\n");
+    
     AKIHuman *object = AKICreateHuman();
-    assert(NULL != object);
-    assert(1 == AKIObjectRetainCount(object));
+    
+    AKIHumanSetGender(object, AKIGenderMale);
+    assert(AKIHumanGetGender(object) == AKIGenderMale);
+    
+    AKIHumanSetName(object, "Alex");
+    AKIHumanSetName(object, NULL);
+    AKIHumanSetName(object, "Dmitriy");
+    
+    AKIHumanSetAge(object, 24);
+    assert(AKIHumanGetAge(object) == 24);
     
     AKIObjectRelease(object);
+    
+    printf("Test 1 finish.\n");
 }
 
 void AKIHumanPartnerTest() {
+    printf("Test 2: partner human start\n");
+    
     AKIHuman *object = AKICreateHuman();
     AKIHuman *partner = AKICreateHuman();
     
     AKIHumanSetGender(partner, AKIGenderFemale);
+    AKIHumanSetGender(object, AKIGenderMale);
+    
     AKIHumanGetMarriedWithPartner(object, partner);
     
-    AKIHumanDivorce(partner);
     AKIHumanDivorce(object);
     
     AKIObjectRelease(partner);
     AKIObjectRelease(object);
+    
+    printf("Test 2 finish.\n");
 }
 
 void AKIHumanChildrenTest() {
+    printf("Test 3: child human start\n");
+    
     AKIHuman *object = AKICreateHuman();
     AKIHuman *partner = AKICreateHuman();
     AKIHuman *child = AKICreateHuman();
-
     
     AKIHumanSetGender(object, AKIGenderMale);
     AKIHumanSetGender(partner, AKIGenderFemale);
-    
-    
-    AKIHumanGetMarriedWithPartner(object, partner);
     
     AKIHumanSetParents(child, object, partner);
     
@@ -95,5 +111,6 @@ void AKIHumanChildrenTest() {
     
     AKIObjectRelease(partner);
     AKIObjectRelease(object);
-    AKIObjectRelease(child);
+    
+    printf("Test 3 finish.\n");
 }

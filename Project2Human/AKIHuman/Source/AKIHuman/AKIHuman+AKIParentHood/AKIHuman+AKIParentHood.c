@@ -13,22 +13,10 @@
 #pragma Private Declarations
 
 static
-void AKIHumanSetFather(AKIHuman *object, AKIHuman *father);
-
-static
-void AKIHumanSetMother(AKIHuman *object, AKIHuman *mother);
-
-static
-AKIHuman *AKIHumanGetFather(AKIHuman *object);
-
-static
-AKIHuman *AKIHumanGetMother(AKIHuman *object);
-
-static
 uint8_t AKIHumanGetChildAtIndex(AKIHuman *parent, AKIHuman *child);
 
 static
-void AKIHumanSetChildrenCount(AKIHuman *object, int value);
+void AKIHumanChangeChildrenValue(AKIHuman *object, int value);
 
 static
 void AKIHumanSetChildAtIndex(AKIHuman *parent, AKIHuman *child, uint8_t index);
@@ -39,25 +27,12 @@ uint8_t AKIHumanGetChildrenCount(AKIHuman *object);
 #pragma mark -
 #pragma Public Implementations
 
-AKIHuman *AKIHumanGetParent(AKIHuman *child, AKIGender parentGender) {
-    if (parentGender == AKIGenderMale) {
-        return AKIHumanGetFather(child);
-    } else {
-        return AKIHumanGetMother(child);
-    }
-}
-
-void AKIHumanSetParents(AKIHuman *child, AKIHuman *father, AKIHuman *mother) {
-    if (child) {
-        AKIHumanSetFather(child, father);
-        AKIHumanSetMother(child, mother);
-    }
-}
-
-void AKIHumanAddChild(AKIHuman *object, AKIHuman *child) {
+void AKIHumanGiveBirthChild(AKIHuman *object, AKIHuman *child) {
     for (uint8_t i = 0; i < kAKIChildrenCount; i++) {
         if (!object->_children[i]) {
             AKIHumanSetChildAtIndex(object, child, i);
+            AKIHumanChangeChildrenValue(object, 1);
+            AKIObjectRetain(child);
             
             break;
         }
@@ -65,45 +40,37 @@ void AKIHumanAddChild(AKIHuman *object, AKIHuman *child) {
 }
 
 void AKIHumanRemoveChild(AKIHuman *object, AKIHuman *child) {
-    if (object && child) {
-        AKIHumanSetParents(child, NULL, NULL);
+    if (object && child && AKIHumanGetChildrenCount(object)) {
+        uint8_t index = AKIHumanGetChildAtIndex(object, child);
         
+        AKIHumanSetChildAtIndex(object, NULL, index);
+        AKIHumanChangeChildrenValue(object, -1);
         AKIObjectRelease(child);
-        
-        object->_children[AKIHumanGetChildAtIndex(object, child)] = NULL;
-        AKIHumanSetChildrenCount(object, -1);
-        
-        AKIObjectRelease(object);
     }
 }
 
-#pragma mark -
-#pragma Private Implementations
-
-void AKIHumanSetFather(AKIHuman *object, AKIHuman *father) {
-    if (object) {
-        if (father && AKIGenderMale == AKIHumanGetGender(father)) {
-            if (kAKIChildrenCount > AKIHumanGetChildrenCount(father)) {
-                object->_father = father;
-                
-                AKIHumanAddChild(father, object);
+void AKIHumanRemoveAllChildren(AKIHuman *parent) {
+    if (parent && AKIHumanGetChildrenCount(parent)) {
+        for (uint8_t i = 0; i < kAKIChildrenCount; i++) {
+            if (parent->_children[i] != NULL) {
+                AKIHumanRemoveChild(parent, parent->_children[i]);
             }
-        } else if (!father) {
-            object->_father = NULL;
         }
     }
 }
 
-void AKIHumanSetMother(AKIHuman *object, AKIHuman *mother) {
+void AKIHumanSetParent(AKIHuman *object, AKIHuman *parent) {
     if (object) {
-        if (mother && AKIGenderFemale == AKIHumanGetGender(mother)) {
-            if (kAKIChildrenCount > AKIHumanGetChildrenCount(mother)) {
-                object->_mother = mother;
-                
-                AKIHumanAddChild(mother, object);
+        if (parent && kAKIChildrenCount > AKIHumanGetChildrenCount(parent)) {
+            if (!parent) {
+                object->_father = NULL;
+            } else if (AKIGenderMale == AKIHumanGetGender(parent)) {
+                object->_father = parent;
+            } else {
+                object->_mother = parent;
             }
-        } else if (!mother) {
-            object->_mother = NULL;
+            
+            AKIHumanGiveBirthChild(parent, object);
         }
     }
 }
@@ -116,13 +83,16 @@ AKIHuman *AKIHumanGetMother(AKIHuman *object) {
     return object ? object->_mother : NULL;
 }
 
+#pragma mark -
+#pragma Private Implementations
+
 uint8_t AKIHumanGetChildrenCount(AKIHuman *object) {
     return object ? object->_childrenCount : 0;
 }
 
 uint8_t AKIHumanGetChildAtIndex(AKIHuman *parent, AKIHuman *child) {
     if (parent && child) {
-        for (uint8_t i = 0; i < parent->_childrenCount; i++) {
+        for (uint8_t i = 0; i < kAKIChildrenCount; i++) {
             if (parent->_children[i] == child) {
                 return i;
             }
@@ -132,14 +102,12 @@ uint8_t AKIHumanGetChildAtIndex(AKIHuman *parent, AKIHuman *child) {
     return 0;
 }
 
-void AKIHumanSetChildrenCount(AKIHuman *object, int value) {
+void AKIHumanChangeChildrenValue(AKIHuman *object, int value) {
     object->_childrenCount += value;
 }
 
 void AKIHumanSetChildAtIndex(AKIHuman *parent, AKIHuman *child, uint8_t index) {
-    if (parent && child) {
+    if (parent) {
         parent->_children[index] = child;
-        AKIHumanSetChildrenCount(parent, 1);
-        AKIObjectRetain(parent);
     }
 }
