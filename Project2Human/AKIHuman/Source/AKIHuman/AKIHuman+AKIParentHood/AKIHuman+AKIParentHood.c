@@ -9,6 +9,8 @@
 #include "AKIHuman.h"
 #include "AKIHuman+AKIParentHood.h"
 
+static const uint8_t _kAKIMaximum = UINT8_MAX;
+
 #pragma mark -
 #pragma Private Declarations
 
@@ -28,35 +30,14 @@ uint8_t AKIHumanGetChildrenCount(AKIHuman *object);
 #pragma Public Implementations
 
 void AKIHumanGiveBirthChild(AKIHuman *object, AKIHuman *child) {
-    for (uint8_t i = 0; i < kAKIChildrenCount; i++) {
-        if (!object->_children[i]) {
-            AKIHumanSetChildAtIndex(object, child, i);
-            AKIHumanChangeChildrenValue(object, 1);
-            AKIObjectRetain(child);
-            
-            break;
-        }
-    }
 }
 
 void AKIHumanRemoveChild(AKIHuman *object, AKIHuman *child) {
-    if (object && child && AKIHumanGetChildrenCount(object)) {
-        uint8_t index = AKIHumanGetChildAtIndex(object, child);
-        
-        AKIHumanSetChildAtIndex(object, NULL, index);
-        AKIHumanChangeChildrenValue(object, -1);
-        AKIObjectRelease(child);
-    }
+
 }
 
 void AKIHumanRemoveAllChildren(AKIHuman *parent) {
-    if (parent && AKIHumanGetChildrenCount(parent)) {
-        for (uint8_t i = 0; i < kAKIChildrenCount; i++) {
-            if (parent->_children[i] != NULL) {
-                AKIHumanRemoveChild(parent, parent->_children[i]);
-            }
-        }
-    }
+
 }
 
 void AKIHumanSetParent(AKIHuman *object, AKIHuman *parent) {
@@ -99,7 +80,7 @@ uint8_t AKIHumanGetChildAtIndex(AKIHuman *parent, AKIHuman *child) {
         }
     }
     
-    return 0;
+    return _kAKIMaximum;
 }
 
 void AKIHumanChangeChildrenValue(AKIHuman *object, int value) {

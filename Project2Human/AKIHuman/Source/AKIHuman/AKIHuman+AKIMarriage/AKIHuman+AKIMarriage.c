@@ -49,14 +49,10 @@ bool AKIHumanGetCanMarry(AKIHuman *object, AKIHuman *partner) {
 
 void AKIHumanSetPartner(AKIHuman *object, AKIHuman *partner){
     if (object) {
-        if (partner) {
-            if (AKIHumanGetGender(object) == AKIGenderMale) {
-                AKIHumanSetStrongPartner(object, partner);
-            } else {
-                AKIHumanSetWeakPartner(object, partner);
-            }
+        if (AKIHumanGetGender(object) == AKIGenderMale) {
+            AKIHumanSetStrongPartner(object, partner);
         } else {
-            object->_partner = partner;
+            AKIHumanSetWeakPartner(object, partner);
         }
     }
 }
