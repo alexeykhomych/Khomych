@@ -38,6 +38,8 @@ AKIHuman *AKIHumanGiveBirthChild(AKIHuman *parent1, AKIHuman *parent2) {
         AKIHuman *child = AKICreateHuman();
         AKIHumanSetParent(child, parent1, AKIHumanGetGender(parent1));
         AKIHumanSetParent(child, parent2, AKIHumanGetGender(parent2));
+        
+        AKIObjectRelease(child);
 
         return child;
     } else {
