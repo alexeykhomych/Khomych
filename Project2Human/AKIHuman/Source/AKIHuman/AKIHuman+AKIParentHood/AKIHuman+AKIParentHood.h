@@ -12,7 +12,7 @@
 #include "AKIHuman.h"
 
 extern
-void AKIHumanGiveBirthChild(AKIHuman *object, AKIHuman *child);
+AKIHuman *AKIHumanGiveBirthChild(AKIHuman *parent1, AKIHuman *parent2);
 
 extern
 void AKIHumanRemoveChild(AKIHuman *object, AKIHuman *child);
@@ -21,7 +21,7 @@ extern
 void AKIHumanRemoveAllChildren(AKIHuman *parent);
 
 extern
-void AKIHumanSetParent(AKIHuman *object, AKIHuman *parent);
+void AKIHumanSetParent(AKIHuman *child, AKIHuman *parent, AKIGender parentGender);
 
 extern
 AKIHuman *AKIHumanGetFather(AKIHuman *object);
