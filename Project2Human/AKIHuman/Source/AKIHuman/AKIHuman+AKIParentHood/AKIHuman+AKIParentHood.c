@@ -9,7 +9,7 @@
 #include "AKIHuman.h"
 #include "AKIHuman+AKIParentHood.h"
 
-static const uint8_t _kAKIMaximum = UINT8_MAX;
+const uint32_t kAKINotFound = UINT32_MAX;
 
 #pragma mark -
 #pragma Private Declarations
