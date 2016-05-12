@@ -68,5 +68,5 @@ void AKIHumanSetGender(AKIHuman *object, AKIGender gender) {
 }
 
 AKIGender AKIHumanGetGender(AKIHuman *object) {
-    return object ? object->_gender : AKIGenderMale;
+    return object ? object->_gender : AKIGenderUndefined;
 }

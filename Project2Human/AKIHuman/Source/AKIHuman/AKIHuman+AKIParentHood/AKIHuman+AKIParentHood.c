@@ -38,40 +38,54 @@ AKIHuman *AKIHumanGiveBirthChild(AKIHuman *parent1, AKIHuman *parent2) {
         AKIHuman *child = AKICreateHuman();
         AKIHumanSetParent(child, parent1, AKIHumanGetGender(parent1));
         AKIHumanSetParent(child, parent2, AKIHumanGetGender(parent2));
-        
+
         return child;
     } else {
         return NULL;
     }
 }
 
-void AKIHumanRemoveChild(AKIHuman *object, AKIHuman *child) {
-    
+void AKIHumanRemoveChild(AKIHuman *parent, AKIHuman *child) { //delete AKIHuman object
+    if (parent) {
+        uint8_t childIndex = AKIHumanGetChildAtIndex(parent, child);
+        AKIHumanSetParent(child, NULL, AKIHumanGetGender(parent));
+        AKIHumanSetChildAtIndex(parent, NULL, childIndex);
+        AKIHumanChangeChildrenValue(parent, -1);
+    }
 }
 
 void AKIHumanRemoveAllChildren(AKIHuman *parent) {
-
+    if (parent) {
+        for (uint8_t i = 0; i < kAKIChildrenCount; i++) {
+            AKIHuman *deletedObject = parent->_children[i];
+            
+            if (deletedObject) {
+                AKIHumanRemoveChild(parent, deletedObject);
+            }
+        }
+    }
 }
 
+#define _AKISetParent(child, parent, post) { \
+    child->_##post = parent; \
+    if (AKIHumanGetChildrenCount(parent) < kAKIChildrenCount) {\
+        AKIHumanSetChildAtIndex(parent, child, AKIHumanGetFreeIndexInChildrenArray(parent));\
+        AKIHumanChangeChildrenValue(parent, 1);\
+    }\
+}
 void AKIHumanSetParent(AKIHuman *child, AKIHuman *parent, AKIGender parentGender) {
-    if (child) {
-        if (parentGender == AKIGenderMale) {
-            if (child->_father) {
-                AKIHumanRemoveChild(child->_father, child);
-            }
-            
-            AKIHumanSetChildAtIndex(parent, child, AKIHumanGetFreeIndexInChildrenArray(parent));
-            AKIHumanChangeChildrenValue(parent, 1);
-            
-            //bred
-            child->_father = parent;
-        } else if (parentGender == AKIGenderMale) {
-            if (child->_mother) {
-                AKIHumanRemoveChild(child->_mother, child);
-            }
-            
-            child->_mother = parent;
-        }
+    if (!child) {
+        return;
+    }
+    
+    if (parentGender == AKIGenderMale) {
+        AKIHumanRemoveChild(child->_father, child);
+//        AKIHumanRemoveChild(AKIHumanGetFather(child), child);
+        _AKISetParent(child, parent, father);
+    } else if (parentGender == AKIGenderFemale) {
+//        AKIHumanRemoveChild(child->_mother, child);
+        AKIHumanRemoveChild(AKIHumanGetMother(child), child);
+        _AKISetParent(child, parent, mother);
     }
 }
 
@@ -99,7 +113,7 @@ uint8_t AKIHumanGetFreeIndexInChildrenArray(AKIHuman *parent) {
 }
 
 uint8_t AKIHumanGetChildrenCount(AKIHuman *object) {
-    return object ? object->_childrenCount : 0;
+    return object ? object->_childrenCount : _kAKIMaximum;
 }
 
 uint8_t AKIHumanGetChildAtIndex(AKIHuman *parent, AKIHuman *child) {
@@ -120,12 +134,12 @@ void AKIHumanChangeChildrenValue(AKIHuman *object, int value) {
 
 void AKIHumanSetChildAtIndex(AKIHuman *parent, AKIHuman *child, uint8_t index) {
     if (parent) {
-        parent->_children[index] = child;
-        
         if (child) {
             AKIObjectRetain(child);
         } else {
-            AKIObjectRelease(child);
+            AKIObjectRelease(parent->_children[index]);
         }
+        
+        parent->_children[index] = child;
     }
 }

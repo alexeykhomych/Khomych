@@ -53,7 +53,7 @@ void AKIHumanTestPrintObject(AKIHuman *object) {
 void AKIObjectTest() {
     AKIHumanTest();
     AKIHumanPartnerTest();
-//    AKIHumanChildrenTest();
+    AKIHumanChildrenTest();
 }
 
 void AKIHumanTest() {
@@ -105,7 +105,7 @@ void AKIHumanChildrenTest() {
     AKIHumanSetGender(object, AKIGenderMale);
     AKIHumanSetGender(partner, AKIGenderFemale);
     
-    AKIHumanSetParents(child, object, partner);
+    AKIHumanSetParent(child, object, AKIHumanGetGender(object));
     
     AKIHumanRemoveChild(object, child);
     
