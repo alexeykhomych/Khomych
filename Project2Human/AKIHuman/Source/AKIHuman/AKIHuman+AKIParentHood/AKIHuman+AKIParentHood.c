@@ -12,8 +12,10 @@
 #pragma mark -
 #pragma Private Declarations
 
+const uint8_t kAKINotFound = UINT8_MAX;
+
 static
-uint8_t AKIHumanGetChildAtIndex(AKIHuman *parent, AKIHuman *child);
+uint8_t AKIHumanGetIndexFromChildren(AKIHuman *parent, AKIHuman *child);
 
 static
 void AKIHumanAddValueToChildrenCount(AKIHuman *object, int value);
@@ -23,9 +25,6 @@ void AKIHumanSetChildAtIndex(AKIHuman *parent, AKIHuman *child, uint8_t index);
 
 static
 uint8_t AKIHumanGetChildrenCount(AKIHuman *object);
-
-static
-uint8_t AKIHumanGetFreeIndexInChildrenArray(AKIHuman *parent);
 
 static
 void AKIHumanSetParentAtIvar(AKIHuman *child, AKIHuman **ivar, AKIHuman *parent);
@@ -51,7 +50,7 @@ AKIHuman *AKIHumanGiveBirthToChild(AKIHuman *parent1, AKIHuman *parent2) {
 
 void AKIHumanRemoveChild(AKIHuman *parent, AKIHuman *child) {
     if (parent) {
-        uint8_t childIndex = AKIHumanGetChildAtIndex(parent, child);
+        uint8_t childIndex = AKIHumanGetIndexFromChildren(parent, child);
         AKIHumanSetParent(child, NULL, AKIHumanGetGender(parent));
         AKIHumanSetChildAtIndex(parent, NULL, childIndex);
         AKIHumanAddValueToChildrenCount(parent, -1);
@@ -96,32 +95,26 @@ void AKIHumanSetParentAtIvar(AKIHuman *child, AKIHuman **ivar, AKIHuman *parent)
     *ivar = parent;
     
     if (AKIHumanGetChildrenCount(parent) < kAKIChildrenCount) {
-        AKIHumanSetChildAtIndex(parent, child, AKIHumanGetFreeIndexInChildrenArray(parent));
+        AKIHumanSetChildAtIndex(parent, child, AKIHumanGetIndexFromChildren(parent, NULL));
         AKIHumanAddValueToChildrenCount(parent, 1);
     }
-}
-
-uint8_t AKIHumanGetFreeIndexInChildrenArray(AKIHuman *parent) {
-    if (parent) {
-        for (uint8_t i = 0; i < kAKIChildrenCount; i++) {
-            if (!parent->_children[i]) {
-                return i;
-            }
-        }
-    }
-    
-    return kAKINotFound;
 }
 
 uint8_t AKIHumanGetChildrenCount(AKIHuman *object) {
     return object ? object->_childrenCount : kAKINotFound;
 }
 
-uint8_t AKIHumanGetChildAtIndex(AKIHuman *parent, AKIHuman *child) {
-    if (parent && child) {
+uint8_t AKIHumanGetIndexFromChildren(AKIHuman *parent, AKIHuman *child) {
+    if (parent) {
         for (uint8_t i = 0; i < kAKIChildrenCount; i++) {
-            if (parent->_children[i] == child) {
-                return i;
+            if (child) {
+                if (parent->_children[i] == child) {
+                    return i;
+                }
+            } else {
+                if (!parent->_children[i]) {
+                    return i;
+                }
             }
         }
     }

@@ -11,7 +11,7 @@
 
 #include "AKIHuman.h"
 
-extern const uint32_t kAKINotFound = UINT32_MAX;
+
 
 extern
 AKIHuman *AKIHumanGiveBirthToChild(AKIHuman *parent1, AKIHuman *parent2);

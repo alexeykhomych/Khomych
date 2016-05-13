@@ -85,14 +85,6 @@
 			path = "Source/AKIHuman/AKIHuman+AKIParentHood";
 			sourceTree = "<group>";
 		};
-		845E10131CD0E61E007CFFE3 /* AKIHuman+AKIHumanPersonality */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "AKIHuman+AKIHumanPersonality";
-			path = "Source/AKIHuman/AKIHuman+AKIHumanPersonality";
-			sourceTree = "<group>";
-		};
 		845E101B1CD90397007CFFE3 /* AKIObject */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,7 +134,6 @@
 		84F3FBC81CC90D16002DCC40 /* AKIHuman */ = {
 			isa = PBXGroup;
 			children = (
-				845E10131CD0E61E007CFFE3 /* AKIHuman+AKIHumanPersonality */,
 				845E100F1CD0E378007CFFE3 /* AKIHuman+AKIParentHood */,
 				845E100E1CD0E354007CFFE3 /* AKIHuman+AKIMarriage */,
 				845E10031CCF96B0007CFFE3 /* AKIHuman.c */,
