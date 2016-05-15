@@ -12,6 +12,7 @@
 		845E10121CD0E490007CFFE3 /* AKIHuman+AKIMarriage.c in Sources */ = {isa = PBXBuildFile; fileRef = 845E10101CD0E490007CFFE3 /* AKIHuman+AKIMarriage.c */; };
 		845E10161CD0E6A8007CFFE3 /* AKIHuman+AKIParentHood.c in Sources */ = {isa = PBXBuildFile; fileRef = 845E10141CD0E6A8007CFFE3 /* AKIHuman+AKIParentHood.c */; };
 		845E101E1CD903B6007CFFE3 /* AKIObject.c in Sources */ = {isa = PBXBuildFile; fileRef = 845E101C1CD903B6007CFFE3 /* AKIObject.c */; };
+		845E10221CE89C96007CFFE3 /* AKIString.c in Sources */ = {isa = PBXBuildFile; fileRef = 845E10201CE89C96007CFFE3 /* AKIString.c */; };
 		84F3FBBE1CC909D0002DCC40 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 84F3FBBD1CC909D0002DCC40 /* main.c */; };
 		84F3FBC71CC90A13002DCC40 /* AKIRunApplication.c in Sources */ = {isa = PBXBuildFile; fileRef = 84F3FBC51CC90A13002DCC40 /* AKIRunApplication.c */; };
 /* End PBXBuildFile section */
@@ -39,6 +40,8 @@
 		845E10151CD0E6A8007CFFE3 /* AKIHuman+AKIParentHood.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AKIHuman+AKIParentHood.h"; path = "Source/AKIHuman/AKIHuman+AKIParentHood/AKIHuman+AKIParentHood.h"; sourceTree = SOURCE_ROOT; };
 		845E101C1CD903B6007CFFE3 /* AKIObject.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AKIObject.c; sourceTree = "<group>"; };
 		845E101D1CD903B6007CFFE3 /* AKIObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKIObject.h; sourceTree = "<group>"; };
+		845E10201CE89C96007CFFE3 /* AKIString.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AKIString.c; sourceTree = "<group>"; };
+		845E10211CE89C96007CFFE3 /* AKIString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKIString.h; sourceTree = "<group>"; };
 		84F3FBBA1CC909D0002DCC40 /* AKIHuman */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AKIHuman; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F3FBBD1CC909D0002DCC40 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		84F3FBC51CC90A13002DCC40 /* AKIRunApplication.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AKIRunApplication.c; sourceTree = "<group>"; };
@@ -94,6 +97,15 @@
 			path = AKIObject;
 			sourceTree = "<group>";
 		};
+		845E101F1CE89C24007CFFE3 /* AKIString */ = {
+			isa = PBXGroup;
+			children = (
+				845E10201CE89C96007CFFE3 /* AKIString.c */,
+				845E10211CE89C96007CFFE3 /* AKIString.h */,
+			);
+			path = AKIString;
+			sourceTree = "<group>";
+		};
 		84F3FBB11CC909D0002DCC40 = {
 			isa = PBXGroup;
 			children = (
@@ -122,6 +134,7 @@
 		84F3FBC41CC909DC002DCC40 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				845E101F1CE89C24007CFFE3 /* AKIString */,
 				845E101B1CD90397007CFFE3 /* AKIObject */,
 				845E0FFC1CCE2CBE007CFFE3 /* Tests */,
 				84F3FBC81CC90D16002DCC40 /* AKIHuman */,
@@ -199,6 +212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				845E10221CE89C96007CFFE3 /* AKIString.c in Sources */,
 				845E0FFF1CCE2CE4007CFFE3 /* AKIHumanTests.c in Sources */,
 				845E10161CD0E6A8007CFFE3 /* AKIHuman+AKIParentHood.c in Sources */,
 				845E101E1CD903B6007CFFE3 /* AKIObject.c in Sources */,

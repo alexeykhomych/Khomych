@@ -12,6 +12,7 @@
 #include <stdio.h>
 
 #include "AKIObject.h"
+#include "AKIString.h"
 
 static const uint32_t kAKIChildrenCount = 20;
 
@@ -24,9 +25,9 @@ typedef enum {
 typedef struct AKIHuman AKIHuman;
 struct AKIHuman {
     AKIObject _super;
+    AKIString _superString;
     
     AKIGender _gender;
-    char *_name;
     uint8_t _age;
     
     AKIHuman *_partner;

@@ -29,22 +29,11 @@ AKIHuman *AKICreateHuman() {
 }
 
 void AKIHumanSetName(AKIHuman *object, const char *name) {
-    if (object) {
-        if (name != object->_name) {
-            if(object->_name) {
-                free(object->_name);
-                object->_name = NULL;
-            }
-        }
-        
-        if (name) {
-            object->_name = strdup(name);
-        }
-    }
+    AKIStringSetName(object, name);
 }
 
 char *AKIHumanGetName(AKIHuman *object) {
-    return NULL == object ? NULL : object->_name;
+    return AKIStringGetName(object);
 }
 
 void AKIHumanSetAge(AKIHuman *object, uint8_t age) {
