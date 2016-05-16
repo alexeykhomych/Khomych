@@ -36,7 +36,6 @@ void AKIHumanChildrenTest();
 
 void AKIHumanTestRun() {
     AKIObjectTest();
-    AKIHumanTest();
 }
 
 void AKIHumanTestPrintObject(AKIHuman *object) {
@@ -52,8 +51,8 @@ void AKIHumanTestPrintObject(AKIHuman *object) {
 
 void AKIObjectTest() {
     AKIHumanTest();
-    AKIHumanPartnerTest();
-    AKIHumanChildrenTest();
+//    AKIHumanPartnerTest();
+//    AKIHumanChildrenTest();
 }
 
 void AKIHumanTest() {
@@ -65,8 +64,11 @@ void AKIHumanTest() {
     assert(AKIHumanGetGender(object) == AKIGenderMale);
     
     AKIHumanSetName(object, "Alex");
+    printf("Name : %s\n", AKIHumanGetName(object));
     AKIHumanSetName(object, NULL);
     AKIHumanSetName(object, "Dmitriy");
+    
+    
     
     AKIHumanSetAge(object, 24);
     assert(AKIHumanGetAge(object) == 24);

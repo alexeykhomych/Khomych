@@ -7,6 +7,7 @@
 //
 
 #include "AKIHuman.h"
+#include "AKIHuman+AKIMarriage.h"
 #include "AKIHuman+AKIParentHood.h"
 
 #pragma mark -
@@ -32,14 +33,15 @@ void AKIHumanSetParentAtIvar(AKIHuman *child, AKIHuman **ivar, AKIHuman *parent)
 #pragma mark -
 #pragma Public Implementations
 
-AKIHuman *AKIHumanGiveBirthToChild(AKIHuman *parent1, AKIHuman *parent2) {
+AKIHuman *AKIHumanGiveBirthToChild(AKIHuman *parent) {
+    AKIHuman *parent2 = AKIHumanGetPartner(parent);
     AKIHuman *child = NULL;
     
-    if (kAKIChildrenCount > AKIHumanGetChildrenCount(parent1)
+    if (kAKIChildrenCount > AKIHumanGetChildrenCount(parent)
         && kAKIChildrenCount > AKIHumanGetChildrenCount(parent2))
     {
         child = AKICreateHuman();
-        AKIHumanSetParent(child, parent1, AKIHumanGetGender(parent1));
+        AKIHumanSetParent(child, parent, AKIHumanGetGender(parent));
         AKIHumanSetParent(child, parent2, AKIHumanGetGender(parent2));
         
         AKIObjectRelease(child);
@@ -106,15 +108,11 @@ uint8_t AKIHumanGetChildrenCount(AKIHuman *object) {
 
 uint8_t AKIHumanGetIndexFromChildren(AKIHuman *parent, AKIHuman *child) {
     if (parent) {
-        for (uint8_t i = 0; i < kAKIChildrenCount; i++) {
-            if (child) {
-                if (parent->_children[i] == child) {
-                    return i;
-                }
-            } else {
-                if (!parent->_children[i]) {
-                    return i;
-                }
+        uint8_t maxChildrenCount = kAKIChildrenCount;
+        
+        for (uint8_t i = 0; i < maxChildrenCount; i++) {
+            if (parent->_children[i] == child) {
+                return i;
             }
         }
     }
@@ -123,7 +121,9 @@ uint8_t AKIHumanGetIndexFromChildren(AKIHuman *parent, AKIHuman *child) {
 }
 
 void AKIHumanAddValueToChildrenCount(AKIHuman *object, int value) {
-    object->_childrenCount += value;
+    if (object) {
+        object->_childrenCount += value;
+    }
 }
 
 void AKIHumanSetChildAtIndex(AKIHuman *parent, AKIHuman *child, uint8_t index) {

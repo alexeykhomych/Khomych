@@ -11,10 +11,8 @@
 
 #include "AKIHuman.h"
 
-
-
 extern
-AKIHuman *AKIHumanGiveBirthToChild(AKIHuman *parent1, AKIHuman *parent2);
+AKIHuman *AKIHumanGiveBirthToChild(AKIHuman *parent);
 
 extern
 void AKIHumanRemoveChild(AKIHuman *object, AKIHuman *child);
