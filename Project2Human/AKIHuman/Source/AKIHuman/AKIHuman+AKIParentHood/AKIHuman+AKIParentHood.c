@@ -33,16 +33,16 @@ void AKIHumanSetParentAtIvar(AKIHuman *child, AKIHuman **ivar, AKIHuman *parent)
 #pragma mark -
 #pragma Public Implementations
 
-AKIHuman *AKIHumanGiveBirthToChild(AKIHuman *parent) {
-    AKIHuman *parent2 = AKIHumanGetPartner(parent);
+AKIHuman *AKIHumanGiveBirthToChild(AKIHuman *human) {
+    AKIHuman *partner = AKIHumanGetPartner(human);
     AKIHuman *child = NULL;
     
-    if (kAKIChildrenCount > AKIHumanGetChildrenCount(parent)
-        && kAKIChildrenCount > AKIHumanGetChildrenCount(parent2))
+    if (kAKIChildrenCount > AKIHumanGetChildrenCount(human)
+        && kAKIChildrenCount > AKIHumanGetChildrenCount(partner))
     {
         child = AKICreateHuman();
-        AKIHumanSetParent(child, parent, AKIHumanGetGender(parent));
-        AKIHumanSetParent(child, parent2, AKIHumanGetGender(parent2));
+        AKIHumanSetParent(child, human, AKIHumanGetGender(human));
+        AKIHumanSetParent(child, partner, AKIHumanGetGender(partner));
         
         AKIObjectRelease(child);
     }
