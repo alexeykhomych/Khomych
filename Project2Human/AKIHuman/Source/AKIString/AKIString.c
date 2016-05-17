@@ -16,14 +16,11 @@ void AKIStringSetName(void *object, const char *name);
 static
 char *AKIStringGetName(void *object);
 
-static
-void __AKIStringDeallocate(void *object);
-
 void __AKIStringDeallocate(void *object) {
     __AKIObjectDeallocate(object);
 }
 
-AKIString *AKIStringCreate() {
+AKIString *AKIStringCreate(char *object) {
     return AKIObjectCreateOfType(AKIString);
 }
 

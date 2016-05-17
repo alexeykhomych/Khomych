@@ -19,6 +19,9 @@ struct AKIString{
 };
 
 extern
-AKIString *AKIStringCreate();
+AKIString *AKIStringCreate(char *object);
+
+extern
+void __AKIStringDeallocate(void *object);
 
 #endif /* AKIString_h */

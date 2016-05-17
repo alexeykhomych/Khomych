@@ -31,7 +31,14 @@ void __AKIArrayDeallocate(void *array) {
 }
 
 AKIArray *AKIArrayCreateWithCapacity(uint64_t capacity) {
-    return AKIObjectCreateOfType(AKIArray);
+    AKIArray *array = NULL;
+    
+    if (capacity) {
+        array =  AKIObjectCreateOfType(AKIArray);
+        AKIArraySetCapacity(array, capacity);
+    }
+    
+    return array;
 }
 
 #pragma mark -
@@ -109,11 +116,7 @@ void AKIArraySetCount(AKIArray *array, uint64_t count) {
 
 void AKIArraySetObjectAtIndex(AKIArray *array, void *object ,uint64_t index) {
     if (array) {
-        AKIArray *result = AKIArrayGetObjectAtIndex(array, index);
-        
-        if (!result) {
-            array->_data[index] = object;
-        }
+        array->_data[index] = object;
     }
 }
 
