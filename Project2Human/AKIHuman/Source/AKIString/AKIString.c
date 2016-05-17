@@ -10,6 +10,23 @@
 
 #include "AKIString.h"
 
+static
+void AKIStringSetName(void *object, const char *name);
+
+static
+char *AKIStringGetName(void *object);
+
+static
+void __AKIStringDeallocate(void *object);
+
+void __AKIStringDeallocate(void *object) {
+    __AKIObjectDeallocate(object);
+}
+
+AKIString *AKIStringCreate() {
+    return AKIObjectCreateOfType(AKIString);
+}
+
 void AKIStringSetName(void *object, const char *name) {
     AKIString *stringObject = object;
     

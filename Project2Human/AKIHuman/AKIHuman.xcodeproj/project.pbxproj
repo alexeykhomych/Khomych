@@ -13,7 +13,8 @@
 		845E10161CD0E6A8007CFFE3 /* AKIHuman+AKIParentHood.c in Sources */ = {isa = PBXBuildFile; fileRef = 845E10141CD0E6A8007CFFE3 /* AKIHuman+AKIParentHood.c */; };
 		845E101E1CD903B6007CFFE3 /* AKIObject.c in Sources */ = {isa = PBXBuildFile; fileRef = 845E101C1CD903B6007CFFE3 /* AKIObject.c */; };
 		845E10221CE89C96007CFFE3 /* AKIString.c in Sources */ = {isa = PBXBuildFile; fileRef = 845E10201CE89C96007CFFE3 /* AKIString.c */; };
-		845E10261CEA06C0007CFFE3 /* AKIArray.c in Sources */ = {isa = PBXBuildFile; fileRef = 845E10241CEA06C0007CFFE3 /* AKIArray.c */; };
+		845E102A1CEB3D53007CFFE3 /* AKIArrayTest.c in Sources */ = {isa = PBXBuildFile; fileRef = 845E10281CEB3D53007CFFE3 /* AKIArrayTest.c */; };
+		845E102D1CEB3EDA007CFFE3 /* AKIArray.c in Sources */ = {isa = PBXBuildFile; fileRef = 845E102B1CEB3EDA007CFFE3 /* AKIArray.c */; };
 		84F3FBBE1CC909D0002DCC40 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 84F3FBBD1CC909D0002DCC40 /* main.c */; };
 		84F3FBC71CC90A13002DCC40 /* AKIRunApplication.c in Sources */ = {isa = PBXBuildFile; fileRef = 84F3FBC51CC90A13002DCC40 /* AKIRunApplication.c */; };
 /* End PBXBuildFile section */
@@ -43,8 +44,10 @@
 		845E101D1CD903B6007CFFE3 /* AKIObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKIObject.h; sourceTree = "<group>"; };
 		845E10201CE89C96007CFFE3 /* AKIString.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AKIString.c; sourceTree = "<group>"; };
 		845E10211CE89C96007CFFE3 /* AKIString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKIString.h; sourceTree = "<group>"; };
-		845E10241CEA06C0007CFFE3 /* AKIArray.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AKIArray.c; sourceTree = "<group>"; };
-		845E10251CEA06C0007CFFE3 /* AKIArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKIArray.h; sourceTree = "<group>"; };
+		845E10281CEB3D53007CFFE3 /* AKIArrayTest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AKIArrayTest.c; sourceTree = "<group>"; };
+		845E10291CEB3D53007CFFE3 /* AKIArrayTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKIArrayTest.h; sourceTree = "<group>"; };
+		845E102B1CEB3EDA007CFFE3 /* AKIArray.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AKIArray.c; sourceTree = "<group>"; };
+		845E102C1CEB3EDA007CFFE3 /* AKIArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKIArray.h; sourceTree = "<group>"; };
 		84F3FBBA1CC909D0002DCC40 /* AKIHuman */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AKIHuman; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F3FBBD1CC909D0002DCC40 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		84F3FBC51CC90A13002DCC40 /* AKIRunApplication.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AKIRunApplication.c; sourceTree = "<group>"; };
@@ -67,6 +70,8 @@
 			children = (
 				845E0FFD1CCE2CE4007CFFE3 /* AKIHumanTests.c */,
 				845E0FFE1CCE2CE4007CFFE3 /* AKIHumanTests.h */,
+				845E10281CEB3D53007CFFE3 /* AKIArrayTest.c */,
+				845E10291CEB3D53007CFFE3 /* AKIArrayTest.h */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -112,8 +117,8 @@
 		845E10231CEA06A5007CFFE3 /* AKIArray */ = {
 			isa = PBXGroup;
 			children = (
-				845E10241CEA06C0007CFFE3 /* AKIArray.c */,
-				845E10251CEA06C0007CFFE3 /* AKIArray.h */,
+				845E102B1CEB3EDA007CFFE3 /* AKIArray.c */,
+				845E102C1CEB3EDA007CFFE3 /* AKIArray.h */,
 			);
 			path = AKIArray;
 			sourceTree = "<group>";
@@ -225,13 +230,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				845E10261CEA06C0007CFFE3 /* AKIArray.c in Sources */,
 				845E10221CE89C96007CFFE3 /* AKIString.c in Sources */,
 				845E0FFF1CCE2CE4007CFFE3 /* AKIHumanTests.c in Sources */,
 				845E10161CD0E6A8007CFFE3 /* AKIHuman+AKIParentHood.c in Sources */,
 				845E101E1CD903B6007CFFE3 /* AKIObject.c in Sources */,
 				845E10051CCF96B0007CFFE3 /* AKIHuman.c in Sources */,
+				845E102D1CEB3EDA007CFFE3 /* AKIArray.c in Sources */,
 				84F3FBC71CC90A13002DCC40 /* AKIRunApplication.c in Sources */,
+				845E102A1CEB3D53007CFFE3 /* AKIArrayTest.c in Sources */,
 				84F3FBBE1CC909D0002DCC40 /* main.c in Sources */,
 				845E10121CD0E490007CFFE3 /* AKIHuman+AKIMarriage.c in Sources */,
 			);

@@ -19,9 +19,6 @@ struct AKIString{
 };
 
 extern
-void AKIStringSetName(void *object, const char *name);
-
-extern
-char *AKIStringGetName(void *object);
+AKIString *AKIStringCreate();
 
 #endif /* AKIString_h */
