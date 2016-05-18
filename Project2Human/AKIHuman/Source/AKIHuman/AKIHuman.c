@@ -29,11 +29,11 @@ AKIHuman *AKICreateHuman() {
 }
 
 void AKIHumanSetName(AKIHuman *object, const char *name) {
-    AKIStringSetName(object, name);
+    AKIStringSetValue(&object->_name, name);
 }
 
 char *AKIHumanGetName(AKIHuman *object) {
-    return AKIStringGetName(object);
+    return AKIStringGetValue(&object->_name);
 }
 
 void AKIHumanSetAge(AKIHuman *object, uint8_t age) {

@@ -11,6 +11,5 @@
 #include "AKIHumanTests.h"
 
 void AKIRunApplication() {
-//    AKIHumanTestRun();
     AKIHumanTestRun();
 }

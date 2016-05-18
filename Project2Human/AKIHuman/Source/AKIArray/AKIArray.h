@@ -55,4 +55,7 @@ void AKIArraySetCount(AKIArray *array, uint64_t count);
 extern
 void AKIArraySetObjectAtIndex(AKIArray *array, void *object ,uint64_t index);
 
+extern
+uint64_t AKIArrayGetCapacity(AKIArray *array);
+
 #endif /* AKIArray_h */
