@@ -34,12 +34,9 @@ void AKIStringSetValue(AKIString *object, char *value) {
         
         if (value) {
             object->_value = strdup(value);
-            AKIObjectRetain(object);
-        } else {
-            AKIObjectRelease(object);
         }
         
-        AKIStringSetLength(object, strlen(value));
+        AKIStringSetLength(object, value ? strlen(value) : 0);
     }
 }
 

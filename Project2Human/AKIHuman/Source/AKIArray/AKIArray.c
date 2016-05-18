@@ -67,20 +67,17 @@ bool AKIArrayContainsObject(AKIArray *array, void *object) {
 }
 
 uint64_t AKIArrayGetIndexOfObject(AKIArray *array, void *object) {
-    uint64_t result = 0;
-    
     if (array) {
         uint64_t count = AKIArrayGetCount(array);
         
         for (uint64_t i = 0; i < count; i++) {
             if (AKIArrayGetObjectAtIndex(array, i) == object) {
-                result = i;
-                break;
+                return i;
             }
         }
     }
     
-    return result;
+    return 0;
 }
 
 AKIArray *AKIArrayGetObjectAtIndex(AKIArray *array, uint64_t index) {
@@ -99,6 +96,7 @@ void AKIArrayRemoveObjectAtIndex(AKIArray *array, uint64_t index) {
         }
         
         AKIArraySetCount(array, count - 1);
+        AKIArraySetCapacity(array, AKIArrayGetCapacity(array) - 1);
     }
 }
 
@@ -111,8 +109,6 @@ void AKIArrayRemoveAllObjects(AKIArray *array) {
                 AKIArrayRemoveObjectAtIndex(array, i);
             }
         }
-        
-        AKIArraySetCapacity(array, 0);
     }
 }
 

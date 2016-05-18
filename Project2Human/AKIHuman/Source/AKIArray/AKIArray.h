@@ -29,6 +29,15 @@ extern
 void AKIArrayAddObject(AKIArray *array, void *object);
 
 extern
+void AKIArrayRemoveObjectAtIndex(AKIArray *array, uint64_t index);
+
+extern
+void AKIArrayRemoveAllObjects(AKIArray *array);
+
+extern
+void AKIArraySetCount(AKIArray *array, uint64_t count);
+
+extern
 uint64_t AKIArrayGetCount(AKIArray *array);
 
 extern
@@ -41,16 +50,7 @@ extern
 AKIArray *AKIArrayGetObjectAtIndex(AKIArray *array, uint64_t index);
 
 extern
-void AKIArrayRemoveObjectAtIndex(AKIArray *array, uint64_t index);
-
-extern
-void AKIArrayRemoveAllObjects(AKIArray *array);
-
-extern
 void __AKIArrayDeallocate(void *object);
-
-extern
-void AKIArraySetCount(AKIArray *array, uint64_t count);
 
 extern
 void AKIArraySetObjectAtIndex(AKIArray *array, void *object ,uint64_t index);

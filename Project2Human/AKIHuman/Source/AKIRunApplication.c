@@ -9,7 +9,9 @@
 #include "AKIRunApplication.h"
 #include "AKIHuman.h"
 #include "AKIHumanTests.h"
+#include "AKIArrayTest.h"
 
 void AKIRunApplication() {
     AKIHumanTestRun();
+//    AKICreateArrayTest();
 }
