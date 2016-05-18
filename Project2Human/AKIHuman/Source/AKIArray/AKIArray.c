@@ -83,7 +83,7 @@ uint64_t AKIArrayGetIndexOfObject(AKIArray *array, void *object) {
 AKIArray *AKIArrayGetObjectAtIndex(AKIArray *array, uint64_t index) {
     return array ? array->_data[index] : NULL;
 }
-
+#warning re-write
 void AKIArrayRemoveObjectAtIndex(AKIArray *array, uint64_t index) {
     if (array) {
         AKIArraySetObjectAtIndex(array, NULL, index);
@@ -127,7 +127,7 @@ void AKIArraySetObjectAtIndex(AKIArray *array, void *object ,uint64_t index) {
 
 #pragma mark -
 #pragma Private Implementations
-
+#warning re-write
 void AKIArraySetCapacity(AKIArray *array, uint64_t capacity) {
     if (array && array->_capacity != capacity) {
         size_t size = capacity * sizeof(*array->_data);
@@ -163,7 +163,7 @@ void AKIArrayResizeIfNeeded(AKIArray *array) {
         AKIArraySetCapacity(array, AKIArrayPreferedCapacity(array));
     }
 }
-
+#warning re-write
 uint64_t AKIArrayPreferedCapacity(AKIArray *array) {
     if (array) {
         uint64_t count = AKIArrayGetCount(array);
