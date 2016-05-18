@@ -25,7 +25,7 @@ typedef enum {
 typedef struct AKIHuman AKIHuman;
 struct AKIHuman {
     AKIObject _super;
-    AKIString _superString;
+    AKIString _name;
     
     AKIGender _gender;
     uint8_t _age;

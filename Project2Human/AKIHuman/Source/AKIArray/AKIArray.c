@@ -26,13 +26,16 @@ static
 void AKIArrayResize(AKIArray *array, uint64_t count);
 
 void __AKIArrayDeallocate(void *array) {
+    AKIArraySetData(array, NULL);
     AKIArrayRemoveAllObjects(array);
     __AKIObjectDeallocate(array);
 }
 
 AKIArray *AKIArrayCreateWithCapacity(uint64_t capacity) {
     AKIArray *array = NULL;
-    
+    if (!capacity) {
+        capacity = 1;
+    }
     if (capacity) {
         array =  AKIObjectCreateOfType(AKIArray);
         AKIArraySetCapacity(array, capacity);
@@ -134,5 +137,9 @@ bool AKIArrayShouldResize(AKIArray *array) {
 }
 
 void AKIArrayResize(AKIArray *array, uint64_t count) {
+    
+}
+
+void AKIArraySetData(AKIArray *array, void **data) {
     
 }

@@ -7,16 +7,15 @@
 //
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "AKIString.h"
 
-static
-void AKIStringSetName(void *object, const char *name);
-
-static
-char *AKIStringGetName(void *object);
+static const size_t AKINotFound = SIZE_T_MAX;
 
 void __AKIStringDeallocate(void *object) {
+    AKIStringSetValue(object, NULL);
+    
     __AKIObjectDeallocate(object);
 }
 
@@ -24,23 +23,39 @@ AKIString *AKIStringCreate(char *object) {
     return AKIObjectCreateOfType(AKIString);
 }
 
-void AKIStringSetName(void *object, const char *name) {
-    AKIString *stringObject = object;
-    
-    if (stringObject) {
-        if (name != stringObject->_name) {
-            if(stringObject->_name) {
-                free(stringObject->_name);
-                stringObject->_name = NULL;
+void AKIStringSetValue(AKIString *object, char *value) {
+    if (object) {
+        if (value != object->_value) {
+            if (object->_value) {
+                free(object->_value);
+                object->_value = NULL;
+                AKIStringSetLength(object, 0);
             }
         }
         
-        if (name) {
-            stringObject->_name = strdup(name);
+        if (value) {
+            object->_value = strdup(value);
+            AKIStringSetLength(object, strlen(value));
         }
     }
 }
 
-char *AKIStringGetName(void *object) {
-    return NULL == object ? NULL : ((AKIString *) object)->_name;
+void AKIStringSetLength(AKIString *object, size_t length) {
+    if (object && length) {
+        object->_length = length;
+    }
+}
+
+size_t AKIStringGetLength(AKIString *object) {
+    return object ? object->_length : AKINotFound;
+}
+
+char *AKIStringGetValue(AKIString *object) {
+    return object ? object->_value : NULL;
+}
+
+void AKIStringCopyValue(AKIString *object, AKIString *copiedObject) {
+    if (object) {
+        memcpy(copiedObject->_value, object, object->_length);
+    }
 }

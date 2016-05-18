@@ -11,17 +11,31 @@
 
 #include "AKIObject.h"
 
-typedef struct AKIString AKIString;
-
-struct AKIString{
+typedef struct{
     AKIObject _super;
-    char *_name;
-};
+    char *_value;
+    size_t _length;
+}AKIString;
 
 extern
 AKIString *AKIStringCreate(char *object);
 
 extern
 void __AKIStringDeallocate(void *object);
+
+extern
+void AKIStringSetValue(AKIString *object, char *value);
+
+extern
+size_t AKIStringGetLength(AKIString *object);
+
+extern
+void AKIStringCopyValue(AKIString *object, AKIString *copiedObject);
+
+extern
+void AKIStringSetLength(AKIString *object, size_t length);
+
+extern
+char *AKIStringGetValue(AKIString *object);
 
 #endif /* AKIString_h */

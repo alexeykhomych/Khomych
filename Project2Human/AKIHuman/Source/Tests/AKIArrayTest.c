@@ -8,7 +8,18 @@
 
 #include "AKIArrayTest.h"
 #include "AKIArray.h"
+#include "AKIHuman.h"
 
 void AKICreateArrayTest() {
-    AKIArrayCreateWithCapacity(10);
+    AKIArray *array = AKIArrayCreateWithCapacity(10);
+    
+    AKIArraySetCount(array, 10);
+    
+    for (uint64_t i = 0; i < 10; i++) {
+        AKIArraySetObjectAtIndex(array, AKICreateHuman(), i);
+    }
+    
+    for (uint64_t i = 0; i < 10; i++) {
+        AKIArrayRemoveObjectAtIndex(array, i);
+    }
 }
