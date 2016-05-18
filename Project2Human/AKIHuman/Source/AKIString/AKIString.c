@@ -11,7 +11,7 @@
 
 #include "AKIString.h"
 
-static const size_t AKINotFound = SIZE_T_MAX;
+static const size_t AKINotFound = SIZE_MAX;
 
 void __AKIStringDeallocate(void *object) {
     AKIStringSetValue(object, NULL);
@@ -29,14 +29,17 @@ void AKIStringSetValue(AKIString *object, char *value) {
             if (object->_value) {
                 free(object->_value);
                 object->_value = NULL;
-                AKIStringSetLength(object, 0);
             }
         }
         
         if (value) {
             object->_value = strdup(value);
-            AKIStringSetLength(object, strlen(value));
+            AKIObjectRetain(object);
+        } else {
+            AKIObjectRelease(object);
         }
+        
+        AKIStringSetLength(object, strlen(value));
     }
 }
 
