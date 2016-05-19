@@ -33,14 +33,14 @@ void AKIStringSetValue(AKIString *object, char *value) {
         }
         
         if (value) {
-            size_t length = AKIStringGetLength(value) + 1;
-            object->_value = malloc(length);
-            memmove(object->_value, value, length);
+            size_t countBytes = AKIStringGetCountOfBytes(value);
+            object->_value = malloc(countBytes);
+            memmove(object->_value, value, countBytes);
         }
     }
 }
 
-size_t AKIStringGetLength(char *object) {
+size_t AKIStringGetCountOfBytes(char *object) {
     return object ? strlen(object) : AKINotFound;
 }
 
