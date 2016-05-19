@@ -42,10 +42,10 @@ extern
 AKIHuman *AKICreateHuman();
 
 extern
-void AKIHumanSetName(AKIHuman *object, const char *name);
+void AKIHumanSetName(AKIHuman *human, char *name);
 
 extern
-char *AKIHumanGetName(AKIHuman *object);
+AKIString *AKIHumanGetName(AKIHuman *object);
 
 extern
 void AKIHumanSetAge(AKIHuman *object, uint8_t age);

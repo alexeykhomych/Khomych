@@ -28,12 +28,20 @@ AKIHuman *AKICreateHuman() {
     return AKIObjectCreateOfType(AKIHuman);
 }
 
-void AKIHumanSetName(AKIHuman *object, const char *name) {
-    AKIStringSetValue(&object->_name, name);
+void AKIHumanSetName(AKIHuman *human, char *string) {
+    if (human) {
+        if (string) {
+            AKIObjectRetain(&human->_name);
+        } else {
+            AKIObjectRelease(&human->_name);
+        }
+        
+        AKIStringSetValue(&human->_name, string);
+    }
 }
 
-char *AKIHumanGetName(AKIHuman *object) {
-    return AKIStringGetValue(&object->_name);
+AKIString *AKIHumanGetName(AKIHuman *object) {
+    return object ? &object->_name : NULL;
 }
 
 void AKIHumanSetAge(AKIHuman *object, uint8_t age) {
@@ -49,10 +57,8 @@ uint8_t AKIHumanGetAge(AKIHuman *object) {
 }
 
 void AKIHumanSetGender(AKIHuman *object, AKIGender gender) {
-    if (object) {
-        if (gender != object->_gender) {
-            object->_gender = gender;
-        }
+    if (object && gender != object->_gender) {
+        object->_gender = gender;
     }   
 }
 

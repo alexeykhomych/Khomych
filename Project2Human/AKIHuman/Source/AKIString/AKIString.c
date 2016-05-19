@@ -33,29 +33,20 @@ void AKIStringSetValue(AKIString *object, char *value) {
         }
         
         if (value) {
-            object->_value = strdup(value);
+            size_t countBytes = AKIStringGetCountOfBytes(value);
+            object->_value = malloc(countBytes);
+            memmove(object->_value, value, countBytes);
         }
-        
-        AKIStringSetLength(object, value ? strlen(value) : 0);
     }
 }
 
-void AKIStringSetLength(AKIString *object, size_t length) {
-    if (object && length) {
-        object->_length = length;
-    }
+size_t AKIStringGetCountOfBytes(char *object) {
+    return object ? strlen(object) : AKINotFound;
 }
 
-size_t AKIStringGetLength(AKIString *object) {
-    return object ? object->_length : AKINotFound;
-}
-
-char *AKIStringGetValue(AKIString *object) {
-    return object ? object->_value : NULL;
-}
-
-void AKIStringCopyValue(AKIString *object, AKIString *copiedObject) {
-    if (object) {
-        memcpy(copiedObject->_value, object, object->_length);
-    }
+AKIString *AKIStringCopy(char *value) {
+    AKIString *copy = AKIObjectCreateOfType(AKIString);
+    AKIStringSetValue(copy, value);
+    
+    return copy;
 }
