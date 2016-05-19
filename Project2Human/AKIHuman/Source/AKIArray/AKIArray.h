@@ -47,7 +47,7 @@ extern
 uint64_t AKIArrayGetIndexOfObject(AKIArray *array, void *object);
 
 extern
-AKIArray *AKIArrayGetObjectAtIndex(AKIArray *array, uint64_t index);
+void *AKIArrayGetObjectAtIndex(AKIArray *array, uint64_t index);
 
 extern
 void __AKIArrayDeallocate(void *object);

@@ -7,6 +7,7 @@
 //
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "AKIArray.h"
 
@@ -17,9 +18,6 @@ static const uint64_t kAKINotFound = UINT64_MAX;
 
 static
 void AKIArraySetCapacity(AKIArray *array, uint64_t capacity);
-
-static
-void AKIArraySetData(AKIArray *array, void **data);
 
 static
 bool AKIArrayShouldResize(AKIArray *array);
@@ -34,8 +32,9 @@ void AKIArrayResizeIfNeeded(AKIArray *array);
 #pragma Public Implementations
 
 void __AKIArrayDeallocate(void *array) {
-    AKIArraySetData(array, NULL);
     AKIArrayRemoveAllObjects(array);
+    AKIArraySetCapacity(array, 0);
+    
     __AKIObjectDeallocate(array);
 }
 
@@ -59,9 +58,11 @@ void AKIArrayAddObject(AKIArray *array, void *object) {
         AKIArraySetObjectAtIndex(array, object, count);
     }
 }
+
 uint64_t AKIArrayGetCount(AKIArray *array) {
     return array ? array->_count : kAKINotFound;
 }
+
 bool AKIArrayContainsObject(AKIArray *array, void *object) {
     return array && (AKIArrayGetIndexOfObject(array, object) != kAKINotFound);
 }
@@ -77,12 +78,13 @@ uint64_t AKIArrayGetIndexOfObject(AKIArray *array, void *object) {
         }
     }
     
-    return 0;
+    return kAKINotFound;
 }
 
-AKIArray *AKIArrayGetObjectAtIndex(AKIArray *array, uint64_t index) {
+void *AKIArrayGetObjectAtIndex(AKIArray *array, uint64_t index) {
     return array ? array->_data[index] : NULL;
 }
+
 #warning re-write
 void AKIArrayRemoveObjectAtIndex(AKIArray *array, uint64_t index) {
     if (array) {
@@ -121,7 +123,13 @@ void AKIArraySetCount(AKIArray *array, uint64_t count) {
 
 void AKIArraySetObjectAtIndex(AKIArray *array, void *object ,uint64_t index) {
     if (array) {
+        if (array->_data[index]) {
+            AKIObjectRelease(array->_data[index]);
+            array->_data[index] = NULL;
+        }
+        
         array->_data[index] = object;
+        AKIObjectRetain(array->_data[index]);
     }
 }
 
@@ -152,10 +160,6 @@ void AKIArraySetCapacity(AKIArray *array, uint64_t capacity) {
 
 bool AKIArrayShouldResize(AKIArray *array) {
     return array && (array->_capacity != AKIArrayPreferedCapacity(array));
-}
-
-void AKIArraySetData(AKIArray *array, void **data) {
-    #warning empty
 }
 
 void AKIArrayResizeIfNeeded(AKIArray *array) {
