@@ -27,15 +27,9 @@ extern
 void AKIStringSetValue(AKIString *object, char *value);
 
 extern
-size_t AKIStringGetLength(AKIString *object);
+size_t AKIStringGetLength(char *object);
 
 extern
-void AKIStringCopyValue(AKIString *object, AKIString *copiedObject);
-
-extern
-void AKIStringSetLength(AKIString *object, size_t length);
-
-extern
-char *AKIStringGetValue(AKIString *object);
+AKIString *AKIStringCopy(char *value);
 
 #endif /* AKIString_h */

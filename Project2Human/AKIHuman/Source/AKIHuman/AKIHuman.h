@@ -42,7 +42,7 @@ extern
 AKIHuman *AKICreateHuman();
 
 extern
-void AKIHumanSetName(AKIHuman *object, const char *name);
+void AKIHumanSetName(AKIHuman *human, AKIString *string);
 
 extern
 char *AKIHumanGetName(AKIHuman *object);
