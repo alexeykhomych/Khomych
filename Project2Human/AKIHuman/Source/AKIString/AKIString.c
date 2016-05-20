@@ -13,40 +13,43 @@
 
 static const size_t AKINotFound = SIZE_MAX;
 
+#pragma mark -
+#pragma Public Implementations
+
 void __AKIStringDeallocate(void *object) {
     AKIStringSetValue(object, NULL);
     
     __AKIObjectDeallocate(object);
 }
 
-AKIString *AKIStringCreate(char *object) {
+AKIString *AKIStringCreate() {
     return AKIObjectCreateOfType(AKIString);
 }
 
-void AKIStringSetValue(AKIString *object, char *value) {
+void AKIStringSetValue(AKIString *object, AKIString *string) {
     if (object) {
-        if (value != object->_value) {
+        if (string->_value != object->_value) {
             if (object->_value) {
                 free(object->_value);
                 object->_value = NULL;
             }
         }
         
-        if (value) {
-            size_t countBytes = AKIStringGetCountOfBytes(value);
+        if (string->_value) {
+            size_t countBytes = AKIStringGetLength(string);
             object->_value = malloc(countBytes);
-            memmove(object->_value, value, countBytes);
+            memmove(object->_value, string->_value, countBytes);
         }
     }
 }
 
-size_t AKIStringGetCountOfBytes(char *object) {
-    return object ? strlen(object) : AKINotFound;
+size_t AKIStringGetLength(AKIString *string) {
+    return string ? strlen(string->_value) : AKINotFound;
 }
 
-AKIString *AKIStringCopy(char *value) {
+AKIString *AKIStringCopy(AKIString *string) {
     AKIString *copy = AKIObjectCreateOfType(AKIString);
-    AKIStringSetValue(copy, value);
+    AKIStringSetValue(copy, string);
     
     return copy;
 }
