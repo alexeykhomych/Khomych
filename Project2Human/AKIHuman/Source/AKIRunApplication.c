@@ -12,6 +12,6 @@
 #include "AKIArrayTest.h"
 
 void AKIRunApplication() {
-    AKIHumanTestRun();
-//    AKICreateArrayTest();
+//    AKIHumanTestRun();
+    AKICreateArrayTest();
 }
