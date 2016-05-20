@@ -16,27 +16,29 @@
 #include "AKIHuman+AKIParentHood.h"
 
 void __AKIHumanDeallocate(void *object) {
-    if (NULL != object) {
-        AKIHumanDivorce(object);
-        AKIHumanSetName(object, NULL);
-        
-        __AKIObjectDeallocate(object);
-    }
+    AKIHumanDivorce(object);
+    AKIHumanSetName(object, NULL);
+    
+    AKIHuman *mother = AKIHumanGetMother(object);
+    AKIHuman *father = AKIHumanGetFather(object);
+    
+    AKIHumanSetParent(object, NULL, AKIHumanGetGender(mother));
+    AKIHumanSetParent(object, NULL, AKIHumanGetGender(father));
+    
+    AKIHumanRemoveAllChildren(object);
+    
+    __AKIObjectDeallocate(object);
 }
 
 AKIHuman *AKICreateHuman() {
     return AKIObjectCreateOfType(AKIHuman);
 }
 
-void AKIHumanSetName(AKIHuman *human, char *string) {
-    if (human) {
-        if (string) {
-            AKIObjectRetain(&human->_name);
-        } else {
-            AKIObjectRelease(&human->_name);
-        }
-        
-        AKIStringSetValue(&human->_name, string);
+void AKIHumanSetName(AKIHuman *human, AKIString *name) {
+    if (human && name != &human->_name) {
+        AKIObjectRelease(&human->_name);
+        human->_name = *name;
+        AKIObjectRetain(&human->_name);
     }
 }
 

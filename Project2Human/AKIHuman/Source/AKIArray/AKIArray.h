@@ -14,6 +14,8 @@
 
 #include "AKIObject.h"
 
+static const uint64_t kAKINotFound = UINT64_MAX;
+
 typedef struct {
     AKIObject _super;
     

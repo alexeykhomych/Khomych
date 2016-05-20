@@ -11,6 +11,12 @@
 
 #include "AKIObject.h"
 
+void __AKIObjectDeallocate(void *object) {
+    if (NULL != object) {
+        free(object);
+    }
+}
+
 void *__AKIObjectCreate(size_t size, AKIObjectDeallocator deallocator) {
     assert(deallocator);
     
@@ -40,12 +46,6 @@ void AKIObjectRelease(void *object) {
             AKIObjectDeallocator deallocator = releasedObject->_deallocatorFunctionPointer;
             deallocator(object);
         }
-    }
-}
-
-void __AKIObjectDeallocate(void *object) {
-    if (NULL != object) {
-        free(object);
     }
 }
 

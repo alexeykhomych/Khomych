@@ -50,9 +50,9 @@ void AKIHumanTestPrintObject(AKIHuman *object) {
 #pragma Private Implementations
 
 void AKIObjectTest() {
-    AKIHumanTest();
+//    AKIHumanTest();
 //    AKIHumanPartnerTest();
-//    AKIHumanChildrenTest();
+    AKIHumanChildrenTest();
 }
 
 void AKIHumanTest() {
@@ -64,7 +64,6 @@ void AKIHumanTest() {
     assert(AKIHumanGetGender(object) == AKIGenderMale);
     
     AKIHumanSetName(object, "Alex");
-    printf("Name : %s\n", AKIHumanGetName(object));
     AKIHumanSetName(object, NULL);
     AKIHumanSetName(object, "Dmitriy");
     
@@ -109,7 +108,7 @@ void AKIHumanChildrenTest() {
     
     AKIHumanSetParent(child, object, AKIHumanGetGender(object));
     
-    AKIHumanRemoveChild(object, child);
+//    AKIHumanRemoveChild(object, child);
     
     AKIObjectRelease(partner);
     AKIObjectRelease(object);

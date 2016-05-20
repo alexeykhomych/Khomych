@@ -14,22 +14,21 @@
 typedef struct{
     AKIObject _super;
     char *_value;
-    size_t _length;
-}AKIString;
+} AKIString;
 
 extern
-AKIString *AKIStringCreate(char *object);
+AKIString *AKIStringCreate();
 
 extern
 void __AKIStringDeallocate(void *object);
 
 extern
-void AKIStringSetValue(AKIString *object, char *value);
+void AKIStringSetValue(AKIString *object, AKIString *name);
 
 extern
-size_t AKIStringGetCountOfBytes(char *object);
+size_t AKIStringGetLength(AKIString *string);
 
 extern
-AKIString *AKIStringCopy(char *value);
+AKIString *AKIStringCopy(AKIString *string);
 
 #endif /* AKIString_h */
