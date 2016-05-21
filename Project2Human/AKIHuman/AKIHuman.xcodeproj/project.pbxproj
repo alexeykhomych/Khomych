@@ -43,7 +43,7 @@
 		845E101C1CD903B6007CFFE3 /* AKIObject.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AKIObject.c; sourceTree = "<group>"; };
 		845E101D1CD903B6007CFFE3 /* AKIObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKIObject.h; sourceTree = "<group>"; };
 		845E10201CE89C96007CFFE3 /* AKIString.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AKIString.c; sourceTree = "<group>"; };
-		845E10211CE89C96007CFFE3 /* AKIString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKIString.h; sourceTree = "<group>"; };
+		845E10211CE89C96007CFFE3 /* AKIString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKIString.h; sourceTree = "<group>"; usesTabs = 0; };
 		845E10281CEB3D53007CFFE3 /* AKIArrayTest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AKIArrayTest.c; sourceTree = "<group>"; };
 		845E10291CEB3D53007CFFE3 /* AKIArrayTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKIArrayTest.h; sourceTree = "<group>"; };
 		845E102B1CEB3EDA007CFFE3 /* AKIArray.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AKIArray.c; sourceTree = "<group>"; };

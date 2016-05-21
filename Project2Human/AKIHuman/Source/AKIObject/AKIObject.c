@@ -12,7 +12,7 @@
 #include "AKIObject.h"
 
 void __AKIObjectDeallocate(void *object) {
-    if (NULL != object) {
+    if (object) {
         free(object);
     }
 }

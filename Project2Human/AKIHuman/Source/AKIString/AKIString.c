@@ -1,4 +1,4 @@
-				//
+//
 //  AKIString.c
 //  AKIHuman
 //
@@ -12,6 +12,12 @@
 #include "AKIString.h"
 
 static const size_t AKINotFound = SIZE_MAX;
+
+#pragma mark -
+#pragma Private Declarations
+
+static
+void AKIStringSetValue(AKIString *object, AKIString *name);
 
 #pragma mark -
 #pragma Public Implementations
@@ -49,7 +55,9 @@ size_t AKIStringGetLength(AKIString *string) {
 
 AKIString *AKIStringCopy(AKIString *string) {
     AKIString *copy = AKIObjectCreateOfType(AKIString);
-    AKIStringSetValue(copy, string);
-    
-    return copy;
+    AKIStringSetValue(copy, AKIStringGetValue(string));
+}
+
+AKIString *AKIStringGetValue(AKIString *object) {
+    return object ? object : NULL;
 }

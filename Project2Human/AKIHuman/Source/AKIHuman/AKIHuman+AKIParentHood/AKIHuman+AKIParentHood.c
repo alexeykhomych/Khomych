@@ -13,8 +13,6 @@
 #pragma mark -
 #pragma Private Declarations
 
-const uint8_t kAKINotFound = UINT8_MAX;
-
 static
 uint8_t AKIHumanGetIndexFromChildren(AKIHuman *parent, AKIHuman *child);
 

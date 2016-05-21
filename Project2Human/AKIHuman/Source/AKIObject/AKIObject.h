@@ -11,6 +11,8 @@
 
 #include <stdio.h>
 
+extern const uint64_t kAKINotFound;
+
 typedef void (*AKIObjectDeallocator)(void *object);
 
 typedef struct {
