@@ -22,7 +22,7 @@ typedef struct {
     void **_data;
     uint64_t _count;
     uint64_t _capacity;
-}AKIArray;
+} AKIArray;
 
 extern
 AKIArray *AKIArrayCreateWithCapacity(uint64_t capacity);

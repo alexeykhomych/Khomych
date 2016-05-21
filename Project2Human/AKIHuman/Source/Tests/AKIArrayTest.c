@@ -16,13 +16,15 @@ void AKICreateArrayTest() {
     AKIArray *array = AKIArrayCreateWithCapacity(10);
     AKIObject *object = AKIObjectCreateOfType(AKIObject);
     
-    for (uint64_t i = 0; i < 5; i++) {
+    uint8_t count = 5;
+    
+    for (uint64_t i = 0; i < count; i++) {
         AKIArrayAddObject(array, object);
     }
     
     assert(5 == AKIArrayGetCount(array));
     
-    for (uint64_t i = 0; i < 5; i++) {
+    for (uint64_t i = 0; i < count; i++) {
         assert(AKIArrayGetObjectAtIndex(array, i) == object);
     }
     
@@ -31,21 +33,21 @@ void AKICreateArrayTest() {
     
     assert (6 == AKIArrayGetCount(array));
     
-    for (uint64_t i = 0; i < 5; i++) {
+    for (uint64_t i = 0; i < count; i++) {
         assert(AKIArrayGetObjectAtIndex(array, i) == object);
     }
     
-    assert(AKIArrayGetObjectAtIndex(array, 5) == object2);
+    assert(AKIArrayGetObjectAtIndex(array, count) == object2);
     
-    AKIArrayRemoveObjectAtIndex(array, 3);
+    AKIArrayRemoveObjectAtIndex(array, count - 2);
     
-    assert(5 == AKIArrayGetCount(array));
+    assert(count == AKIArrayGetCount(array));
     
-    for (uint64_t i = 0; i < 4; i++) {
+    for (uint64_t i = 0; i < count - 1; i++) {
         assert(AKIArrayGetObjectAtIndex(array, i) == object);
     }
     
-    assert(AKIArrayGetObjectAtIndex(array, 4) == object2);
+    assert(AKIArrayGetObjectAtIndex(array, count - 1) == object2);
     
     AKIArrayRemoveAllObjects(array);
     assert(0 == AKIArrayGetCount(array));
