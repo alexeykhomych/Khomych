@@ -55,4 +55,7 @@ uint64_t AKIArrayGetCapacity(AKIArray *array);
 extern
 void **AKIArrayGetData(AKIArray *array);
 
+extern
+bool AKIArrayContainsObject(AKIArray *array, void *object);
+
 #endif /* AKIArray_h */

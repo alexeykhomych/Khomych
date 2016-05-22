@@ -11,7 +11,7 @@
 
 #include "AKIString.h"
 
-static const size_t AKINotFound = SIZE_MAX;
+const size_t AKINotFound = SIZE_MAX;
 
 #pragma mark -
 #pragma Private Declarations
@@ -32,6 +32,24 @@ AKIString *AKIStringCreate() {
     return AKIObjectCreateOfType(AKIString);
 }
 
+AKIString *AKIStringCopy(AKIString *string) {
+    AKIString *copy = AKIObjectCreateOfType(AKIString);
+    AKIStringSetValue(copy, AKIStringGetValue(string));
+    
+    return copy;
+}
+
+size_t AKIStringGetLength(AKIString *string) {
+    return string ? strlen(string->_value) : AKINotFound;
+}
+
+AKIString *AKIStringGetValue(AKIString *object) {
+    return object ? object : NULL;
+}
+
+#pragma mark -
+#pragma mark Private Implementations
+
 void AKIStringSetValue(AKIString *object, AKIString *string) {
     if (object) {
         if (string->_value != object->_value) {
@@ -47,17 +65,4 @@ void AKIStringSetValue(AKIString *object, AKIString *string) {
             memmove(object->_value, string->_value, countBytes);
         }
     }
-}
-
-size_t AKIStringGetLength(AKIString *string) {
-    return string ? strlen(string->_value) : AKINotFound;
-}
-
-AKIString *AKIStringCopy(AKIString *string) {
-    AKIString *copy = AKIObjectCreateOfType(AKIString);
-    AKIStringSetValue(copy, AKIStringGetValue(string));
-}
-
-AKIString *AKIStringGetValue(AKIString *object) {
-    return object ? object : NULL;
 }

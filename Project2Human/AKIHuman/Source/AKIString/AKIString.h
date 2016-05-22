@@ -11,7 +11,7 @@
 
 #include "AKIObject.h"
 
-typedef struct{
+typedef struct {
     AKIObject _super;
     char *_value;
 } AKIString;

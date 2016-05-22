@@ -18,7 +18,7 @@ typedef void (*AKIObjectDeallocator)(void *object);
 typedef struct {
     uint64_t _referenceCount;
     AKIObjectDeallocator _deallocatorFunctionPointer;
-}AKIObject;
+} AKIObject;
 
 #define AKIObjectCreateOfType(type) __AKIObjectCreate(sizeof(type), __##type##Deallocate)
 
