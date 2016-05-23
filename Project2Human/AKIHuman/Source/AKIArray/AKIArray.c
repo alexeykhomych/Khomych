@@ -15,7 +15,6 @@
 #pragma Private Declarations
 
 static const uint64_t AKIArrayMaximumCapacity = UINT64_MAX - 1;
-//const uint64_t kAKINotFound = UINT64_MAX;
 
 static
 void AKIArraySetCapacity(AKIArray *array, uint64_t capacity);

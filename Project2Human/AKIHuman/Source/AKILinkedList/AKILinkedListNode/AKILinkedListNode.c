@@ -32,6 +32,7 @@ AKILinkedListNode *AKILinkedListNodeGetNextNode(AKILinkedListNode *node) {
         return NULL;
     }
     
+    return NULL;
 }
 
 void AKILinkedListNodeSetObject(AKILinkedListNode *node, void *object) {

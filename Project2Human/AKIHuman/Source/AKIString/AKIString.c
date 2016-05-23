@@ -11,8 +11,6 @@
 
 #include "AKIString.h"
 
-const size_t AKINotFound = SIZE_MAX;
-
 #pragma mark -
 #pragma Private Declarations
 
@@ -40,7 +38,7 @@ AKIString *AKIStringCopy(AKIString *string) {
 }
 
 size_t AKIStringGetLength(AKIString *string) {
-    return string ? strlen(string->_value) : AKINotFound;
+    return string ? strlen(string->_value) : kAKINotFound;
 }
 
 AKIString *AKIStringGetValue(AKIString *object) {
