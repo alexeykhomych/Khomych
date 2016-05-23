@@ -11,6 +11,8 @@
 
 #include "AKIObject.h"
 
+const uint64_t kAKINotFound = UINT64_MAX;
+
 void __AKIObjectDeallocate(void *object) {
     if (object) {
         free(object);

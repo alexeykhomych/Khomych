@@ -15,6 +15,7 @@
 #pragma Private Declarations
 
 static const uint64_t AKIArrayMaximumCapacity = UINT64_MAX - 1;
+//const uint64_t kAKINotFound = UINT64_MAX;
 
 static
 void AKIArraySetCapacity(AKIArray *array, uint64_t capacity);
@@ -30,9 +31,6 @@ void AKIArrayResizeIfNeeded(AKIArray *array);
 
 static
 void AKIArraySetCount(AKIArray *array, uint64_t count);
-
-static
-bool AKIArrayContainsObject(AKIArray *array, void *object);
 
 static
 void AKIArrayShiftObject(AKIArray *array, uint64_t index, uint64_t count);;
@@ -122,6 +120,10 @@ void AKIArraySetObjectAtIndex(AKIArray *array, void *object, uint64_t index) {
     }
 }
 
+bool AKIArrayContainsObject(AKIArray *array, void *object) {
+    return array && AKIArrayGetIndexOfObject(array, object) != kAKINotFound;
+}
+
 #pragma mark -
 #pragma Private Implementations
 
@@ -186,10 +188,6 @@ void AKIArraySetCount(AKIArray *array, uint64_t count) {
         array->_count = count;
         AKIArrayResizeIfNeeded(array);
     }
-}
-
-bool AKIArrayContainsObject(AKIArray *array, void *object) {
-    return array && AKIArrayGetIndexOfObject(array, object) != kAKINotFound;
 }
 
 void **AKIArrayGetData(AKIArray *array) {
