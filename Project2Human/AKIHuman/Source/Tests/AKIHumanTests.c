@@ -38,21 +38,13 @@ void AKIHumanTestRun() {
     AKIObjectTest();
 }
 
-void AKIHumanTestPrintObject(AKIHuman *object) {
-    printf("Object #1\nName: %s\n"
-           "Age: %hhu\n"
-           "Gendere: %u\n", AKIHumanGetName(object),
-           AKIHumanGetAge(object),
-           AKIHumanGetGender(object));
-}
-
 #pragma mark -
 #pragma Private Implementations
 
 void AKIObjectTest() {
-//    AKIHumanTest();
+    AKIHumanTest();
 //    AKIHumanPartnerTest();
-    AKIHumanChildrenTest();
+//    AKIHumanChildrenTest();
 }
 
 void AKIHumanTest() {
@@ -63,11 +55,10 @@ void AKIHumanTest() {
     AKIHumanSetGender(object, AKIGenderMale);
     assert(AKIHumanGetGender(object) == AKIGenderMale);
     
-    AKIHumanSetName(object, "Alex");
-    AKIHumanSetName(object, NULL);
-    AKIHumanSetName(object, "Dmitriy");
+    AKIString *string = AKIStringCreate();
+    string = AKIStringCopy((AKIString *) "Alex");
     
-    
+    AKIHumanSetName(object, string);
     
     AKIHumanSetAge(object, 24);
     assert(AKIHumanGetAge(object) == 24);

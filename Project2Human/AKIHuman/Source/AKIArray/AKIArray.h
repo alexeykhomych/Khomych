@@ -14,15 +14,13 @@
 
 #include "AKIObject.h"
 
-static const uint64_t kAKINotFound = UINT64_MAX;
-
 typedef struct {
     AKIObject _super;
     
     void **_data;
     uint64_t _count;
     uint64_t _capacity;
-}AKIArray;
+} AKIArray;
 
 extern
 AKIArray *AKIArrayCreateWithCapacity(uint64_t capacity);
@@ -37,13 +35,7 @@ extern
 void AKIArrayRemoveAllObjects(AKIArray *array);
 
 extern
-void AKIArraySetCount(AKIArray *array, uint64_t count);
-
-extern
 uint64_t AKIArrayGetCount(AKIArray *array);
-
-extern
-bool AKIArrayContainsObject(AKIArray *array, void *object);
 
 extern
 uint64_t AKIArrayGetIndexOfObject(AKIArray *array, void *object);
@@ -59,5 +51,11 @@ void AKIArraySetObjectAtIndex(AKIArray *array, void *object ,uint64_t index);
 
 extern
 uint64_t AKIArrayGetCapacity(AKIArray *array);
+
+extern
+void **AKIArrayGetData(AKIArray *array);
+
+extern
+bool AKIArrayContainsObject(AKIArray *array, void *object);
 
 #endif /* AKIArray_h */
