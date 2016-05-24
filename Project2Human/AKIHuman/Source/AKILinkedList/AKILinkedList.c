@@ -11,12 +11,13 @@
 
 #include "AKILinkedList.h"
 #include "AKILinkedListNode.h"
+#include "AKIConstants.h"
 
 #pragma mark -
 #pragma mark Private Declarations
 
 static
-void AKILinkedListSetCount(AKILinkedList *list, AKILinkedListNode *node);
+void AKILinkedListSetCount(AKILinkedList *list, uint64_t count);
 
 static
 void AKILinkedListSetHead(AKILinkedList *list, AKILinkedListNode *node);
@@ -29,6 +30,7 @@ AKILinkedListNode *AKILinkedListGetHead(AKILinkedList *list);
 
 void __AKILinkedListDeallocate(void *object) {
     AKILinkedListRemoveAllObject(object);
+    
     __AKIObjectDeallocate(object);
 }
 
@@ -48,7 +50,7 @@ void AKILinkedListRemoveFirstObject(AKILinkedList *list) {
 }
 
 bool AKILinkedListIsEmpty(AKILinkedList *list) {
-    return list && 0 == list->_count;
+    return list && 0 == AKILinkedListGetCount(list);
 }
 
 void AKILinkedListAddObject(AKILinkedList *list, void *object) {
@@ -57,23 +59,50 @@ void AKILinkedListAddObject(AKILinkedList *list, void *object) {
         AKILinkedListNodeSetNextNode(node, AKILinkedListGetHead(list));
         AKILinkedListSetHead(list, node);
         
-        list->_count += 1;
+        AKILinkedListSetCount(list, AKILinkedListGetCount(list) + 1);
         
         AKIObjectRetain(node);
     }
 }
 
-void AKILinkedListRemoveObject(AKILinkedList *list, void *object);
+void AKILinkedListRemoveObject(AKILinkedList *list, void *object) {
+    AKILinkedListNode *node = AKILinkedListGetHead(list);
+    AKILinkedListNode *previousNode = NULL;
+    
+    while (node) {
+        AKIObject *currentObject = AKILinkedListGetObject(node);
+        
+        if (currentObject == object) {
+            AKILinkedListNodeSetNextNode(previousNode, AKILinkedListNodeGetNextNode(node));
+            AKILinkedListSetCount(list, AKILinkedListGetCount(list) - 1);
+        }
+        
+        previousNode = node;
+        node = AKILinkedListNodeGetNextNode(node);
+    }
+}
 
 void AKILinkedListRemoveAllObject(AKILinkedList *list) {
     if (list) {
         AKILinkedListSetHead(list, NULL);
-        list->_count = 0;
+        AKILinkedListSetCount(list, 0);
     }
 }
 
 bool AKILinkedListContainsObject(AKILinkedList *list, void *object) {
-    return list ? AKILinkedListGetObject(AKILinkedListGetHead(list)) : false; //check
+    if (list) {
+        AKILinkedListNode *node = AKILinkedListGetHead(list);
+        
+        while (node) {
+            if (object == AKILinkedListGetObject(node)) {
+                return true;
+            }
+            
+            node = AKILinkedListNodeGetNextNode(node);
+        }
+    }
+    
+    return false;
 }
 
 uint64_t AKILinkedListGetCount(AKILinkedList *list) {
@@ -81,6 +110,21 @@ uint64_t AKILinkedListGetCount(AKILinkedList *list) {
 }
 
 AKIObject *AKILinkedListGetObjectBeforeObject(AKILinkedList *list, AKIObject *object) {
+    if (list && !AKILinkedListIsEmpty(list)) {
+        AKILinkedListNode *currentNode = AKILinkedListGetHead(list);
+        AKIObject *previousObject = NULL;
+        
+        do {
+            AKIObject *currentObject = AKILinkedListGetObject(currentNode);
+            
+            if (object == currentObject) {
+                return previousObject;
+            }
+            
+            previousObject = currentObject;
+        } while (NULL == (currentNode = AKILinkedListNodeGetNextNode(currentNode)));
+    }
+    
     return NULL;
 }
 
@@ -99,4 +143,10 @@ void AKILinkedListSetHead(AKILinkedList *list, AKILinkedListNode *node) {
 
 AKILinkedListNode *AKILinkedListGetHead(AKILinkedList *list) {
     return list ? list->_head : NULL;
+}
+
+void AKILinkedListSetCount(AKILinkedList *list, uint64_t count) {
+    if (list) {
+        list->_count = count;
+    }
 }

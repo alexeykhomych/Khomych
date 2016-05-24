@@ -26,6 +26,9 @@ extern
 AKIArray *AKIArrayCreateWithCapacity(uint64_t capacity);
 
 extern
+void __AKIArrayDeallocate(void *object);
+
+extern
 void AKIArrayAddObject(AKIArray *array, void *object);
 
 extern
@@ -42,9 +45,6 @@ uint64_t AKIArrayGetIndexOfObject(AKIArray *array, void *object);
 
 extern
 void *AKIArrayGetObjectAtIndex(AKIArray *array, uint64_t index);
-
-extern
-void __AKIArrayDeallocate(void *object);
 
 extern
 void AKIArraySetObjectAtIndex(AKIArray *array, void *object ,uint64_t index);

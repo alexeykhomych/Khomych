@@ -10,6 +10,7 @@
 #include <string.h>
 
 #include "AKIString.h"
+#include "AKIConstants.h"
 
 #pragma mark -
 #pragma Private Declarations
@@ -26,8 +27,9 @@ void __AKIStringDeallocate(void *object) {
     __AKIObjectDeallocate(object);
 }
 
-AKIString *AKIStringCreate() {
-    return AKIObjectCreateOfType(AKIString);
+AKIString *AKIStringCreate(char *value) {
+    AKIString *object = AKIObjectCreateOfType(AKIString);
+    AKIStringSetValue(object, )
 }
 
 AKIString *AKIStringCopy(AKIString *string) {

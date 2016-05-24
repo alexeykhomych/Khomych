@@ -25,6 +25,9 @@ typedef struct {
 } AKILinkedList;
 
 extern
+void __AKILinkedListDeallocate(void *object);
+
+extern
 AKIObject *AKILinkedListGetFirstObject(AKILinkedList *list);
 
 extern
@@ -47,9 +50,6 @@ bool AKILinkedListContainsObject(AKILinkedList *list, void *object);
 
 extern
 uint64_t AKILinkedListGetCount(AKILinkedList *list);
-
-extern
-void __AKILinkedListDeallocate(void *object);
 
 extern
 AKIObject *AKILinkedListGetObjectBeforeObject(AKILinkedList *list, AKIObject *object);

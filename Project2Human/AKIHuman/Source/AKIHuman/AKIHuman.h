@@ -42,6 +42,9 @@ extern
 AKIHuman *AKICreateHuman();
 
 extern
+void __AKIHumanDeallocate(void *object);
+
+extern
 void AKIHumanSetName(AKIHuman *human, AKIString *name);
 
 extern
@@ -58,8 +61,5 @@ void AKIHumanSetGender(AKIHuman *object, AKIGender gender);
 
 extern
 AKIGender AKIHumanGetGender(AKIHuman *object);
-
-extern
-void __AKIHumanDeallocate(void *object);
 
 #endif /* AKIInitializeHuman_h */

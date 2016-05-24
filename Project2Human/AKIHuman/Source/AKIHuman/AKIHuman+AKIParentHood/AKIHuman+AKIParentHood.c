@@ -9,6 +9,7 @@
 #include "AKIHuman.h"
 #include "AKIHuman+AKIMarriage.h"
 #include "AKIHuman+AKIParentHood.h"
+#include "AKIConstants.h"
 
 #pragma mark -
 #pragma Private Declarations

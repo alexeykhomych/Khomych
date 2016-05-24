@@ -14,6 +14,7 @@
 #include "AKIHuman.h"
 #include "AKIHuman+AKIMarriage.h"
 #include "AKIHuman+AKIParentHood.h"
+#include "AKIConstants.h"
 
 void __AKIHumanDeallocate(void *object) {
     AKIHumanDivorce(object);

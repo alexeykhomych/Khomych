@@ -11,8 +11,6 @@
 
 #include <stdio.h>
 
-extern const uint64_t kAKINotFound;
-
 typedef void (*AKIObjectDeallocator)(void *object);
 
 typedef struct {
@@ -26,13 +24,13 @@ extern
 void *__AKIObjectCreate(size_t size, AKIObjectDeallocator deallocator);
 
 extern
+void __AKIObjectDeallocate(void *object);
+
+extern
 void *AKIObjectRetain(void *object);
 
 extern
 void AKIObjectRelease(void *address);
-
-extern
-void __AKIObjectDeallocate(void *object);
 
 extern
 uint64_t AKIObjectRetainCount(void *object);

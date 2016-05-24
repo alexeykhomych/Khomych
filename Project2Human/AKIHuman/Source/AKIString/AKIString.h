@@ -17,7 +17,7 @@ typedef struct {
 } AKIString;
 
 extern
-AKIString *AKIStringCreate();
+AKIString *AKIStringCreate(char *value);
 
 extern
 void __AKIStringDeallocate(void *object);
