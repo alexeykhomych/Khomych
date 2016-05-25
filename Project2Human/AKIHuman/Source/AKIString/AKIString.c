@@ -16,7 +16,7 @@
 #pragma Private Declarations
 
 static
-void AKIStringSetValue(AKIString *object, AKIString *name);
+void AKIStringSetValue(AKIString *string, char *value);
 
 #pragma mark -
 #pragma Public Implementations
@@ -29,7 +29,9 @@ void __AKIStringDeallocate(void *object) {
 
 AKIString *AKIStringCreate(char *value) {
     AKIString *object = AKIObjectCreateOfType(AKIString);
-    AKIStringSetValue(object, )
+    AKIStringSetValue(object, value);
+    
+    return object;
 }
 
 AKIString *AKIStringCopy(AKIString *string) {
@@ -43,26 +45,32 @@ size_t AKIStringGetLength(AKIString *string) {
     return string ? strlen(string->_value) : kAKINotFound;
 }
 
-AKIString *AKIStringGetValue(AKIString *object) {
-    return object ? object : NULL;
+char *AKIStringGetValue(AKIString *string) {
+    return string ? string->_value : NULL;
 }
 
 #pragma mark -
 #pragma mark Private Implementations
 
-void AKIStringSetValue(AKIString *object, AKIString *string) {
-    if (object) {
-        if (string->_value != object->_value) {
-            if (object->_value) {
-                free(object->_value);
-                object->_value = NULL;
+void AKIStringSetValue(AKIString *string, char *value) {
+    if (string) {
+        if (string->_value != value) {
+            if (string->_value) {
+                free(string->_value);
+                string->_value = NULL;
             }
         }
         
-        if (string->_value) {
-            size_t countBytes = AKIStringGetLength(string);
-            object->_value = malloc(countBytes);
-            memmove(object->_value, string->_value, countBytes);
+        if (value) {
+            size_t countBytes = strlen(value);
+            string->_value = malloc(countBytes);
+            memmove(string->_value, value, countBytes);
         }
+    }
+}
+
+void AKIStringPrintObject(AKIString *string) {
+    if (string) {
+        printf("%s\n", string->_value);
     }
 }

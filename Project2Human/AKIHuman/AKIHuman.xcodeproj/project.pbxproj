@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8453D64D1CF327A600C61D72 /* AKILinkedList.c in Sources */ = {isa = PBXBuildFile; fileRef = 8453D64B1CF327A600C61D72 /* AKILinkedList.c */; };
 		8453D6511CF3298300C61D72 /* AKILinkedListNode.c in Sources */ = {isa = PBXBuildFile; fileRef = 8453D64F1CF3298300C61D72 /* AKILinkedListNode.c */; };
+		8453D6551CF5AF3400C61D72 /* AKIConstants.c in Sources */ = {isa = PBXBuildFile; fileRef = 8453D6541CF5AF3400C61D72 /* AKIConstants.c */; };
 		845E0FFF1CCE2CE4007CFFE3 /* AKIHumanTests.c in Sources */ = {isa = PBXBuildFile; fileRef = 845E0FFD1CCE2CE4007CFFE3 /* AKIHumanTests.c */; };
 		845E10051CCF96B0007CFFE3 /* AKIHuman.c in Sources */ = {isa = PBXBuildFile; fileRef = 845E10031CCF96B0007CFFE3 /* AKIHuman.c */; };
 		845E10121CD0E490007CFFE3 /* AKIHuman+AKIMarriage.c in Sources */ = {isa = PBXBuildFile; fileRef = 845E10101CD0E490007CFFE3 /* AKIHuman+AKIMarriage.c */; };
@@ -39,6 +40,7 @@
 		8453D64F1CF3298300C61D72 /* AKILinkedListNode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AKILinkedListNode.c; sourceTree = "<group>"; };
 		8453D6501CF3298300C61D72 /* AKILinkedListNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKILinkedListNode.h; sourceTree = "<group>"; };
 		8453D6531CF48EA400C61D72 /* AKIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKIConstants.h; sourceTree = "<group>"; };
+		8453D6541CF5AF3400C61D72 /* AKIConstants.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AKIConstants.c; sourceTree = "<group>"; };
 		845E0FFD1CCE2CE4007CFFE3 /* AKIHumanTests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AKIHumanTests.c; sourceTree = "<group>"; };
 		845E0FFE1CCE2CE4007CFFE3 /* AKIHumanTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKIHumanTests.h; sourceTree = "<group>"; };
 		845E10031CCF96B0007CFFE3 /* AKIHuman.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = AKIHuman.c; path = Source/AKIHuman/AKIHuman.c; sourceTree = SOURCE_ROOT; };
@@ -94,6 +96,7 @@
 		8453D6521CF48E7000C61D72 /* AKIConstants */ = {
 			isa = PBXGroup;
 			children = (
+				8453D6541CF5AF3400C61D72 /* AKIConstants.c */,
 				8453D6531CF48EA400C61D72 /* AKIConstants.h */,
 			);
 			path = AKIConstants;
@@ -278,6 +281,7 @@
 				84F3FBBE1CC909D0002DCC40 /* main.c in Sources */,
 				8453D6511CF3298300C61D72 /* AKILinkedListNode.c in Sources */,
 				845E10121CD0E490007CFFE3 /* AKIHuman+AKIMarriage.c in Sources */,
+				8453D6551CF5AF3400C61D72 /* AKIConstants.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -29,6 +29,9 @@ extern
 AKIString *AKIStringCopy(AKIString *string);
 
 extern
-AKIString *AKIStringGetValue(AKIString *object);
+char *AKIStringGetValue(AKIString *string);
+
+extern
+void AKIStringPrintObject(AKIString *string);
 
 #endif /* AKIString_h */
