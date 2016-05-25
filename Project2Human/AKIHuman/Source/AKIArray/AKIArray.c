@@ -103,11 +103,7 @@ void AKIArrayRemoveAllObjects(AKIArray *array) {
         uint64_t count = AKIArrayGetCount(array);
         
         for (uint64_t i = 0; i < count; i++) {
-            uint64_t indexObject = count - i - 1;
-            
-            if (AKIArrayGetObjectAtIndex(array, indexObject)) {
-                AKIArrayRemoveObjectAtIndex(array, indexObject);
-            }
+            AKIArrayRemoveObjectAtIndex(array, count - i - 1);
         }
     }
 }

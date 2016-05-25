@@ -15,6 +15,8 @@
 #include "AKIString.h"
 #include "AKIConstants.h"
 
+//const uint32_t kAKIChildrenCount = 20;
+
 typedef enum {
     AKIGenderUndefined,
     AKIGenderMale,
