@@ -50,7 +50,7 @@ void AKILinkedListRemoveFirstObject(AKILinkedList *list) {
 }
 
 bool AKILinkedListIsEmpty(AKILinkedList *list) {
-    return list && 0 == AKILinkedListGetCount(list);
+    return list && !AKILinkedListGetCount(list);
 }
 
 void AKILinkedListAddObject(AKILinkedList *list, void *object) {
@@ -75,6 +75,8 @@ void AKILinkedListRemoveObject(AKILinkedList *list, void *object) {
         if (currentObject == object) {
             AKILinkedListNodeSetNextNode(previousNode, AKILinkedListNodeGetNextNode(node));
             AKILinkedListSetCount(list, AKILinkedListGetCount(list) - 1);
+            
+            break;
         }
         
         previousNode = node;
@@ -122,7 +124,7 @@ AKIObject *AKILinkedListGetObjectBeforeObject(AKILinkedList *list, AKIObject *ob
             }
             
             previousObject = currentObject;
-        } while (NULL == (currentNode = AKILinkedListNodeGetNextNode(currentNode)));
+        } while (!(currentNode = AKILinkedListNodeGetNextNode(currentNode)));
     }
     
     return NULL;

@@ -13,5 +13,6 @@
 
 extern const uint64_t kAKINotFound;
 extern const uint64_t kAKIArrayMaximumCapacity;
+extern const uint32_t kAKIChildrenCount;
 
 #endif /* AKIConstants_h */

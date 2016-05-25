@@ -55,8 +55,7 @@ void AKIHumanTest() {
     AKIHumanSetGender(object, AKIGenderMale);
     assert(AKIHumanGetGender(object) == AKIGenderMale);
     
-    AKIString *string = AKIStringCreate();
-    string = AKIStringCopy((AKIString *) "Alex");
+    AKIString *string = AKIStringCreate("Dmitriy");
     
     AKIHumanSetName(object, string);
     

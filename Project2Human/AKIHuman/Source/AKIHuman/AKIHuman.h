@@ -13,8 +13,9 @@
 
 #include "AKIObject.h"
 #include "AKIString.h"
+#include "AKIConstants.h"
 
-static const uint32_t kAKIChildrenCount = 20;
+//const uint32_t kAKIChildrenCount = 20;
 
 typedef enum {
     AKIGenderUndefined,
@@ -34,7 +35,8 @@ struct AKIHuman {
     AKIHuman *_father;
     AKIHuman *_mother;
     
-    AKIHuman *_children[kAKIChildrenCount];
+//    AKIHuman *_children[kAKIChildrenCount];
+    AKIHuman *_children[20];
     uint8_t _childrenCount;
 };
 

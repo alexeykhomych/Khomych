@@ -22,6 +22,7 @@ typedef struct {
     
     AKILinkedListNode *_head;
     uint64_t _count;
+    uint64_t _mutationsCount;
 } AKILinkedList;
 
 extern

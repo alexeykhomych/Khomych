@@ -15,8 +15,6 @@
 #pragma mark -
 #pragma Private Declarations
 
-const uint64_t kAKIArrayMaximumCapacity = UINT64_MAX - 1;
-
 static
 void AKIArraySetCapacity(AKIArray *array, uint64_t capacity);
 
@@ -33,7 +31,7 @@ static
 void AKIArraySetCount(AKIArray *array, uint64_t count);
 
 static
-void AKIArrayShiftObjectFromIndex(AKIArray *array, uint64_t index, uint64_t count);;
+void AKIArrayShiftFromIndex(AKIArray *array, uint64_t index, uint64_t count);
 
 
 #pragma mark -
@@ -94,7 +92,7 @@ void AKIArrayRemoveObjectAtIndex(AKIArray *array, uint64_t index) {
         AKIArraySetObjectAtIndex(array, NULL, index);
         uint64_t count = AKIArrayGetCount(array);
         
-        AKIArrayShiftObjectFromIndex(array, index, count);
+        AKIArrayShiftFromIndex(array, index, count);
         
         AKIArraySetCount(array, count - 1);
     }
@@ -105,11 +103,7 @@ void AKIArrayRemoveAllObjects(AKIArray *array) {
         uint64_t count = AKIArrayGetCount(array);
         
         for (uint64_t i = 0; i < count; i++) {
-            uint64_t indexObject = count - i - 1;
-            
-            if (AKIArrayGetObjectAtIndex(array, indexObject)) {
-                AKIArrayRemoveObjectAtIndex(array, indexObject);
-            }
+            AKIArrayRemoveObjectAtIndex(array, count - i - 1);
         }
     }
 }
@@ -196,7 +190,7 @@ void **AKIArrayGetData(AKIArray *array) {
     return array ? array->_data : NULL;
 }
 
-void AKIArrayShiftObjectFromIndex(AKIArray *array, uint64_t index, uint64_t count) {
+void AKIArrayShiftFromIndex(AKIArray *array, uint64_t index, uint64_t count) {
     if (array && index < count) {
         uint64_t elementCount = count - (index + 1);
         void **data = AKIArrayGetData(array);
