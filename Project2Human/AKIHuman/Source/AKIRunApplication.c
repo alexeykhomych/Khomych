@@ -10,8 +10,10 @@
 #include "AKIHuman.h"
 #include "AKIHumanTests.h"
 #include "AKIArrayTest.h"
+#include "AKILinkedListTest.h"
 
 void AKIRunApplication() {
-    AKIHumanTestRun();
+//    AKIHumanTestRun();
 //    AKICreateArrayTest();
+    AKILinkedListTest();
 }
