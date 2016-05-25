@@ -8,39 +8,42 @@
 
 #include "AKILinkedListNode.h"
 
-void __AKILinkedListNodeDeallocate(void *list) {
-    __AKIObjectDeallocate(list);
+void __AKILinkedListNodeDeallocate(void *object) {
+    AKILinkedListNodeSetObject(object, NULL);
+    AKILinkedListNodeSetNextNode(object, NULL);
+
+    __AKIObjectDeallocate(object);
 }
 
 AKILinkedListNode *AKILinkedListCreateWithObject(void *object) {
     AKILinkedListNode *node = AKIObjectCreateOfType(AKILinkedListNode);
-    
-    
+    AKILinkedListNodeSetObject(node, object);
     
     return node;
 }
 
 void AKILinkedListNodeSetNextNode(AKILinkedListNode *node, AKILinkedListNode *nextNode) {
-    if (node) {
+    if (node && AKILinkedListNodeGetNextNode(node) != nextNode) {
+        AKIObjectRelease(node->_nextNode);
+        AKIObjectRetain(nextNode);
         
+        node->_nextNode = nextNode;
     }
 }
 
-
 AKILinkedListNode *AKILinkedListNodeGetNextNode(AKILinkedListNode *node) {
-    if (!node) {
-        return NULL;
-    }
-    
-    return NULL;
+    return node ? node->_nextNode : NULL;
 }
 
 void AKILinkedListNodeSetObject(AKILinkedListNode *node, void *object) {
-    if (node) {
+    if (node && AKILinkedListGetObject(node)) {
+        AKIObjectRelease(node->_object);
+        AKIObjectRetain(object);
         
+        node->_object = object;
     }
 }
 
 AKIObject *AKILinkedListGetObject(AKILinkedListNode *node) {
-    return node ? node->_nextNode : NULL;
+    return node ? node->_object : NULL;
 }

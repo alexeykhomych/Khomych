@@ -35,7 +35,8 @@ struct AKIHuman {
     AKIHuman *_father;
     AKIHuman *_mother;
     
-    AKIHuman *_children[kAKIChildrenCount];
+//    AKIHuman *_children[kAKIChildrenCount];
+    AKIHuman *_children[20];
     uint8_t _childrenCount;
 };
 
