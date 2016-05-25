@@ -30,13 +30,13 @@ AKILinkedListNode *AKILinkedListCreateWithObject(void *object) {
     }\
 }
 
+#undef AKILinkedListSetNode
+
 void AKILinkedListNodeSetNextNode(AKILinkedListNode *node, AKILinkedListNode *nextNode) {
     if (node && AKILinkedListNodeGetNextNode(node) != nextNode) {
         AKILinkedListNodeSet(node, nextNode);
     }
 }
-
-#undef AKILinkedListSetNode
 
 AKILinkedListNode *AKILinkedListNodeGetNextNode(AKILinkedListNode *node) {
     return node ? node->_nextNode : NULL;
