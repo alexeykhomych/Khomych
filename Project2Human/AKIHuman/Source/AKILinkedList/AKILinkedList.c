@@ -11,19 +11,15 @@
 
 #include "AKILinkedList.h"
 #include "AKILinkedListNode.h"
+#include "AKILinkedListEnumerator.h"
 #include "AKIConstants.h"
+#include "AKILinkedListPrivate.h"
 
 #pragma mark -
 #pragma mark Private Declarations
 
 static
 void AKILinkedListSetCount(AKILinkedList *list, uint64_t count);
-
-static
-void AKILinkedListSetHead(AKILinkedList *list, AKILinkedListNode *node);
-
-static
-AKILinkedListNode *AKILinkedListGetHead(AKILinkedList *list);
 
 #pragma mark -
 #pragma mark Public Implementations
@@ -130,6 +126,10 @@ AKIObject *AKILinkedListGetObjectBeforeObject(AKILinkedList *list, AKIObject *ob
     return NULL;
 }
 
+uint64_t AKILinkedListGetMutationsCount(AKILinkedList *list) {
+    return list ? list->_mutationsCount : kAKINotFound;
+}
+
 #pragma mark -
 #pragma mark Private Implementations
 
@@ -150,5 +150,11 @@ AKILinkedListNode *AKILinkedListGetHead(AKILinkedList *list) {
 void AKILinkedListSetCount(AKILinkedList *list, uint64_t count) {
     if (list) {
         list->_count = count;
+    }
+}
+
+void AKILinkedListSetMutationsCount(AKILinkedList *list, uint64_t count) {
+    if (list) {
+        list->_mutationsCount = count;
     }
 }

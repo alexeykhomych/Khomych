@@ -32,9 +32,9 @@ extern
 AKILinkedListEnumerator *AKILinkedListEnumeratorCreateWithList(AKILinkedList *list);
 
 extern
-AKILinkedListNode *AKILinkedListEnumeratorGetNextNode(AKILinkedListEnumerator *enumerator);
+void *AKILinkedListEnumeratorGetNextObject(AKILinkedListEnumerator *enumerator);
 
 extern
-bool AKILinkedListEnumeratorIsValid(AKILinkedList *list);
+bool AKILinkedListEnumeratorIsValid(AKILinkedListEnumerator *enumerator);
 
 #endif /* AKILinkedListEnumerator_h */

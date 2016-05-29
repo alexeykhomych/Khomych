@@ -13,17 +13,17 @@
 #include <stdbool.h>
 
 #include "AKIObject.h"
-#include "AKILinkedList.h"
+#include "AKILinkedListNode.h"
 
-typedef struct AKILinkedListNode AKILinkedListNode;
+typedef struct AKILinkedList AKILinkedList;
 
-typedef struct {
+struct AKILinkedList{
     AKIObject _super;
     
     AKILinkedListNode *_head;
     uint64_t _count;
     uint64_t _mutationsCount;
-} AKILinkedList;
+};
 
 extern
 void __AKILinkedListDeallocate(void *object);
@@ -51,6 +51,9 @@ bool AKILinkedListContainsObject(AKILinkedList *list, void *object);
 
 extern
 uint64_t AKILinkedListGetCount(AKILinkedList *list);
+
+extern
+uint64_t AKILinkedListGetMutationsCount(AKILinkedList *list);
 
 extern
 AKIObject *AKILinkedListGetObjectBeforeObject(AKILinkedList *list, AKIObject *object);
