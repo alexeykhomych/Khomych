@@ -35,4 +35,18 @@ void AKIObjectRelease(void *address);
 extern
 uint64_t AKIObjectRetainCount(void *object);
 
+#define AKIObjectAssignSetter(object, ivar, newIvar) { \
+    if (object) { \
+        object->_ivar = newIvar; \
+    } \
+}
+
+#define AKIObjectRetainSetter(object, ivar, newIvar) { \
+    if (object) { \
+        AKIObjectRelease(object->_ivar); \
+        AKIObjectRetain(newIvar); \
+        object->_ivar = newIvar; \
+    } \
+}
+
 #endif /* AKIObject_h */
