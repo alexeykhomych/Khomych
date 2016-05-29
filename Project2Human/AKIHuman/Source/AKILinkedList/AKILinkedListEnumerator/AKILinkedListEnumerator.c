@@ -38,6 +38,9 @@ uint64_t AKILinkedListEnumeratorGetMutationsCount(AKILinkedListEnumerator *enume
 static
 void AKILinkedListEnumeratorSetIsValid(AKILinkedListEnumerator *enumerator, bool valid);
 
+static
+bool AKILinkedListEnumeratorMutationsCountValidate(AKILinkedListEnumerator *enumerator);
+
 #pragma mark -
 #pragma mark Public Implementations
 
@@ -59,29 +62,18 @@ AKILinkedListEnumerator *AKILinkedListEnumeratorCreateWithList(AKILinkedList *li
 }
 
 void *AKILinkedListEnumeratorGetNextObject(AKILinkedListEnumerator *enumerator) {
-    uint64_t enumeratorMutationsCount = 0;
-    uint64_t linkedListMutationsCount = 0;
-    
-    if (enumerator) {
-        enumeratorMutationsCount = AKILinkedListEnumeratorGetMutationsCount(enumerator);
-        linkedListMutationsCount = AKILinkedListGetMutationsCount(enumerator->_list);
-    
-        if (enumeratorMutationsCount != linkedListMutationsCount) {
-            return NULL;
-        }
-        
+    if (enumerator && AKILinkedListEnumeratorMutationsCountValidate(enumerator)) {
         AKILinkedListNode *node = AKILinkedListEnumeratorGetNode(enumerator);
         
+        node = node ? AKILinkedListGetHead(AKILinkedListEnumeratorGetList(enumerator)) : AKILinkedListEnumeratorGetNode(enumerator);
+        
         if (!node) {
-            
-            AKILinkedList *list = AKILinkedListEnumeratorGetList(enumerator);
-            
-            AKILinkedListNode *head = AKILinkedListGetHead(list);
-            AKILinkedListEnumeratorSetMutationsCount(enumerator, enumeratorMutationsCount + 1);
-            AKILinkedListSetMutationsCount(list, linkedListMutationsCount + 1);
-            
-            return head;
+            AKILinkedListEnumeratorSetIsValid(enumerator, false);
         }
+        
+        AKILinkedListEnumeratorSetNode(enumerator, node);
+        
+        return AKILinkedListNodeGetObject(node);
     }
     
     
@@ -123,4 +115,17 @@ uint64_t AKILinkedListEnumeratorGetMutationsCount(AKILinkedListEnumerator *enume
 
 void AKILinkedListEnumeratorSetIsValid(AKILinkedListEnumerator *enumerator, bool valid) {
     AKIObjectAssignSetter(enumerator, _isValid, valid);
+}
+
+bool AKILinkedListEnumeratorMutationsCountValidate(AKILinkedListEnumerator *enumerator) {
+    if (enumerator && AKILinkedListEnumeratorIsValid(enumerator)) {
+        uint64_t enumeratorMutationsCount = AKILinkedListEnumeratorGetMutationsCount(enumerator);
+        uint64_t linkedListMutationsCount = AKILinkedListGetMutationsCount(AKILinkedListEnumeratorGetList(enumerator));
+        
+        if (enumeratorMutationsCount == linkedListMutationsCount) {
+            return true;
+        }
+    }
+    
+    return false;
 }

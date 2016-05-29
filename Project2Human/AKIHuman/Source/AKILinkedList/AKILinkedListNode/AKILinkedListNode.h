@@ -38,6 +38,6 @@ extern
 void AKILinkedListNodeSetObject(AKILinkedListNode *node, void *object);
 
 extern
-AKIObject *AKILinkedListGetObject(AKILinkedListNode *node);
+AKIObject *AKILinkedListNodeGetObject(AKILinkedListNode *node);
 
 #endif /* AKILinkedListNode_h */

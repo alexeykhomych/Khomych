@@ -38,6 +38,6 @@ void AKILinkedListNodeSetObject(AKILinkedListNode *node, void *object) {
     }
 }
 
-AKIObject *AKILinkedListGetObject(AKILinkedListNode *node) {
+AKIObject *AKILinkedListNodeGetObject(AKILinkedListNode *node) {
     return node ? node->_object : NULL;
 }
