@@ -33,7 +33,7 @@ void __AKILinkedListDeallocate(void *object) {
 AKIObject *AKILinkedListGetFirstObject(AKILinkedList *list) {
     AKILinkedListNode *head = AKILinkedListGetHead(list);
     
-    return AKILinkedListGetObject(head);
+    return AKILinkedListNodeGetObject(head);
 }
 
 void AKILinkedListRemoveFirstObject(AKILinkedList *list) {
@@ -66,7 +66,7 @@ void AKILinkedListRemoveObject(AKILinkedList *list, void *object) {
     AKILinkedListNode *previousNode = NULL;
     
     while (node) {
-        AKIObject *currentObject = AKILinkedListGetObject(node);
+        AKIObject *currentObject = AKILinkedListNodeGetObject(node);
         
         if (currentObject == object) {
             AKILinkedListNodeSetNextNode(previousNode, AKILinkedListNodeGetNextNode(node));
@@ -92,7 +92,7 @@ bool AKILinkedListContainsObject(AKILinkedList *list, void *object) {
         AKILinkedListNode *node = AKILinkedListGetHead(list);
         
         while (node) {
-            if (object == AKILinkedListGetObject(node)) {
+            if (object == AKILinkedListNodeGetObject(node)) {
                 return true;
             }
             
@@ -113,7 +113,7 @@ AKIObject *AKILinkedListGetObjectBeforeObject(AKILinkedList *list, AKIObject *ob
         AKIObject *previousObject = NULL;
         
         do {
-            AKIObject *currentObject = AKILinkedListGetObject(currentNode);
+            AKIObject *currentObject = AKILinkedListNodeGetObject(currentNode);
             
             if (object == currentObject) {
                 return previousObject;
@@ -150,6 +150,7 @@ AKILinkedListNode *AKILinkedListGetHead(AKILinkedList *list) {
 void AKILinkedListSetCount(AKILinkedList *list, uint64_t count) {
     if (list) {
         list->_count = count;
+        AKILinkedListSetMutationsCount(list, AKILinkedListGetMutationsCount(list) + 1);
     }
 }
 
