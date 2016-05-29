@@ -53,10 +53,10 @@ AKILinkedListEnumerator *AKILinkedListEnumeratorCreateWithList(AKILinkedList *li
         return NULL;
     }
     
-    
     AKILinkedListEnumerator *enumerator = AKIObjectCreateOfType(AKILinkedListEnumerator);
     AKILinkedListEnumeratorSetList(enumerator, list);
     AKILinkedListEnumeratorSetMutationsCount(enumerator, AKILinkedListEnumeratorGetMutationsCount(enumerator));
+    AKILinkedListEnumeratorSetIsValid(enumerator, true);
     
     return enumerator;
 }
@@ -88,7 +88,9 @@ bool AKILinkedListEnumeratorIsValid(AKILinkedListEnumerator *enumerator) {
 #pragma mark Private Implementations
 
 void AKILinkedListEnumeratorSetList(AKILinkedListEnumerator *enumerator, AKILinkedList *list) {
-    
+    if (enumerator) {
+        AKIObjectRetainSetter(enumerator, _list, list);
+    }
 }
 
 AKILinkedList *AKILinkedListEnumeratorGetList(AKILinkedListEnumerator *enumerator) {
@@ -96,7 +98,9 @@ AKILinkedList *AKILinkedListEnumeratorGetList(AKILinkedListEnumerator *enumerato
 }
 
 void AKILinkedListEnumeratorSetNode(AKILinkedListEnumerator *enumerator, AKILinkedListNode *node) {
-    
+    if (enumerator) {
+        AKIObjectRetainSetter(enumerator, _currentNode, node);
+    }
 }
 
 AKILinkedListNode *AKILinkedListEnumeratorGetNode(AKILinkedListEnumerator *enumerator) {
