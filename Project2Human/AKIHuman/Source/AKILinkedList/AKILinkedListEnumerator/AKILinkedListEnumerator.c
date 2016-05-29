@@ -6,9 +6,13 @@
 //  Copyright © 2016 Alexey Khomych. All rights reserved.
 //
 
+#include <stdbool.h>
+
 #include "AKILinkedListEnumerator.h"
 #include "AKILinkedListNode.h"
+#include "AKILinkedList.h"
 #include "AKIConstants.h"
+#include "AKILinkedListPrivate.h"
 
 #pragma mark -
 #pragma mark Private Declarations
@@ -31,6 +35,9 @@ void AKILinkedListEnumeratorSetMutationsCount(AKILinkedListEnumerator *enumerato
 static
 uint64_t AKILinkedListEnumeratorGetMutationsCount(AKILinkedListEnumerator *enumerator);
 
+static
+void AKILinkedListEnumeratorSetIsValid(AKILinkedListEnumerator *enumerator, bool valid);
+
 #pragma mark -
 #pragma mark Public Implementations
 
@@ -39,19 +46,50 @@ void __AKILinkedListEnumeratorDeallocate(void *object) {
 }
 
 AKILinkedListEnumerator *AKILinkedListEnumeratorCreateWithList(AKILinkedList *list) {
+    if (!list || !AKILinkedListGetHead(list)) {
+        return NULL;
+    }
+    
+    
     AKILinkedListEnumerator *enumerator = AKIObjectCreateOfType(AKILinkedListEnumerator);
     AKILinkedListEnumeratorSetList(enumerator, list);
-    AKILinkedListEnumeratorSetMutationsCount(enumerator, 0);
+    AKILinkedListEnumeratorSetMutationsCount(enumerator, AKILinkedListEnumeratorGetMutationsCount(enumerator));
     
     return enumerator;
 }
 
-AKILinkedListNode *AKILinkedListEnumeratorGetNextNode(AKILinkedListEnumerator *enumerator) {
+void *AKILinkedListEnumeratorGetNextObject(AKILinkedListEnumerator *enumerator) {
+    uint64_t enumeratorMutationsCount = 0;
+    uint64_t linkedListMutationsCount = 0;
+    
+    if (enumerator) {
+        enumeratorMutationsCount = AKILinkedListEnumeratorGetMutationsCount(enumerator);
+        linkedListMutationsCount = AKILinkedListGetMutationsCount(enumerator->_list);
+    
+        if (enumeratorMutationsCount != linkedListMutationsCount) {
+            return NULL;
+        }
+        
+        AKILinkedListNode *node = AKILinkedListEnumeratorGetNode(enumerator);
+        
+        if (!node) {
+            
+            AKILinkedList *list = AKILinkedListEnumeratorGetList(enumerator);
+            
+            AKILinkedListNode *head = AKILinkedListGetHead(list);
+            AKILinkedListEnumeratorSetMutationsCount(enumerator, enumeratorMutationsCount + 1);
+            AKILinkedListSetMutationsCount(list, linkedListMutationsCount + 1);
+            
+            return head;
+        }
+    }
+    
+    
     return NULL;
 }
 
-bool AKILinkedListEnumeratorIsValid(AKILinkedList *list) {
-    return NULL;
+bool AKILinkedListEnumeratorIsValid(AKILinkedListEnumerator *enumerator) {
+    return enumerator && enumerator->_isValid;
 }
 
 #pragma mark -
@@ -81,4 +119,8 @@ void AKILinkedListEnumeratorSetMutationsCount(AKILinkedListEnumerator *enumerato
 
 uint64_t AKILinkedListEnumeratorGetMutationsCount(AKILinkedListEnumerator *enumerator) {
     return enumerator ? enumerator->_mutationsCount : kAKINotFound;
+}
+
+void AKILinkedListEnumeratorSetIsValid(AKILinkedListEnumerator *enumerator, bool valid) {
+    AKIObjectAssignSetter(enumerator, _isValid, valid);
 }
