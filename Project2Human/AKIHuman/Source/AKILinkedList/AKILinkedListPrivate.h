@@ -9,7 +9,17 @@
 #ifndef AKILinkedListPrivate_h
 #define AKILinkedListPrivate_h
 
-typedef struct AKILinkedList AKILinkedList; 
+#include <stdbool.h>
+
+typedef struct AKILinkedList AKILinkedList;
+
+typedef struct {
+    void *object;
+    void *previousObject;
+    void *node;
+} AKILinkedListContext;
+
+typedef bool (*AKILinkedListComparisonFunction)(AKILinkedListNode *node, AKILinkedListContext context);
 
 extern
 void AKILinkedListSetHead(AKILinkedList *list, AKILinkedListNode *node);
@@ -19,5 +29,11 @@ AKILinkedListNode *AKILinkedListGetHead(AKILinkedList *list);
 
 extern
 void AKILinkedListSetMutationsCount(AKILinkedList *list, uint64_t count);
+
+extern
+AKILinkedListNode *AKILinkedListGetNodeWithContext(AKILinkedList *list, AKILinkedListComparisonFunction comparator, AKILinkedListContext context);
+
+extern
+bool AKILinkedListNodeContainsObject(AKILinkedListNode *node, AKILinkedListContext context);
 
 #endif /* AKILinkedListPrivate_h */
