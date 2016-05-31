@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "AKILinkedList.h"
 #include "AKILinkedListNode.h"
@@ -62,21 +63,20 @@ void AKILinkedListAddObject(AKILinkedList *list, void *object) {
 }
 
 void AKILinkedListRemoveObject(AKILinkedList *list, void *object) {
-    AKILinkedListNode *node = AKILinkedListGetHead(list);
-    AKILinkedListNode *previousNode = NULL;
-    
-    while (node) {
-        AKIObject *currentObject = AKILinkedListNodeGetObject(node);
+    if (list) {
+        AKILinkedListContext context;
         
-        if (currentObject == object) {
-            AKILinkedListNodeSetNextNode(previousNode, AKILinkedListNodeGetNextNode(node));
-            AKILinkedListSetCount(list, AKILinkedListGetCount(list) - 1);
-            
-            break;
+        memset(&context, 0, sizeof(context));
+        
+        context.object = object;
+        AKILinkedListNode *node;
+        
+        while ((node = AKILinkedListFindNodeWithContext(list, AKILinkedListNodeContainsObject, &context))) {
+            if (node) {
+                AKILinkedListNodeSetNextNode(context.previousObject, AKILinkedListNodeGetNextNode(context.node));
+                AKILinkedListSetCount(list, AKILinkedListGetCount(list) - 1);
+            }
         }
-        
-        previousNode = node;
-        node = AKILinkedListNodeGetNextNode(node);
     }
 }
 
@@ -89,15 +89,16 @@ void AKILinkedListRemoveAllObject(AKILinkedList *list) {
 
 bool AKILinkedListContainsObject(AKILinkedList *list, void *object) {
     if (list) {
-        AKILinkedListNode *node = AKILinkedListGetHead(list);
+        AKILinkedListContext context;
         
-        while (node) {
-            if (object == AKILinkedListNodeGetObject(node)) {
-                return true;
-            }
-            
-            node = AKILinkedListNodeGetNextNode(node);
-        }
+        memset(&context, 0, sizeof(context));
+        
+#warning check
+        size_t size = sizeof(context);
+        
+        context.object = object;
+        
+        return AKILinkedListFindNodeWithContext(list, AKILinkedListNodeContainsObject, &context);
     }
     
     return false;
@@ -158,4 +159,27 @@ void AKILinkedListSetMutationsCount(AKILinkedList *list, uint64_t count) {
     if (list) {
         list->_mutationsCount = count;
     }
+}
+
+AKILinkedListNode *AKILinkedListFindNodeWithContext(AKILinkedList *list, AKILinkedListComparisonFunction comparator, AKILinkedListContext *context) {
+
+    AKILinkedListNode *node = NULL;
+    
+    if (list) {
+        AKILinkedListEnumerator *enumerator = AKILinkedListEnumeratorCreateWithList(list);
+        
+        while (AKILinkedListEnumeratorGetNode(enumerator) && AKILinkedListEnumeratorIsValid(enumerator)) {
+            AKILinkedListNode *currentNode = AKILinkedListEnumeratorGetNode(enumerator);
+            context.node = node;
+            
+            if (AKILinkedListContainsObject(list, AKILinkedListNodeGetObject(currentNode))) {
+                node = currentNode;
+                break;
+            }
+        }
+        
+        AKIObjectRelease(enumerator);
+    }
+    
+    return node;
 }

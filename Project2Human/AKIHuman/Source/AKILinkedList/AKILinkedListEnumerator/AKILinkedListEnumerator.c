@@ -27,9 +27,6 @@ static
 void AKILinkedListEnumeratorSetNode(AKILinkedListEnumerator *enumerator, AKILinkedListNode *node);
 
 static
-AKILinkedListNode *AKILinkedListEnumeratorGetNode(AKILinkedListEnumerator *enumerator);
-
-static
 void AKILinkedListEnumeratorSetMutationsCount(AKILinkedListEnumerator *enumerator, uint64_t count);
 
 static

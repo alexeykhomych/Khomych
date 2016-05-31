@@ -31,9 +31,12 @@ extern
 void AKILinkedListSetMutationsCount(AKILinkedList *list, uint64_t count);
 
 extern
-AKILinkedListNode *AKILinkedListGetNodeWithContext(AKILinkedList *list, AKILinkedListComparisonFunction comparator, AKILinkedListContext context);
+AKILinkedListNode *AKILinkedListFindNodeWithContext(AKILinkedList *list, AKILinkedListComparisonFunction comparator, AKILinkedListContext *context);
 
 extern
 bool AKILinkedListNodeContainsObject(AKILinkedListNode *node, AKILinkedListContext context);
+
+extern
+AKILinkedListNode *AKILinkedListEnumeratorGetNode(AKILinkedListEnumerator *enumerator);
 
 #endif /* AKILinkedListPrivate_h */
