@@ -22,19 +22,9 @@ AKILinkedListNode *AKILinkedListCreateWithObject(void *object) {
     return node;
 }
 
-#define AKILinkedListNodeSet(node, object) { \
-    if (node) {\
-        AKIObjectRelease(node->_##object);\
-        AKIObjectRetain(object);\
-        node->_##object = object;\
-    }\
-}
-
-#undef AKILinkedListSetNode
-
 void AKILinkedListNodeSetNextNode(AKILinkedListNode *node, AKILinkedListNode *nextNode) {
     if (node && AKILinkedListNodeGetNextNode(node) != nextNode) {
-        AKILinkedListNodeSet(node, nextNode);
+        AKIObjectRetainSetter(node, _nextNode, nextNode);
     }
 }
 
@@ -43,11 +33,11 @@ AKILinkedListNode *AKILinkedListNodeGetNextNode(AKILinkedListNode *node) {
 }
 
 void AKILinkedListNodeSetObject(AKILinkedListNode *node, void *object) {
-    if (node && AKILinkedListGetObject(node)) {
-        AKILinkedListNodeSet(node, object);
+    if (node && AKILinkedListNodeGetObject(node)) {
+        AKIObjectRetainSetter(node, _object, object);
     }
 }
 
-AKIObject *AKILinkedListGetObject(AKILinkedListNode *node) {
+AKIObject *AKILinkedListNodeGetObject(AKILinkedListNode *node) {
     return node ? node->_object : NULL;
 }

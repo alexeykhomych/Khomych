@@ -12,6 +12,10 @@
 #include "AKILinkedList.h"
 #include "AKIString.h"
 #include "AKIHuman.h"
+#include "AKILinkedListEnumerator.h"
+
+static
+void AKILinkedListEnumeratorTest(AKILinkedList *list, uint64_t count);
 
 void AKILinkedListTest() {
     AKILinkedList *list = AKIObjectCreateOfType(AKILinkedList);
@@ -30,6 +34,8 @@ void AKILinkedListTest() {
         }
     }
     
+    AKILinkedListEnumeratorTest(list, count);
+    
     assert(count == AKILinkedListGetCount(list));
     assert(AKILinkedListContainsObject(list, human));
     assert(AKILinkedListContainsObject(list, string));
@@ -44,4 +50,28 @@ void AKILinkedListTest() {
     
     AKILinkedListRemoveAllObject(list);
     assert(0 == AKILinkedListGetCount(list));
+    
+    AKIObjectRelease(string);
+    AKIObjectRelease(human);
+    AKIObjectRelease(list);
+    
+}
+
+void AKILinkedListEnumeratorTest(AKILinkedList *list, uint64_t count) {
+    if (!list) {
+        return;
+    }
+    AKILinkedListEnumerator *enumerator = AKILinkedListEnumeratorCreateWithList(list);
+    AKIObject *object = AKILinkedListEnumeratorGetNextObject(enumerator);
+    
+    uint64_t i = 0;
+    
+    while (AKILinkedListEnumeratorIsValid(enumerator)) {
+        object = AKILinkedListEnumeratorGetNextObject(enumerator);
+        i += 1;
+    }
+    
+    assert(i == count);
+    
+    AKIObjectRelease(enumerator);
 }

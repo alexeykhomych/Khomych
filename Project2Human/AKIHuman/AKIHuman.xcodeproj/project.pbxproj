@@ -47,6 +47,7 @@
 		8453D6571CF5CE4B00C61D72 /* AKILinkedListTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKILinkedListTest.h; sourceTree = "<group>"; };
 		8453D65A1CF5E17C00C61D72 /* AKILinkedListEnumerator.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AKILinkedListEnumerator.c; sourceTree = "<group>"; };
 		8453D65B1CF5E17C00C61D72 /* AKILinkedListEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKILinkedListEnumerator.h; sourceTree = "<group>"; };
+		8453D65E1CFB5D3D00C61D72 /* AKILinkedListPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKILinkedListPrivate.h; sourceTree = "<group>"; };
 		845E0FFD1CCE2CE4007CFFE3 /* AKIHumanTests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AKIHumanTests.c; sourceTree = "<group>"; };
 		845E0FFE1CCE2CE4007CFFE3 /* AKIHumanTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKIHumanTests.h; sourceTree = "<group>"; };
 		845E10031CCF96B0007CFFE3 /* AKIHuman.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = AKIHuman.c; path = Source/AKIHuman/AKIHuman.c; sourceTree = SOURCE_ROOT; };
@@ -87,6 +88,7 @@
 				8453D64E1CF3294E00C61D72 /* AKILinkedListNode */,
 				8453D64B1CF327A600C61D72 /* AKILinkedList.c */,
 				8453D64C1CF327A600C61D72 /* AKILinkedList.h */,
+				8453D65E1CFB5D3D00C61D72 /* AKILinkedListPrivate.h */,
 			);
 			path = AKILinkedList;
 			sourceTree = "<group>";
@@ -392,6 +394,7 @@
 		84F3FBC21CC909D0002DCC40 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -399,6 +402,7 @@
 		84F3FBC31CC909D0002DCC40 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
