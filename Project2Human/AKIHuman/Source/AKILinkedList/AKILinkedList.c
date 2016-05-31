@@ -170,7 +170,7 @@ AKILinkedListNode *AKILinkedListFindNodeWithContext(AKILinkedList *list, AKILink
         
         while (AKILinkedListEnumeratorGetNode(enumerator) && AKILinkedListEnumeratorIsValid(enumerator)) {
             AKILinkedListNode *currentNode = AKILinkedListEnumeratorGetNode(enumerator);
-            context.node = node;
+            context->node = node;
             
             if (AKILinkedListContainsObject(list, AKILinkedListNodeGetObject(currentNode))) {
                 node = currentNode;
@@ -182,4 +182,8 @@ AKILinkedListNode *AKILinkedListFindNodeWithContext(AKILinkedList *list, AKILink
     }
     
     return node;
+}
+
+bool AKILinkedListNodeContainsObject(AKILinkedListNode *node, AKILinkedListContext context) {
+    return node && context.object == AKILinkedListNodeGetObject(node);
 }
