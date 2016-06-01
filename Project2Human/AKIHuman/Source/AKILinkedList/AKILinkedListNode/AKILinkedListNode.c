@@ -33,7 +33,7 @@ AKILinkedListNode *AKILinkedListNodeGetNextNode(AKILinkedListNode *node) {
 }
 
 void AKILinkedListNodeSetObject(AKILinkedListNode *node, void *object) {
-    if (node && AKILinkedListNodeGetObject(node)) {
+    if (node && !AKILinkedListNodeGetObject(node)) {
         AKIObjectRetainSetter(node, _object, object);
     }
 }

@@ -50,11 +50,9 @@ AKILinkedListEnumerator *AKILinkedListEnumeratorCreateWithList(AKILinkedList *li
         return NULL;
     }
     
-//    printf("%lu\n", sizeof(AKILinkedListEnumerator));
-    
     AKILinkedListEnumerator *enumerator = AKIObjectCreateOfType(AKILinkedListEnumerator);
     AKILinkedListEnumeratorSetList(enumerator, list);
-    AKILinkedListEnumeratorSetMutationsCount(enumerator, AKILinkedListEnumeratorGetMutationsCount(enumerator));
+    AKILinkedListEnumeratorSetMutationsCount(enumerator, list->_mutationsCount);
     AKILinkedListEnumeratorSetIsValid(enumerator, true);
     
     return enumerator;
@@ -64,7 +62,7 @@ void *AKILinkedListEnumeratorGetNextObject(AKILinkedListEnumerator *enumerator) 
     if (enumerator && AKILinkedListEnumeratorMutationsCountValidate(enumerator)) {
         AKILinkedListNode *node = AKILinkedListEnumeratorGetNode(enumerator);
         
-        node = node ? AKILinkedListGetHead(AKILinkedListEnumeratorGetList(enumerator)) : AKILinkedListEnumeratorGetNode(enumerator);
+        node = node ? AKILinkedListNodeGetNextNode(node) : AKILinkedListGetHead(AKILinkedListEnumeratorGetList(enumerator));
         
         if (!node) {
             AKILinkedListEnumeratorSetIsValid(enumerator, false);
@@ -88,7 +86,6 @@ bool AKILinkedListEnumeratorIsValid(AKILinkedListEnumerator *enumerator) {
 
 void AKILinkedListEnumeratorSetList(AKILinkedListEnumerator *enumerator, AKILinkedList *list) {
     if (enumerator) {
-//        AKIObjectRelease(enumerator->_list);
         AKIObjectRetainSetter(enumerator, _list, list);
     }
 }

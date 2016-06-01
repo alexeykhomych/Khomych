@@ -18,7 +18,7 @@ typedef struct AKILinkedList AKILinkedList;
 typedef struct AKILinkedListNode AKILinkedListNode;
 
 typedef struct {
-    AKIObject *_super;
+    AKIObject _super;
     AKILinkedList *_list;
     AKILinkedListNode *_currentNode;
     uint64_t _mutationsCount;
