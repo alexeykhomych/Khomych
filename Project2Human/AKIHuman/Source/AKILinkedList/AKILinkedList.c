@@ -93,9 +93,6 @@ bool AKILinkedListContainsObject(AKILinkedList *list, void *object) {
         
         memset(&context, 0, sizeof(context));
         
-#warning check
-        size_t size = sizeof(context);
-        
         context.object = object;
         
         return AKILinkedListFindNodeWithContext(list, AKILinkedListNodeContainsObject, &context);

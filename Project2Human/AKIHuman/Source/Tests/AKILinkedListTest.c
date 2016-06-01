@@ -34,7 +34,9 @@ void AKILinkedListTest() {
         }
     }
     
-    AKILinkedListEnumeratorTest(list, count);
+    assert(string == (AKIString *)AKILinkedListGetFirstObject(list));
+    
+//    AKILinkedListEnumeratorTest(list, count);
     
     assert(count == AKILinkedListGetCount(list));
     assert(AKILinkedListContainsObject(list, human));
