@@ -42,7 +42,7 @@ uint64_t AKIObjectRetainCount(void *object);
 }
 
 #define AKIObjectRetainSetter(object, ivar, newIvar) { \
-    if (object) { \
+    if (object && object->ivar != newIvar) { \
         AKIObjectRelease(object->ivar); \
         AKIObjectRetain(newIvar); \
         object->ivar = newIvar; \
