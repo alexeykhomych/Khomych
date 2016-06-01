@@ -85,9 +85,7 @@ bool AKILinkedListEnumeratorIsValid(AKILinkedListEnumerator *enumerator) {
 #pragma mark Private Implementations
 
 void AKILinkedListEnumeratorSetList(AKILinkedListEnumerator *enumerator, AKILinkedList *list) {
-    if (enumerator) {
-        AKIObjectRetainSetter(enumerator, _list, list);
-    }
+    AKIObjectRetainSetter(enumerator, _list, list);
 }
 
 AKILinkedList *AKILinkedListEnumeratorGetList(AKILinkedListEnumerator *enumerator) {
@@ -95,9 +93,7 @@ AKILinkedList *AKILinkedListEnumeratorGetList(AKILinkedListEnumerator *enumerato
 }
 
 void AKILinkedListEnumeratorSetNode(AKILinkedListEnumerator *enumerator, AKILinkedListNode *node) {
-    if (enumerator) {
-        AKIObjectRetainSetter(enumerator, _currentNode, node);
-    }
+    AKIObjectRetainSetter(enumerator, _currentNode, node);
 }
 
 AKILinkedListNode *AKILinkedListEnumeratorGetNode(AKILinkedListEnumerator *enumerator) {
@@ -105,9 +101,7 @@ AKILinkedListNode *AKILinkedListEnumeratorGetNode(AKILinkedListEnumerator *enume
 }
 
 void AKILinkedListEnumeratorSetMutationsCount(AKILinkedListEnumerator *enumerator, uint64_t count) {
-    if (enumerator) {
-        enumerator->_mutationsCount = count;
-    }
+    AKIObjectAssignSetter(enumerator, _mutationsCount, count);
 }
 
 uint64_t AKILinkedListEnumeratorGetMutationsCount(AKILinkedListEnumerator *enumerator) {

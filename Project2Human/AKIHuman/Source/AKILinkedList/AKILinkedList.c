@@ -142,16 +142,12 @@ AKILinkedListNode *AKILinkedListGetHead(AKILinkedList *list) {
 }
 
 void AKILinkedListSetCount(AKILinkedList *list, uint64_t count) {
-    if (list) {
-        list->_count = count;
-        AKILinkedListSetMutationsCount(list, AKILinkedListGetMutationsCount(list) + 1);
-    }
+    AKIObjectAssignSetter(list, _count, count);
+    AKILinkedListSetMutationsCount(list, AKILinkedListGetMutationsCount(list) + 1);
 }
 
 void AKILinkedListSetMutationsCount(AKILinkedList *list, uint64_t count) {
-    if (list) {
-        list->_mutationsCount = count;
-    }
+    AKIObjectAssignSetter(list, _mutationsCount, count);
 }
 
 AKILinkedListNode *AKILinkedListFindNodeWithContext(AKILinkedList *list, AKILinkedListComparisonFunction comparator, AKILinkedListContext *context) {
