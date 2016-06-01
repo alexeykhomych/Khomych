@@ -52,7 +52,7 @@ AKILinkedListEnumerator *AKILinkedListEnumeratorCreateWithList(AKILinkedList *li
     
     AKILinkedListEnumerator *enumerator = AKIObjectCreateOfType(AKILinkedListEnumerator);
     AKILinkedListEnumeratorSetList(enumerator, list);
-    AKILinkedListEnumeratorSetMutationsCount(enumerator, list->_mutationsCount);
+    AKILinkedListEnumeratorSetMutationsCount(enumerator, AKILinkedListGetMutationsCount(list));
     AKILinkedListEnumeratorSetIsValid(enumerator, true);
     
     return enumerator;
