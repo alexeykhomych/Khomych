@@ -48,8 +48,6 @@ void AKILinkedListTest() {
     AKILinkedListAddObject(list, human);
     assert(count == AKILinkedListGetCount(list));
     
-    assert((AKIString *)AKILinkedListGetFirstObject(list) == string);
-    
     AKILinkedListRemoveAllObject(list);
     assert(0 == AKILinkedListGetCount(list));
     
