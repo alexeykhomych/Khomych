@@ -73,8 +73,10 @@ void AKILinkedListRemoveObject(AKILinkedList *list, void *object) {
         
         while ((node = AKILinkedListFindNodeWithContext(list, AKILinkedListNodeContainsObject, &context))) {
             if (node) {
-                AKILinkedListNodeSetNextNode(context.previousObject, AKILinkedListNodeGetNextNode(context.node));
+                AKILinkedListNodeSetNextNode(context.previousNode, AKILinkedListNodeGetNextNode(context.node));
                 AKILinkedListSetCount(list, AKILinkedListGetCount(list) - 1);
+                
+                break;
             }
         }
     }
@@ -159,26 +161,28 @@ void AKILinkedListSetMutationsCount(AKILinkedList *list, uint64_t count) {
 }
 
 AKILinkedListNode *AKILinkedListFindNodeWithContext(AKILinkedList *list, AKILinkedListComparisonFunction comparator, AKILinkedListContext *context) {
-
-    AKILinkedListNode *node = NULL;
+    AKILinkedListNode *result = NULL;
     
     if (list) {
         AKILinkedListEnumerator *enumerator = AKILinkedListEnumeratorCreateWithList(list);
         
-        while (AKILinkedListEnumeratorGetNode(enumerator) && AKILinkedListEnumeratorIsValid(enumerator)) {
-            AKILinkedListNode *currentNode = AKILinkedListEnumeratorGetNode(enumerator);
+        while (AKILinkedListEnumeratorGetNextObject(enumerator) && AKILinkedListEnumeratorIsValid(enumerator)) {
+            AKILinkedListNode *node = AKILinkedListEnumeratorGetNode(enumerator);
+            
             context->node = node;
             
-            if (AKILinkedListContainsObject(list, AKILinkedListNodeGetObject(currentNode))) {
-                node = currentNode;
+            if (AKILinkedListNodeContainsObject(node, *context)) {
+                result = node;
                 break;
             }
+            
+            context->previousNode = node;            
         }
         
         AKIObjectRelease(enumerator);
     }
     
-    return node;
+    return result;
 }
 
 bool AKILinkedListNodeContainsObject(AKILinkedListNode *node, AKILinkedListContext context) {

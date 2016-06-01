@@ -15,7 +15,7 @@ typedef struct AKILinkedList AKILinkedList;
 
 typedef struct {
     void *object;
-    void *previousObject;
+    void *previousNode;
     void *node;
 } AKILinkedListContext;
 
