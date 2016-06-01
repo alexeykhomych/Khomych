@@ -94,7 +94,7 @@ bool AKILinkedListContainsObject(AKILinkedList *list, void *object) {
         AKILinkedListContext context;
         
         memset(&context, 0, sizeof(context));
-        
+
         context.object = object;
         
         return AKILinkedListFindNodeWithContext(list, AKILinkedListNodeContainsObject, &context);
@@ -133,14 +133,8 @@ uint64_t AKILinkedListGetMutationsCount(AKILinkedList *list) {
 #pragma mark -
 #pragma mark Private Implementations
 
-void AKILinkedListSetHead(AKILinkedList *list, AKILinkedListNode *node) {
-    AKILinkedListNode *head = AKILinkedListGetHead(list);
-    
-    if (list && head != node) {
-        AKIObjectRetain(node);
-        AKIObjectRelease(list->_head);
-        list->_head = node;
-    }
+void AKILinkedListSetHead(AKILinkedList *list, AKILinkedListNode *head) {
+    AKIObjectRetainSetter(list, _head, head);
 }
 
 AKILinkedListNode *AKILinkedListGetHead(AKILinkedList *list) {
@@ -171,7 +165,7 @@ AKILinkedListNode *AKILinkedListFindNodeWithContext(AKILinkedList *list, AKILink
             
             context->node = node;
             
-            if (AKILinkedListNodeContainsObject(node, *context)) {
+            if (AKILinkedListNodeContainsObject(node, context)) {
                 result = node;
                 break;
             }
@@ -185,6 +179,6 @@ AKILinkedListNode *AKILinkedListFindNodeWithContext(AKILinkedList *list, AKILink
     return result;
 }
 
-bool AKILinkedListNodeContainsObject(AKILinkedListNode *node, AKILinkedListContext context) {
-    return node && context.object == AKILinkedListNodeGetObject(node);
+bool AKILinkedListNodeContainsObject(AKILinkedListNode *node, AKILinkedListContext *context) {
+    return node && context->object == AKILinkedListNodeGetObject(node);
 }
