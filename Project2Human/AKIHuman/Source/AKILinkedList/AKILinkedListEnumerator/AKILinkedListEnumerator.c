@@ -85,7 +85,7 @@ bool AKILinkedListEnumeratorIsValid(AKILinkedListEnumerator *enumerator) {
 #pragma mark Private Implementations
 
 void AKILinkedListEnumeratorSetList(AKILinkedListEnumerator *enumerator, AKILinkedList *list) {
-    AKIObjectRetainSetter(enumerator, _list, list);
+    AKIObjectSetStrong(enumerator, _list, list);
 }
 
 AKILinkedList *AKILinkedListEnumeratorGetList(AKILinkedListEnumerator *enumerator) {
@@ -93,7 +93,7 @@ AKILinkedList *AKILinkedListEnumeratorGetList(AKILinkedListEnumerator *enumerato
 }
 
 void AKILinkedListEnumeratorSetNode(AKILinkedListEnumerator *enumerator, AKILinkedListNode *node) {
-    AKIObjectRetainSetter(enumerator, _currentNode, node);
+    AKIObjectSetStrong(enumerator, _currentNode, node);
 }
 
 AKILinkedListNode *AKILinkedListEnumeratorGetNode(AKILinkedListEnumerator *enumerator) {

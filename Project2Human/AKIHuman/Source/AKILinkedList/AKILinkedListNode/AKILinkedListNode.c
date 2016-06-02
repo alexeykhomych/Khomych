@@ -23,7 +23,7 @@ AKILinkedListNode *AKILinkedListCreateWithObject(void *object) {
 }
 
 void AKILinkedListNodeSetNextNode(AKILinkedListNode *node, AKILinkedListNode *nextNode) {
-    AKIObjectRetainSetter(node, _nextNode, nextNode);
+    AKIObjectSetStrong(node, _nextNode, nextNode);
 }
 
 AKILinkedListNode *AKILinkedListNodeGetNextNode(AKILinkedListNode *node) {
@@ -31,7 +31,7 @@ AKILinkedListNode *AKILinkedListNodeGetNextNode(AKILinkedListNode *node) {
 }
 
 void AKILinkedListNodeSetObject(AKILinkedListNode *node, void *object) {
-    AKIObjectRetainSetter(node, _object, object);
+    AKIObjectSetStrong(node, _object, object);
 }
 
 AKIObject *AKILinkedListNodeGetObject(AKILinkedListNode *node) {

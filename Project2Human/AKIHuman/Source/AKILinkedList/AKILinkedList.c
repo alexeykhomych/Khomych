@@ -134,7 +134,7 @@ uint64_t AKILinkedListGetMutationsCount(AKILinkedList *list) {
 #pragma mark Private Implementations
 
 void AKILinkedListSetHead(AKILinkedList *list, AKILinkedListNode *head) {
-    AKIObjectRetainSetter(list, _head, head);
+    AKIObjectSetStrong(list, _head, head);
 }
 
 AKILinkedListNode *AKILinkedListGetHead(AKILinkedList *list) {
