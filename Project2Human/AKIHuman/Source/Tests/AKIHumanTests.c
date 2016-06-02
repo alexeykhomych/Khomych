@@ -43,8 +43,8 @@ void AKIHumanTestRun() {
 
 void AKIObjectTest() {
     AKIHumanTest();
-//    AKIHumanPartnerTest();
-//    AKIHumanChildrenTest();
+    AKIHumanPartnerTest();
+    AKIHumanChildrenTest();
 }
 
 void AKIHumanTest() {

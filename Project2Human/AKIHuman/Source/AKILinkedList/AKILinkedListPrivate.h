@@ -19,7 +19,7 @@ typedef struct {
     void *node;
 } AKILinkedListContext;
 
-typedef bool (*AKILinkedListComparisonFunction)(AKILinkedListNode *node, AKILinkedListContext context);
+typedef bool (*AKILinkedListComparisonFunction)(AKILinkedListNode *node, AKILinkedListContext *context);
 
 extern
 void AKILinkedListSetHead(AKILinkedList *list, AKILinkedListNode *node);
@@ -34,7 +34,7 @@ extern
 AKILinkedListNode *AKILinkedListFindNodeWithContext(AKILinkedList *list, AKILinkedListComparisonFunction comparator, AKILinkedListContext *context);
 
 extern
-bool AKILinkedListNodeContainsObject(AKILinkedListNode *node, AKILinkedListContext context);
+bool AKILinkedListNodeContainsObject(AKILinkedListNode *node, AKILinkedListContext *context);
 
 extern
 AKILinkedListNode *AKILinkedListEnumeratorGetNode(AKILinkedListEnumerator *enumerator);
