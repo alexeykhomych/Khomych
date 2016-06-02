@@ -12,6 +12,7 @@
 #include <stdio.h>
 
 typedef void (*AKIObjectDeallocator)(void *object);
+typedef void *(*AKIObjectOwnershipMethod)(void *);
 
 typedef struct {
     uint64_t _referenceCount;
@@ -35,18 +36,19 @@ void AKIObjectRelease(void *address);
 extern
 uint64_t AKIObjectRetainCount(void *object);
 
+extern
+void __AKIObjectSetFieldValueWithMethod(void *object, void **ivar, void *newIvar, AKIObjectOwnershipMethod retainMethod);
+
 #define AKIObjectAssignSetter(object, ivar, newIvar) { \
     if (object) { \
         object->ivar = newIvar; \
     } \
 }
 
-#define AKIObjectRetainSetter(object, ivar, newIvar) { \
-    if (object && object->ivar != newIvar) { \
-        AKIObjectRelease(object->ivar); \
-        AKIObjectRetain(newIvar); \
-        object->ivar = newIvar; \
-    } \
-}
+#define AKIObjectSetFieldValueWithMethod(object, ivar, newIvar, retainMethod) \
+    __AKIObjectSetFieldValueWithMethod((AKIObject *) object, (void **)&object->ivar, newIvar, (void *(*)(void *))retainMethod)
+
+#define AKIObjectSetStrong(object, ivar, newIvar) \
+    AKIObjectSetFieldValueWithMethod(object, ivar, newIvar, AKIObjectRetain)
 
 #endif /* AKIObject_h */

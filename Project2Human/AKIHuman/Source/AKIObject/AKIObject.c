@@ -53,3 +53,18 @@ void AKIObjectRelease(void *object) {
 uint64_t AKIObjectRetainCount(void *object) {
     return object ? ((AKIObject *)object)->_referenceCount : 0;
 }
+
+void __AKIObjectSetFieldValueWithMethod(void *object, void **ivar, void *newIvar, AKIObjectOwnershipMethod retainMethod) {
+    if (!object) {
+        return;
+    }
+    
+    if (*ivar != newIvar) {
+        void *result = retainMethod(newIvar);
+        if (*ivar) {
+            AKIObjectRelease(*ivar);
+        }
+        
+        *ivar = result;
+    }
+}
