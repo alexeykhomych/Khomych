@@ -45,8 +45,11 @@ void __AKIObjectSetFieldValueWithMethod(void *object, void **ivar, void *newIvar
     } \
 }
 
-#define AKIObjectSetFieldValueWithMethod(object, ivar, newIvar, retainMethod) \
-    __AKIObjectSetFieldValueWithMethod((AKIObject *) object, (void **)&object->ivar, newIvar, (void *(*)(void *))retainMethod)
+#define AKIObjectSetFieldValueWithMethod(object, ivar, newIvar, retainMethod) {\
+    if (object) { \
+        __AKIObjectSetFieldValueWithMethod((AKIObject *) object, (void **)&object->ivar, newIvar, (void *(*)(void *))retainMethod); \
+    } \
+}
 
 #define AKIObjectSetStrong(object, ivar, newIvar) \
     AKIObjectSetFieldValueWithMethod(object, ivar, newIvar, AKIObjectRetain)

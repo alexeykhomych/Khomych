@@ -58,4 +58,7 @@ uint64_t AKILinkedListGetMutationsCount(AKILinkedList *list);
 extern
 AKIObject *AKILinkedListGetObjectBeforeObject(AKILinkedList *list, AKIObject *object);
 
+extern
+AKIObject *AKILinkedListGetObjectAfterObject(AKILinkedList *list, AKIObject *object);
+
 #endif /* AKILinkedList_h */
