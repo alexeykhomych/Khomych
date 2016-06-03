@@ -22,6 +22,9 @@
 static
 void AKILinkedListSetCount(AKILinkedList *list, uint64_t count);
 
+static
+bool AKILinkedListArrayReduce(void *object, void *context);
+
 #pragma mark -
 #pragma mark Public Implementations
 
@@ -120,7 +123,7 @@ AKIObject *AKILinkedListGetObjectBeforeObject(AKILinkedList *list, AKIObject *ob
             }
             
             previousObject = currentObject;
-        } while (!(currentNode = AKILinkedListNodeGetNextNode(currentNode)));
+        } while ((currentNode = AKILinkedListNodeGetNextNode(currentNode)));
     }
     
     return NULL;
@@ -150,7 +153,7 @@ void AKILinkedListSetMutationsCount(AKILinkedList *list, uint64_t count) {
     AKIObjectAssignSetter(list, _mutationsCount, count);
 }
 
-AKILinkedListNode *AKILinkedListFindNodeWithContext(AKILinkedList *list, AKILinkedListComparisonFunction comparator, AKILinkedListContext *context) {
+AKILinkedListNode *AKILinkedListFindNodeWithContext(AKILinkedList *list, AKILinkedListComparisonFunction comparator, void *context) {
     AKILinkedListNode *result = NULL;
     
     if (list) {
@@ -158,15 +161,11 @@ AKILinkedListNode *AKILinkedListFindNodeWithContext(AKILinkedList *list, AKILink
         
         while (AKILinkedListEnumeratorGetNextObject(enumerator) && AKILinkedListEnumeratorIsValid(enumerator)) {
             AKILinkedListNode *node = AKILinkedListEnumeratorGetNode(enumerator);
-            
-            context->node = node;
-            
-            if (AKILinkedListNodeContainsObject(node, context)) {
+
+            if (comparator(node, context)) {
                 result = node;
                 break;
             }
-            
-            context->previousNode = node;            
         }
         
         AKIObjectRelease(enumerator);
@@ -175,6 +174,17 @@ AKILinkedListNode *AKILinkedListFindNodeWithContext(AKILinkedList *list, AKILink
     return result;
 }
 
-bool AKILinkedListNodeContainsObject(AKILinkedListNode *node, AKILinkedListContext *context) {
-    return node && context->object == AKILinkedListNodeGetObject(node);
+bool AKILinkedListNodeContainsObject(AKILinkedListNode *node, void *context) {
+    AKILinkedListContext *localContext = context;
+    
+    localContext->previousNode = localContext->node;
+    localContext->node = node;
+    
+    return node && localContext->object == AKILinkedListNodeGetObject(node);
+}
+
+bool AKILinkedListArrayReduce(void *object, void *context) {
+    
+    
+    return true;
 }
