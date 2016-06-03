@@ -55,16 +55,14 @@ uint64_t AKIObjectRetainCount(void *object) {
 }
 
 void __AKIObjectSetFieldValueWithMethod(void *object, void **ivar, void *newIvar, AKIObjectOwnershipMethod retainMethod) {
-    if (!object) {
+    if (!object || *ivar == newIvar) {
         return;
     }
     
-    if (*ivar != newIvar) {
-        void *result = retainMethod(newIvar);
-        if (*ivar) {
-            AKIObjectRelease(*ivar);
-        }
-        
-        *ivar = result;
+    void *result = retainMethod(newIvar);
+    if (*ivar) {
+        AKIObjectRelease(*ivar);
     }
+    
+    *ivar = result;
 }

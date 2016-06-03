@@ -33,20 +33,22 @@ void AKILinkedListTest() {
             AKILinkedListAddObject(list, human);
         }
     }
-    
-    assert((AKIObject *)human == AKILinkedListGetFirstObject(list));
-    
-    AKILinkedListEnumeratorTest(list, count);
-    
-    assert(count == AKILinkedListGetCount(list));
-    assert(AKILinkedListContainsObject(list, human));
-    assert(AKILinkedListContainsObject(list, string));
-    
-    AKILinkedListRemoveObject(list, human);
-    assert(count - 1 == AKILinkedListGetCount(list));
-    
-    AKILinkedListAddObject(list, human);
-    assert(count == AKILinkedListGetCount(list));
+//    
+//    assert((AKIObject *)human == AKILinkedListGetFirstObject(list));
+//    
+//    AKILinkedListEnumeratorTest(list, count);
+//    
+//    assert(count == AKILinkedListGetCount(list));
+//    assert(AKILinkedListContainsObject(list, human));
+//    assert(AKILinkedListContainsObject(list, string));
+//    
+//    AKILinkedListRemoveObject(list, human);
+//    assert(count - 1 == AKILinkedListGetCount(list));
+//    
+//    AKILinkedListAddObject(list, human);
+//    assert(count == AKILinkedListGetCount(list));
+    AKILinkedListAddObject(list, string);
+    assert((AKIObject *)string == AKILinkedListGetObjectBeforeObject(list, (AKIObject *)human));
     
     AKILinkedListRemoveAllObject(list);
     assert(0 == AKILinkedListGetCount(list));
