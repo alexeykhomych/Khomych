@@ -19,6 +19,7 @@ typedef struct AKIAutoreleasingPool AKIAutoreleasingPool;
 struct AKIAutoreleasingPool {
     AKIObject _super;
     AKILinkedList *_stack;
+    uint64_t _count;
     bool _isValid;
 };
 
@@ -26,6 +27,15 @@ extern
 void __AKIAutoreleasingPoolDeallocate(void *object);
 
 extern
-void AKIAutoreleasingPoolCreate();
+AKIAutoreleasingPool * AKIAutoreleasingPoolCreate();
+
+extern
+void AKIAutoreleasingPoolAddObject(AKIAutoreleasingPool *pool, void *object);
+
+extern
+void AKIAutoreleasingPoolDrain();
+
+extern
+AKIAutoreleasingPool *AKIAutoreleasingPoolGet();
 
 #endif /* AKIAutoreleasingPool_h */
