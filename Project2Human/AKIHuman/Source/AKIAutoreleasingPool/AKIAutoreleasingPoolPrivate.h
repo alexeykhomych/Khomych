@@ -10,4 +10,10 @@
 #define AKIAutoreleasingPoolPrivate_h
 
 
+typedef AKIAutoreleasingPoolStackContext AKIAutoreleasingPoolStackContext;
+struct AKIAutoreleasingPoolStackContext {
+    IDPAutoreleasingStack *stack;
+    IDPAutoreleasingStack *previousStack;
+};
+
 #endif /* AKIAutoreleasingPoolPrivate_h */
