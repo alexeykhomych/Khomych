@@ -54,8 +54,8 @@ uint64_t AKIObjectRetainCount(void *object) {
     return object ? ((AKIObject *)object)->_referenceCount : 0;
 }
 
-void __AKIObjectSetFieldValueWithMethod(void *object, void **ivar, void *newIvar, AKIObjectOwnershipMethod retainMethod) {
-    if (!object || *ivar == newIvar) {
+void __AKIObjectSetFieldValueWithMethod(void **ivar, void *newIvar, AKIObjectOwnershipMethod retainMethod) {
+    if (*ivar == newIvar) {
         return;
     }
     
