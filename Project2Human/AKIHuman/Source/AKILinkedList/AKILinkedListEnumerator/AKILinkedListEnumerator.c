@@ -73,7 +73,6 @@ void *AKILinkedListEnumeratorGetNextObject(AKILinkedListEnumerator *enumerator) 
         return AKILinkedListNodeGetObject(node);
     }
     
-    
     return NULL;
 }
 
