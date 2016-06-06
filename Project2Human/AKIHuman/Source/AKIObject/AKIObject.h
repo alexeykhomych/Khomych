@@ -37,7 +37,7 @@ extern
 uint64_t AKIObjectRetainCount(void *object);
 
 extern
-void __AKIObjectSetFieldValueWithMethod(void *object, void **ivar, void *newIvar, AKIObjectOwnershipMethod retainMethod);
+void __AKIObjectSetFieldValueWithMethod(void **ivar, void *newIvar, AKIObjectOwnershipMethod retainMethod);
 
 #define AKIObjectAssignSetter(object, ivar, newIvar) { \
     if (object) { \
@@ -47,7 +47,7 @@ void __AKIObjectSetFieldValueWithMethod(void *object, void **ivar, void *newIvar
 
 #define AKIObjectSetFieldValueWithMethod(object, ivar, newIvar, retainMethod) {\
     if (object) { \
-        __AKIObjectSetFieldValueWithMethod((AKIObject *) object, (void **)&object->ivar, newIvar, (void *(*)(void *))retainMethod); \
+        __AKIObjectSetFieldValueWithMethod((void **)&object->ivar, newIvar, (void *(*)(void *))retainMethod); \
     } \
 }
 

@@ -184,7 +184,5 @@ bool AKILinkedListNodeContainsObject(AKILinkedListNode *node, void *context) {
 }
 
 bool AKILinkedListArrayReduce(void *object, void *context) {
-    
-    
     return true;
 }
