@@ -154,3 +154,7 @@ uint64_t AKIAutoreleasingPoolGetCount(AKIAutoreleasingPool *pool) {
 bool AKIAutoreleasingPoolGetIsValid(AKIAutoreleasingPool *pool) {
     return pool && pool->_isValid;
 }
+
+void AKIAutoreleasingPoolSetStackList(AKIAutoreleasingPool *pool, AKILinkedList *list) {
+    
+}

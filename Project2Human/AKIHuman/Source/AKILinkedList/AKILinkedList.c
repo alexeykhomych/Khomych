@@ -23,7 +23,7 @@ static
 void AKILinkedListSetCount(AKILinkedList *list, uint64_t count);
 
 static
-bool AKILinkedListArrayReduce(void *object, void *context);
+AKILinkedListContext AKILinkedListContextCreateWithObject(void *object);
 
 #pragma mark -
 #pragma mark Public Implementations
@@ -67,11 +67,8 @@ void AKILinkedListAddObject(AKILinkedList *list, void *object) {
 
 void AKILinkedListRemoveObject(AKILinkedList *list, void *object) {
     if (list) {
-        AKILinkedListContext context;
+        AKILinkedListContext context = AKILinkedListContextCreateWithObject(object);
         
-        memset(&context, 0, sizeof(context));
-        
-        context.object = object;
         AKILinkedListNode *node;
         
         while ((node = AKILinkedListFindNodeWithContext(list, AKILinkedListNodeContainsObject, &context))) {
@@ -94,11 +91,7 @@ void AKILinkedListRemoveAllObject(AKILinkedList *list) {
 
 bool AKILinkedListContainsObject(AKILinkedList *list, void *object) {
     if (list) {
-        AKILinkedListContext context;
-        
-        memset(&context, 0, sizeof(context));
-
-        context.object = object;
+        AKILinkedListContext context = AKILinkedListContextCreateWithObject(object);
         
         return AKILinkedListFindNodeWithContext(list, AKILinkedListNodeContainsObject, &context);
     }
@@ -111,22 +104,31 @@ uint64_t AKILinkedListGetCount(AKILinkedList *list) {
 }
 
 AKIObject *AKILinkedListGetObjectBeforeObject(AKILinkedList *list, AKIObject *object) {
+    AKIObject *previousObject = NULL;
+    
     if (list && !AKILinkedListIsEmpty(list)) {
-        AKILinkedListNode *currentNode = AKILinkedListGetHead(list);
-        AKIObject *previousObject = NULL;
+        AKILinkedListContext context = AKILinkedListContextCreateWithObject(object);
+        AKILinkedListNode *node = AKILinkedListFindNodeWithContext(list, AKILinkedListNodeContainsObject, &context);
         
-        do {
-            AKIObject *currentObject = AKILinkedListNodeGetObject(currentNode);
-            
-            if (object == currentObject) {
-                return previousObject;
-            }
-            
-            previousObject = currentObject;
-        } while ((currentNode = AKILinkedListNodeGetNextNode(currentNode)));
+        if (node) {
+            previousObject = AKILinkedListNodeGetObject(context.previousNode);
+        }
     }
     
-    return NULL;
+    return previousObject;
+}
+
+AKIObject *AKILinkedListGetObjectAfterObject(AKILinkedList *list, AKIObject *object) {
+    AKIObject *nextObject = NULL;
+    
+    if (list && !AKILinkedListIsEmpty(list)) {
+        AKILinkedListEnumerator *enumerator = AKILinkedListEnumeratorCreateWithList(list);
+        nextObject = AKILinkedListEnumeratorGetNextObject(enumerator);
+        
+        AKIObjectRelease(enumerator);
+    }
+    
+    return nextObject;
 }
 
 uint64_t AKILinkedListGetMutationsCount(AKILinkedList *list) {
@@ -153,15 +155,18 @@ void AKILinkedListSetMutationsCount(AKILinkedList *list, uint64_t count) {
     AKIObjectAssignSetter(list, _mutationsCount, count);
 }
 
-AKILinkedListNode *AKILinkedListFindNodeWithContext(AKILinkedList *list, AKILinkedListComparisonFunction comparator, void *context) {
+AKILinkedListNode *AKILinkedListFindNodeWithContext(AKILinkedList *list,
+                                                    AKILinkedListComparisonFunction comparator,
+                                                    void *context)
+{
     AKILinkedListNode *result = NULL;
     
     if (list) {
         AKILinkedListEnumerator *enumerator = AKILinkedListEnumeratorCreateWithList(list);
-        
+
         while (AKILinkedListEnumeratorGetNextObject(enumerator) && AKILinkedListEnumeratorIsValid(enumerator)) {
             AKILinkedListNode *node = AKILinkedListEnumeratorGetNode(enumerator);
-
+            
             if (comparator(node, context)) {
                 result = node;
                 break;
@@ -183,6 +188,12 @@ bool AKILinkedListNodeContainsObject(AKILinkedListNode *node, void *context) {
     return node && localContext->object == AKILinkedListNodeGetObject(node);
 }
 
-bool AKILinkedListArrayReduce(void *object, void *context) {
-    return true;
+AKILinkedListContext AKILinkedListContextCreateWithObject(void *object) {
+    AKILinkedListContext context;
+    
+    memset(&context, 0, sizeof(context));
+    
+    context.object = object;
+    
+    return context;
 }
